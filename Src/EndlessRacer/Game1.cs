@@ -1,4 +1,5 @@
-﻿using EndlessRacer.Environment;
+﻿using EndlessRacer.Constants;
+using EndlessRacer.Environment;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -31,7 +32,8 @@ namespace EndlessRacer
 
             base.Initialize();
 
-            _level = new Level(_spriteBatch, _treeSprite);
+            EngineComponents.Set(_graphics, _spriteBatch);
+            _level = new Level(_treeSprite);
         }
 
         protected override void LoadContent()
