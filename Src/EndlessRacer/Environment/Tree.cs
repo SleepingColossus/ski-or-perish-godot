@@ -9,25 +9,25 @@ namespace EndlessRacer.Environment
         private readonly SpriteBatch _spriteBatch;
         private readonly Texture2D _sprite;
 
-        private Vector2 Position { get; set; }
+        private Vector2 _position;
 
         public Tree(SpriteBatch spriteBatch, Texture2D sprite, Vector2 initialPosition)
         {
             _spriteBatch = spriteBatch;
             _sprite = sprite;
-            Position = initialPosition;
+            _position = initialPosition;
 
-            Debug.WriteLine($"Hi. I'm a tree. My position is: {Position.X}, {Position.Y}");
+            Debug.WriteLine($"Hi. I'm a tree. My position is: {_position.X}, {_position.Y}");
         }
 
         public void Update(GameTime gameTime)
         {
-
+            _position.Y -= Gameplay.ScrollSpeed;
         }
 
         public void Draw()
         {
-            _spriteBatch.Draw(_sprite, Position, Color.White);
+            _spriteBatch.Draw(_sprite, _position, Color.White);
         }
     }
 }
