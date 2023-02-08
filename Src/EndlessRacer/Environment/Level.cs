@@ -34,10 +34,10 @@ namespace EndlessRacer.Environment
 
             _trees = new Tree[NumberOfRows][];
 
-            for (int row = 0; row < _trees.Length; row++)
-            {
-                _trees[row] = new Tree[RowLength];
-            }
+            //for (int row = 0; row < _trees.Length; row++)
+            //{
+            //    _trees[row] = new Tree[RowLength];
+            //}
 
             InitializeTrees();
         }
@@ -74,37 +74,46 @@ namespace EndlessRacer.Environment
         {
             for (int row = 0; row < _trees.Length; row++)
             {
-                var cellsToFill = (RowLength - _currentGap) / 2;
-
-                // fill left side
-                for (var i = 0; i < cellsToFill + _currentOffset; i++)
-                {
-                    _trees[row][i] = new Tree(_spriteBatch, _treeSprite,
-                        IndexToCoordinates(row, i, _treeSprite.Bounds));
-                }
-
-                // fill left side
-                for (var i = RowLength - cellsToFill - 1 + _currentOffset; i < RowLength; i++)
-                {
-                    _trees[row][i] = new Tree(_spriteBatch, _treeSprite,
-                        IndexToCoordinates(row, i, _treeSprite.Bounds));
-                }
-
-
-                var offsetChange = _random.Next(-OffsetStep, OffsetStep + 1);
-
-                _currentOffset += offsetChange;
-
-                if (_currentOffset < MinOffset)
-                {
-                    _currentOffset = MinOffset;
-                }
-
-                if (_currentOffset > MaxOffset)
-                {
-                    _currentOffset = MaxOffset;
-                }
+                _trees[row] = InitializeRow(row);
             }
+        }
+
+        private Tree[] InitializeRow(int row)
+        {
+            var trees = new Tree[RowLength];
+
+            var cellsToFill = (RowLength - _currentGap) / 2;
+
+            // fill left side
+            for (var i = 0; i < cellsToFill + _currentOffset; i++)
+            {
+                trees[i] = new Tree(_spriteBatch, _treeSprite,
+                    IndexToCoordinates(row, i, _treeSprite.Bounds));
+            }
+
+            // fill left side
+            for (var i = RowLength - cellsToFill - 1 + _currentOffset; i < RowLength; i++)
+            {
+                trees[i] = new Tree(_spriteBatch, _treeSprite,
+                    IndexToCoordinates(row, i, _treeSprite.Bounds));
+            }
+
+
+            var offsetChange = _random.Next(-OffsetStep, OffsetStep + 1);
+
+            _currentOffset += offsetChange;
+
+            if (_currentOffset < MinOffset)
+            {
+                _currentOffset = MinOffset;
+            }
+
+            if (_currentOffset > MaxOffset)
+            {
+                _currentOffset = MaxOffset;
+            }
+
+            return trees;
         }
 
         private Vector2 IndexToCoordinates(int row, int col, Rectangle bounds)
