@@ -33,7 +33,7 @@ namespace EndlessRacer
             base.Initialize();
 
             EngineComponents.Set(_graphics, _spriteBatch);
-            _level = new Level(_treeSprite);
+            _level = new Level();
         }
 
         protected override void LoadContent()
@@ -44,6 +44,9 @@ namespace EndlessRacer
 
             _treeSprite = Content.Load<Texture2D>("ObstacleLarge");
             _playerSprite = Content.Load<Texture2D>("Player");
+
+            LevelSprites.Sprites.Add("tree", _treeSprite);
+            LevelSprites.Sprites.Add("player", _playerSprite);
         }
 
         protected override void Update(GameTime gameTime)

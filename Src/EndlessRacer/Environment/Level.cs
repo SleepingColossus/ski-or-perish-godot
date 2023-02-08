@@ -19,14 +19,10 @@ namespace EndlessRacer.Environment
         private int _currentOffset;
         private Random _random;
 
-        private readonly Texture2D _treeSprite;
-
         private readonly List<Tree[]> _trees;
 
-        public Level(Texture2D treeSprite)
+        public Level()
         {
-            _treeSprite = treeSprite;
-
             _currentGap = InitialGap;
             _currentOffset = 0;
             _random = new Random();
@@ -90,15 +86,13 @@ namespace EndlessRacer.Environment
             // fill left side
             for (var i = 0; i < cellsToFill + _currentOffset; i++)
             {
-                trees[i] = new Tree(_treeSprite,
-                    IndexToCoordinates(row, i, _treeSprite.Bounds));
+                trees[i] = Tree.BuildWithIndex(row, i);
             }
 
             // fill left side
             for (var i = RowLength - cellsToFill - 1 + _currentOffset; i < RowLength; i++)
             {
-                trees[i] = new Tree(_treeSprite,
-                    IndexToCoordinates(row, i, _treeSprite.Bounds));
+                trees[i] = Tree.BuildWithIndex(row, i);
             }
 
             var offsetChange = _random.Next(-OffsetStep, OffsetStep + 1);
@@ -116,14 +110,6 @@ namespace EndlessRacer.Environment
             }
 
             return trees;
-        }
-
-        private Vector2 IndexToCoordinates(int row, int col, Rectangle bounds)
-        {
-            var x = col * bounds.Size.X;
-            var y = row * bounds.Size.Y;
-
-            return new Vector2(x, y);
         }
     }
 }
