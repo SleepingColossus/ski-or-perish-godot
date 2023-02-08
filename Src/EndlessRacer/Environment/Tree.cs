@@ -16,8 +16,6 @@ namespace EndlessRacer.Environment
             _spriteBatch = spriteBatch;
             _sprite = sprite;
             _position = initialPosition;
-
-            Debug.WriteLine($"Hi. I'm a tree. My position is: {_position.X}, {_position.Y}");
         }
 
         public void Update(GameTime gameTime)
