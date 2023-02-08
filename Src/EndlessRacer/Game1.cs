@@ -15,6 +15,7 @@ namespace EndlessRacer
         private Texture2D _playerSprite;
 
         private Level _level;
+        private Player _player;
 
         public Game1()
         {
@@ -33,7 +34,9 @@ namespace EndlessRacer
             base.Initialize();
 
             EngineComponents.Set(_graphics, _spriteBatch);
+
             _level = new Level();
+            _player = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, 100));
         }
 
         protected override void LoadContent()
@@ -57,6 +60,7 @@ namespace EndlessRacer
             // TODO: Add your update logic here
 
             _level.Update(gameTime);
+            _player.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -70,8 +74,7 @@ namespace EndlessRacer
             _spriteBatch.Begin();
 
             _level.Draw();
-
-            _spriteBatch.Draw(_playerSprite, new Vector2(200, 200), Color.White);
+            _player.Draw();
 
             _spriteBatch.End();
 
