@@ -7,7 +7,7 @@ namespace EndlessRacer.Environment
 {
     internal class Level
     {
-        private const int NumberOfRows = 17;
+        private const int NumberOfRows = 18;
         private const int RowLength = 30;
 
         private const int InitialGap = 24;
