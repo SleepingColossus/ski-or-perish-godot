@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,7 +22,7 @@ namespace EndlessRacer.Environment
         private readonly SpriteBatch _spriteBatch;
         private readonly Texture2D _treeSprite;
 
-        private readonly Tree[][] _trees;
+        private readonly Queue<Tree[]> _trees;
 
         public Level(SpriteBatch spriteBatch, Texture2D treeSprite)
         {
@@ -32,25 +33,28 @@ namespace EndlessRacer.Environment
             _currentOffset = 0;
             _random = new Random();
 
-            _trees = new Tree[NumberOfRows][];
+            // initialize trees
+            var trees = new Tree[NumberOfRows][];
 
-            //for (int row = 0; row < _trees.Length; row++)
-            //{
-            //    _trees[row] = new Tree[RowLength];
-            //}
+            for (int row = 0; row < trees.Length; row++)
+            {
+                trees[row] = InitializeRow(row);
+            }
 
-            InitializeTrees();
+            _trees = new Queue<Tree[]>(trees);
         }
 
         public void Update(GameTime gameTime)
         {
-            for (int row = 0; row < _trees.Length; row++)
+            var treeArray = _trees.ToArray();
+
+            for (int row = 0; row < treeArray.Length; row++)
             {
-                for (int col = 0; col < _trees[row].Length; col++)
+                for (int col = 0; col < treeArray[row].Length; col++)
                 {
-                    if (_trees[row][col] != null)
+                    if (treeArray[row][col] != null)
                     {
-                        _trees[row][col].Update(gameTime);
+                        treeArray[row][col].Update(gameTime);
                     }
                 }
             }
@@ -58,23 +62,17 @@ namespace EndlessRacer.Environment
 
         public void Draw()
         {
-            for (int row = 0; row < _trees.Length; row++)
+            var treeArray = _trees.ToArray();
+
+            for (int row = 0; row < treeArray.Length; row++)
             {
-                for (int col = 0; col < _trees[row].Length; col++)
+                for (int col = 0; col < treeArray[row].Length; col++)
                 {
-                    if (_trees[row][col] != null)
+                    if (treeArray[row][col] != null)
                     {
-                        _trees[row][col].Draw();
+                        treeArray[row][col].Draw();
                     }
                 }
-            }
-        }
-
-        private void InitializeTrees()
-        {
-            for (int row = 0; row < _trees.Length; row++)
-            {
-                _trees[row] = InitializeRow(row);
             }
         }
 
