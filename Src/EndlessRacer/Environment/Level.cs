@@ -7,7 +7,7 @@ namespace EndlessRacer.Environment
 {
     internal class Level
     {
-        private const int NumberOfRows = 17;
+        private const int NumberOfRows = 20;
         private const int RowLength = 30;
 
         private const int InitialGap = 24;
@@ -57,6 +57,19 @@ namespace EndlessRacer.Environment
                         treeArray[row][col].Update(gameTime);
                     }
                 }
+            }
+
+            // is the first row out of bounds?
+            var outOfBounds = _trees.Peek()[0].IsOffScreen();
+
+            // if so, remove first row and add new row on bottom
+            if (outOfBounds)
+            {
+                _trees.Dequeue();
+
+                var newRow = InitializeRow(NumberOfRows - 1);
+
+                _trees.Enqueue(newRow);
             }
         }
 

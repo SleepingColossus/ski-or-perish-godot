@@ -27,5 +27,7 @@ namespace EndlessRacer.Environment
         {
             _spriteBatch.Draw(_sprite, _position, Color.White);
         }
+
+        public bool IsOffScreen() => _position.Y < -_sprite.Height;
     }
 }
