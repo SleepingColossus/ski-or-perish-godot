@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using EndlessRacer.Environment;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,9 +10,17 @@ namespace EndlessRacer
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Texture2D _treeSprite;
+        private Texture2D _playerSprite;
+
+        private Level _level;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 1080;
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -21,6 +30,8 @@ namespace EndlessRacer
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
+            _level = new Level(_spriteBatch, _treeSprite);
         }
 
         protected override void LoadContent()
@@ -28,6 +39,9 @@ namespace EndlessRacer
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            _treeSprite = Content.Load<Texture2D>("ObstacleLarge");
+            _playerSprite = Content.Load<Texture2D>("Player");
         }
 
         protected override void Update(GameTime gameTime)
@@ -37,14 +51,24 @@ namespace EndlessRacer
 
             // TODO: Add your update logic here
 
+            _level.Update(gameTime);
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Snow);
 
             // TODO: Add your drawing code here
+
+            _spriteBatch.Begin();
+
+            _level.Draw();
+
+            _spriteBatch.Draw(_playerSprite, new Vector2(200, 200), Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
