@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace EndlessRacer.Environment
@@ -8,12 +9,14 @@ namespace EndlessRacer.Environment
         private const int NumberOfRows = 17;
         private const int RowLength = 30;
 
-        private const int InitialGap = 26;
+        private const int InitialGap = 24;
         private int _currentGap;
 
         private const int MinOffset = -2;
         private const int MaxOffset = 2;
+        private const int OffsetStep = 1;
         private int _currentOffset;
+        private Random _random;
 
         private readonly SpriteBatch _spriteBatch;
         private readonly Texture2D _treeSprite;
@@ -27,6 +30,7 @@ namespace EndlessRacer.Environment
 
             _currentGap = InitialGap;
             _currentOffset = 0;
+            _random = new Random();
 
             _trees = new Tree[NumberOfRows][];
 
@@ -73,24 +77,33 @@ namespace EndlessRacer.Environment
                 var cellsToFill = (RowLength - _currentGap) / 2;
 
                 // fill left side
-                for (var i = 0; i < cellsToFill; i++)
+                for (var i = 0; i < cellsToFill + _currentOffset; i++)
                 {
                     _trees[row][i] = new Tree(_spriteBatch, _treeSprite,
                         IndexToCoordinates(row, i, _treeSprite.Bounds));
                 }
 
                 // fill left side
-                for (var i = RowLength - 1; i > RowLength - cellsToFill - 1; i--)
+                for (var i = RowLength - cellsToFill - 1 + _currentOffset; i < RowLength; i++)
                 {
                     _trees[row][i] = new Tree(_spriteBatch, _treeSprite,
                         IndexToCoordinates(row, i, _treeSprite.Bounds));
                 }
 
-                //for (int col = 0; col < _trees[row].Length; col++)
-                //{
-                //    _trees[row][col] = new Tree(_spriteBatch, _treeSprite,
-                //        IndexToCoordinates(row, col, _treeSprite.Bounds));
-                //}
+
+                var offsetChange = _random.Next(-OffsetStep, OffsetStep + 1);
+
+                _currentOffset += offsetChange;
+
+                if (_currentOffset < MinOffset)
+                {
+                    _currentOffset = MinOffset;
+                }
+
+                if (_currentOffset > MaxOffset)
+                {
+                    _currentOffset = MaxOffset;
+                }
             }
         }
 
