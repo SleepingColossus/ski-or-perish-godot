@@ -10,6 +10,7 @@ namespace EndlessRacer.Environment
         private readonly Texture2D _sprite;
 
         private Vector2 _position;
+        public float Height => _position.Y;
 
         private Tree(Vector2 initialPosition)
         {
@@ -17,15 +18,19 @@ namespace EndlessRacer.Environment
             _position = initialPosition;
         }
 
-        public static Tree BuildWithIndex(int row, int column)
+        public static Tree BuildWithIndex(float row, float column)
         {
             var position = IndexToCoordinates(row, column, LevelSprites.Sprites[SpriteName]);
 
             return new Tree(position);
         }
 
-        public static Tree BuildWithPosition(Vector2 position)
+        public static Tree BuildWithPosition(float horizontalIndex, float lastVerticalPosition)
         {
+            var horizontalPosition = horizontalIndex * LevelSprites.Sprites[SpriteName].Width;
+            var verticalPosition = lastVerticalPosition + LevelSprites.Sprites[SpriteName].Height;
+            var position = new Vector2(horizontalPosition, verticalPosition);
+
             return new Tree(position);
         }
 
@@ -41,7 +46,7 @@ namespace EndlessRacer.Environment
 
         public bool IsOffScreen() => _position.Y < -_sprite.Height;
 
-        private static Vector2 IndexToCoordinates(int row, int col, Texture2D sprite)
+        private static Vector2 IndexToCoordinates(float row, float col, Texture2D sprite)
         {
             var bounds = sprite.Bounds;
 

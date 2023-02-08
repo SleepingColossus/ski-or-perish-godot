@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace EndlessRacer.Environment
 {
@@ -32,7 +31,7 @@ namespace EndlessRacer.Environment
             // initialize trees
             for (int row = 0; row < NumberOfRows; row++)
             {
-                _trees.Add(InitializeRow(row));
+                _trees.Add(InitializeRow(row, InitMode.Row));
             }
         }
 
@@ -57,7 +56,10 @@ namespace EndlessRacer.Environment
             {
                 _trees.RemoveAt(0);
 
-                var newRow = InitializeRow(NumberOfRows - 1);
+                // get Y coord of last row
+                var lastHeight = _trees[^1][0].Height;
+
+                var newRow = InitializeRow(lastHeight, InitMode.Height);
 
                 _trees.Add(newRow);
             }
@@ -77,7 +79,13 @@ namespace EndlessRacer.Environment
             }
         }
 
-        private Tree[] InitializeRow(int row)
+        private enum InitMode
+        {
+            Row,   // index in list
+            Height // position in pixels
+        }
+
+        private Tree[] InitializeRow(float verticalPosition, InitMode mode)
         {
             var trees = new Tree[RowLength];
 
@@ -86,13 +94,27 @@ namespace EndlessRacer.Environment
             // fill left side
             for (var i = 0; i < cellsToFill + _currentOffset; i++)
             {
-                trees[i] = Tree.BuildWithIndex(row, i);
+                if (mode == InitMode.Row)
+                {
+                    trees[i] = Tree.BuildWithIndex(verticalPosition, i);
+                }
+                else
+                {
+                    trees[i] = Tree.BuildWithPosition(i, verticalPosition);
+                }
             }
 
             // fill left side
             for (var i = RowLength - cellsToFill - 1 + _currentOffset; i < RowLength; i++)
             {
-                trees[i] = Tree.BuildWithIndex(row, i);
+                if (mode == InitMode.Row)
+                {
+                    trees[i] = Tree.BuildWithIndex(verticalPosition, i);
+                }
+                else
+                {
+                    trees[i] = Tree.BuildWithPosition(i, verticalPosition);
+                }
             }
 
             var offsetChange = _random.Next(-OffsetStep, OffsetStep + 1);
