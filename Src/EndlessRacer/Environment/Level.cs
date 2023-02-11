@@ -152,6 +152,7 @@ namespace EndlessRacer.Environment
                 _rowsUntilRock = RockInterval;
 
                 var index = _random.Next(_currentOffset, _currentOffset + _currentGap);
+                index = Math.Clamp(index, MaxOffset, RowLength - MaxOffset);
 
                 currentRow[index] = Rock.BuildWithIndex(NumberOfRows, index);
             }
@@ -166,6 +167,7 @@ namespace EndlessRacer.Environment
                 _rowsUntilRamp = RampInterval;
 
                 var index = _random.Next(_currentOffset, _currentOffset + _currentGap);
+                index = Math.Clamp(index, MaxOffset, RowLength - MaxOffset);
 
                 currentRow[index] = Ramp.BuildWithIndex(NumberOfRows, index);
             }
