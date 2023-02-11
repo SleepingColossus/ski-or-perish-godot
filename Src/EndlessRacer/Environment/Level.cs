@@ -24,6 +24,9 @@ namespace EndlessRacer.Environment
         private const int RockInterval = 10;
         private int _rowsUntilRock = RockInterval;
 
+        private const int RampInterval = 8;
+        private int _rowsUntilRamp = RampInterval;
+
         public Level()
         {
             _currentGap = InitialGap;
@@ -67,6 +70,7 @@ namespace EndlessRacer.Environment
 
                 _row.Add(newRow);
                 SpawnRock(_row.Last());
+                SpawnRamp(_row.Last());
             }
         }
 
@@ -150,6 +154,20 @@ namespace EndlessRacer.Environment
                 var index = _random.Next(_currentOffset, _currentOffset + _currentGap);
 
                 currentRow[index] = Rock.BuildWithIndex(NumberOfRows, index);
+            }
+        }
+
+        private void SpawnRamp(Obstacle[] currentRow)
+        {
+            _rowsUntilRamp--;
+
+            if (_rowsUntilRamp <= 0)
+            {
+                _rowsUntilRamp = RampInterval;
+
+                var index = _random.Next(_currentOffset, _currentOffset + _currentGap);
+
+                currentRow[index] = Ramp.BuildWithIndex(NumberOfRows, index);
             }
         }
     }

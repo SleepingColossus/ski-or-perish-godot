@@ -13,6 +13,7 @@ namespace EndlessRacer
 
         private Texture2D _treeSprite;
         private Texture2D _rockSprite;
+        private Texture2D _rampSprite;
         private Texture2D _playerSprite;
 
         private Level _level;
@@ -48,10 +49,12 @@ namespace EndlessRacer
 
             _treeSprite = Content.Load<Texture2D>("ObstacleLarge");
             _rockSprite = Content.Load<Texture2D>("Rock");
+            _rampSprite = Content.Load<Texture2D>("Ramp");
             _playerSprite = Content.Load<Texture2D>("Player");
 
             LevelSprites.Sprites.Add("tree", _treeSprite);
             LevelSprites.Sprites.Add("rock", _rockSprite);
+            LevelSprites.Sprites.Add("ramp", _rampSprite);
             LevelSprites.Sprites.Add("player", _playerSprite);
         }
 
