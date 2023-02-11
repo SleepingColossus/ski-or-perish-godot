@@ -47,6 +47,7 @@ namespace EndlessRacer
             // TODO: use this.Content to load your game content here
 
             _treeSprite = Content.Load<Texture2D>("ObstacleLarge");
+            _rockSprite = Content.Load<Texture2D>("Rock");
             _playerSprite = Content.Load<Texture2D>("Player");
 
             LevelSprites.Sprites.Add("tree", _treeSprite);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace EndlessRacer.Environment
@@ -18,7 +19,10 @@ namespace EndlessRacer.Environment
         private int _currentOffset;
         private Random _random;
 
-        private readonly List<Tree[]> _trees;
+        private readonly List<Obstacle[]> _row;
+
+        private const int RockInterval = 10;
+        private int _rowsUntilRock = RockInterval;
 
         public Level()
         {
@@ -26,54 +30,55 @@ namespace EndlessRacer.Environment
             _currentOffset = 0;
             _random = new Random();
 
-            _trees = new List<Tree[]>();
+            _row = new List<Obstacle[]>();
 
-            // initialize trees
+            // initialize obstacles
             for (int row = 0; row < NumberOfRows; row++)
             {
-                _trees.Add(InitializeRow(row, InitMode.Row));
+                _row.Add(InitializeRow(row, InitMode.Row));
             }
         }
 
         public void Update(GameTime gameTime)
         {
-            for (int row = 0; row < _trees.Count; row++)
+            for (int row = 0; row < _row.Count; row++)
             {
-                for (int col = 0; col < _trees[row].Length; col++)
+                for (int col = 0; col < _row[row].Length; col++)
                 {
-                    if (_trees[row][col] != null)
+                    if (_row[row][col] != null)
                     {
-                        _trees[row][col].Update(gameTime);
+                        _row[row][col].Update(gameTime);
                     }
                 }
             }
 
             // is the first row out of bounds?
-            var outOfBounds = _trees[0][0].IsOffScreen();
+            var outOfBounds = _row[0][0].IsOffScreen();
 
             // if so, remove first row and add new row on bottom
             if (outOfBounds)
             {
-                _trees.RemoveAt(0);
+                _row.RemoveAt(0);
 
                 // get Y coord of last row
-                var lastHeight = _trees[^1][0].Height;
+                var lastHeight = _row[^1][0].Height;
 
                 var newRow = InitializeRow(lastHeight, InitMode.Height);
 
-                _trees.Add(newRow);
+                _row.Add(newRow);
+                SpawnRock(_row.Last());
             }
         }
 
         public void Draw()
         {
-            for (int row = 0; row < _trees.Count; row++)
+            for (int row = 0; row < _row.Count; row++)
             {
-                for (int col = 0; col < _trees[row].Length; col++)
+                for (int col = 0; col < _row[row].Length; col++)
                 {
-                    if (_trees[row][col] != null)
+                    if (_row[row][col] != null)
                     {
-                        _trees[row][col].Draw();
+                        _row[row][col].Draw();
                     }
                 }
             }
@@ -85,9 +90,9 @@ namespace EndlessRacer.Environment
             Height // position in pixels
         }
 
-        private Tree[] InitializeRow(float verticalPosition, InitMode mode)
+        private Obstacle[] InitializeRow(float verticalPosition, InitMode mode)
         {
-            var trees = new Tree[RowLength];
+            var trees = new Obstacle[RowLength];
 
             var cellsToFill = (RowLength - _currentGap) / 2;
 
@@ -132,6 +137,20 @@ namespace EndlessRacer.Environment
             }
 
             return trees;
+        }
+
+        private void SpawnRock(Obstacle[] currentRow)
+        {
+            _rowsUntilRock--;
+
+            if (_rowsUntilRock <= 0)
+            {
+                _rowsUntilRock = RockInterval;
+
+                var index = _random.Next(_currentOffset, _currentOffset + _currentGap);
+
+                currentRow[index] = Rock.BuildWithIndex(NumberOfRows, index);
+            }
         }
     }
 }
