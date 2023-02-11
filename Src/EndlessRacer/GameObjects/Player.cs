@@ -11,7 +11,7 @@ namespace EndlessRacer.GameObjects
         private readonly Texture2D _sprite;
 
         private Vector2 _position;
-        private readonly float _verticalVelocity = 1.0f;
+        private readonly float _verticalVelocity = 4.0f;
         private KeyboardState _ks;
 
         private PlayerState _state;

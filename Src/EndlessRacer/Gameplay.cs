@@ -2,6 +2,6 @@
 {
     internal static class Gameplay
     {
-        public const int ScrollSpeed = 1;
+        public const int ScrollSpeed = 4;
     }
 }
