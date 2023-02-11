@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace EndlessRacer
+namespace EndlessRacer.GameObjects
 {
     internal class Player
     {
@@ -14,10 +14,13 @@ namespace EndlessRacer
         private readonly float _verticalVelocity = 1.0f;
         private KeyboardState _ks;
 
+        private PlayerState _state;
+
         public Player(Vector2 initialPosition)
         {
             _sprite = LevelSprites.Sprites[SpriteName];
             _position = initialPosition;
+            _state = PlayerState.Moving;
         }
 
         public void Update(GameTime gameTime)
