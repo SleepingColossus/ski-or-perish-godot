@@ -1,4 +1,5 @@
 ﻿using EndlessRacer.Constants;
+using EndlessRacer.GameObjects;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
@@ -18,7 +19,7 @@ namespace EndlessRacer.Environment
             _position = initialPosition;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, Player player)
         {
             _position.Y -= Gameplay.ScrollSpeed;
         }
@@ -41,5 +42,13 @@ namespace EndlessRacer.Environment
         }
 
         protected abstract string SpriteName();
+
+        protected Rectangle GetRectangle()
+        {
+            var rect = _sprite.Bounds;
+            rect.X = (int)_position.X;
+            rect.Y = (int)_position.Y;
+            return rect;
+        }
     }
 }

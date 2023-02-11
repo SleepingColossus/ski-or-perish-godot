@@ -7,8 +7,9 @@ namespace EndlessRacer.GameObjects
 {
     internal class Player
     {
-        private const string SpriteName = "player";
-        private readonly Texture2D _sprite;
+        private const string SpriteMoving = "player-moving";
+        private const string SpriteJumping = "player-jumping";
+        private Texture2D _sprite;
 
         private Vector2 _position;
         private readonly float _verticalVelocity = 4.0f;
@@ -16,9 +17,12 @@ namespace EndlessRacer.GameObjects
 
         private PlayerState _state;
 
+        private const double JumpDuration = 2.5;
+        private double _jumpTimeRemaining;
+
         public Player(Vector2 initialPosition)
         {
-            _sprite = LevelSprites.Sprites[SpriteName];
+            _sprite = LevelSprites.Sprites[SpriteMoving];
             _position = initialPosition;
             _state = PlayerState.Moving;
         }
@@ -36,11 +40,54 @@ namespace EndlessRacer.GameObjects
             {
                 _position.X += _verticalVelocity;
             }
+
+            if (_state == PlayerState.Jumping)
+            {
+                _jumpTimeRemaining -= gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (_jumpTimeRemaining <= 0)
+                {
+                    ChangeState(PlayerState.Moving);
+                }
+            }
         }
 
         public void Draw()
         {
             EngineComponents.SpriteBatch.Draw(_sprite, _position, Color.White);
+        }
+
+        public void Jump()
+        {
+            if (_state == PlayerState.Moving)
+            {
+                ChangeState(PlayerState.Jumping);
+
+                _jumpTimeRemaining = JumpDuration;
+            }
+        }
+
+        private void ChangeState(PlayerState newState)
+        {
+            switch (newState)
+            {
+                case PlayerState.Moving:
+                    _state = newState;
+                    _sprite = LevelSprites.Sprites[SpriteMoving];
+                    break;
+                case PlayerState.Jumping:
+                    _state = newState;
+                    _sprite = LevelSprites.Sprites[SpriteJumping];
+                    break;
+            }
+        }
+
+        public Rectangle GetRectangle()
+        {
+            var rect = _sprite.Bounds;
+            rect.X = (int)_position.X;
+            rect.Y = (int)_position.Y;
+            return rect;
         }
     }
 }

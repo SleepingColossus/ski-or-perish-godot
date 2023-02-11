@@ -15,7 +15,9 @@ namespace EndlessRacer
         private Texture2D _treeSprite;
         private Texture2D _rockSprite;
         private Texture2D _rampSprite;
-        private Texture2D _playerSprite;
+
+        private Texture2D _playerMovingSprite;
+        private Texture2D _playerJumpingSprite;
 
         private Level _level;
         private Player _player;
@@ -51,12 +53,15 @@ namespace EndlessRacer
             _treeSprite = Content.Load<Texture2D>("ObstacleLarge");
             _rockSprite = Content.Load<Texture2D>("Rock");
             _rampSprite = Content.Load<Texture2D>("Ramp");
-            _playerSprite = Content.Load<Texture2D>("Player");
+
+            _playerMovingSprite = Content.Load<Texture2D>("Player");
+            _playerJumpingSprite = Content.Load<Texture2D>("PlayerJumping");
 
             LevelSprites.Sprites.Add("tree", _treeSprite);
             LevelSprites.Sprites.Add("rock", _rockSprite);
             LevelSprites.Sprites.Add("ramp", _rampSprite);
-            LevelSprites.Sprites.Add("player", _playerSprite);
+            LevelSprites.Sprites.Add("player-moving", _playerMovingSprite);
+            LevelSprites.Sprites.Add("player-jumping", _playerJumpingSprite);
         }
 
         protected override void Update(GameTime gameTime)
@@ -66,8 +71,8 @@ namespace EndlessRacer
 
             // TODO: Add your update logic here
 
-            _level.Update(gameTime);
             _player.Update(gameTime);
+            _level.Update(gameTime, _player);
 
             base.Update(gameTime);
         }

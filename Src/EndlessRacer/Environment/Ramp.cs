@@ -1,4 +1,5 @@
 ﻿using EndlessRacer.Constants;
+using EndlessRacer.GameObjects;
 using Microsoft.Xna.Framework;
 
 namespace EndlessRacer.Environment
@@ -30,6 +31,19 @@ namespace EndlessRacer.Environment
             var position = new Vector2(horizontalPosition, verticalPosition);
 
             return new Ramp(position);
+        }
+
+        public override void Update(GameTime gameTime, Player player)
+        {
+            Rectangle playerRectangle = player.GetRectangle();
+            Rectangle rampRectangle = GetRectangle();
+
+            if (rampRectangle.Intersects(playerRectangle))
+            {
+                player.Jump();
+            }
+
+            base.Update(gameTime, player);
         }
     }
 }

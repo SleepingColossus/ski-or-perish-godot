@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EndlessRacer.GameObjects;
 using Microsoft.Xna.Framework;
 
 namespace EndlessRacer.Environment
@@ -42,7 +43,7 @@ namespace EndlessRacer.Environment
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Player player)
         {
             for (int row = 0; row < _row.Count; row++)
             {
@@ -50,7 +51,7 @@ namespace EndlessRacer.Environment
                 {
                     if (_row[row][col] != null)
                     {
-                        _row[row][col].Update(gameTime);
+                        _row[row][col].Update(gameTime, player);
                     }
                 }
             }
