@@ -27,7 +27,7 @@ namespace EndlessRacer.Environment
 
         public void Update(GameTime gameTime, Player player)
         {
-            var adjustedSpeed = Gameplay.GetScrollSpeed(gameTime);
+            var adjustedSpeed = Constants.GetScrollSpeed(gameTime);
             _position.Y -= adjustedSpeed;
 
             foreach (var obstacle in _obstacles)
@@ -59,8 +59,8 @@ namespace EndlessRacer.Environment
                 {
                     if (obstacleData[size1, size2])
                     {
-                        var height = size1 * Gameplay.TileSize + _position.Y;
-                        var width = size2 * Gameplay.TileSize;
+                        var height = size1 * Constants.TileSize + _position.Y;
+                        var width = size2 * Constants.TileSize;
 
                         var position = new Vector2(height, width);
 

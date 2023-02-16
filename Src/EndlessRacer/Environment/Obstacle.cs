@@ -14,7 +14,7 @@ namespace EndlessRacer.Environment
 
         public void Update(GameTime gameTime, Player player)
         {
-            var adjustedSpeed = Gameplay.GetScrollSpeed(gameTime);
+            var adjustedSpeed = Constants.GetScrollSpeed(gameTime);
 
             _position.Y -= adjustedSpeed;
 
@@ -29,7 +29,7 @@ namespace EndlessRacer.Environment
 
         public Rectangle GetHitBox()
         {
-            return new Rectangle((int)_position.X, (int)_position.Y, Gameplay.TileSize, Gameplay.TileSize);
+            return new Rectangle((int)_position.X, (int)_position.Y, Constants.TileSize, Constants.TileSize);
         }
     }
 }

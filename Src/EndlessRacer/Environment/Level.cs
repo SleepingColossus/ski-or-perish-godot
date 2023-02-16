@@ -54,7 +54,7 @@ namespace EndlessRacer.Environment
             var nextTemplate = matchingTemplates[randomIndex];
 
             var x = 0;
-            var y = lastSegment.GetY + Gameplay.NumberOfRows * Gameplay.TileSize;
+            var y = lastSegment.GetY + Constants.NumberOfRows * Constants.TileSize;
             var position = new Vector2(x, y);
 
             var nextSegment = new LevelSegment(position, nextTemplate);
