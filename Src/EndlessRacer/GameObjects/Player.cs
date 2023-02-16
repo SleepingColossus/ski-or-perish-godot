@@ -84,12 +84,17 @@ namespace EndlessRacer.GameObjects
             }
         }
 
-        public Rectangle GetRectangle()
+        public Rectangle GetHitBox()
         {
             var rect = _sprite.Bounds;
             rect.X = (int)_position.X;
             rect.Y = (int)_position.Y;
             return rect;
+        }
+
+        public void Crash()
+        {
+            System.Diagnostics.Debug.WriteLine("I crashed! B(");
         }
     }
 }

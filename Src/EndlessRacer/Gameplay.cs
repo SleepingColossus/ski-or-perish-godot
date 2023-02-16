@@ -5,6 +5,10 @@ namespace EndlessRacer
     internal static class Gameplay
     {
         private const int BaseScrollSpeed = 100;
+        public const int TileSize = 64;
+
+        public const int NumberOfRows = 18;
+        public const int NumberOfColumns = 30;
 
         public static float GetScrollSpeed(GameTime gameTime)
         {
