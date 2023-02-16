@@ -1,7 +1,14 @@
-﻿namespace EndlessRacer
+﻿using Microsoft.Xna.Framework;
+
+namespace EndlessRacer
 {
     internal static class Gameplay
     {
-        public const int ScrollSpeed = 4;
+        private const int BaseScrollSpeed = 100;
+
+        public static float GetScrollSpeed(GameTime gameTime)
+        {
+            return BaseScrollSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
     }
 }

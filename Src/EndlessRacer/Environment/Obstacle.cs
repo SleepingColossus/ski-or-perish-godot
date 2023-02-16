@@ -21,7 +21,7 @@ namespace EndlessRacer.Environment
 
         public virtual void Update(GameTime gameTime, Player player)
         {
-            _position.Y -= Gameplay.ScrollSpeed;
+            _position.Y -= Gameplay.GetScrollSpeed(gameTime);
         }
 
         public void Draw()

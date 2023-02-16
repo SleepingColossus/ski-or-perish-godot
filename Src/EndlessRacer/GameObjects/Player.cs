@@ -12,7 +12,7 @@ namespace EndlessRacer.GameObjects
         private Texture2D _sprite;
 
         private Vector2 _position;
-        private readonly float _verticalVelocity = 4.0f;
+        private readonly float _baseSpeed = 100f;
         private KeyboardState _ks;
 
         private PlayerState _state;
@@ -31,14 +31,16 @@ namespace EndlessRacer.GameObjects
         {
             _ks = Keyboard.GetState();
 
+            var adjustedSpeed = _baseSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             if (_ks.IsKeyDown(Keys.Left))
             {
-                _position.X -= _verticalVelocity;
+                _position.X -= adjustedSpeed;
             }
 
             if (_ks.IsKeyDown(Keys.Right))
             {
-                _position.X += _verticalVelocity;
+                _position.X += adjustedSpeed;
             }
 
             if (_state == PlayerState.Jumping)
