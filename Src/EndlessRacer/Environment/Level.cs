@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using EndlessRacer.GameObjects;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace EndlessRacer.Environment
 {
@@ -75,7 +76,7 @@ namespace EndlessRacer.Environment
             }
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
             for (int row = 0; row < _row.Count; row++)
             {
@@ -83,7 +84,7 @@ namespace EndlessRacer.Environment
                 {
                     if (_row[row][col] != null)
                     {
-                        _row[row][col].Draw();
+                        _row[row][col].Draw(spriteBatch);
                     }
                 }
             }

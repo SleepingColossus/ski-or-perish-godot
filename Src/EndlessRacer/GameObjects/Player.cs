@@ -54,9 +54,9 @@ namespace EndlessRacer.GameObjects
             }
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
-            EngineComponents.SpriteBatch.Draw(_sprite, _position, Color.White);
+            spriteBatch.Draw(_sprite, _position, Color.White);
         }
 
         public void Jump()
