@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace EndlessRacer.Constants
+namespace EndlessRacer.Environment
 {
     internal static class LevelSprites
     {

@@ -1,5 +1,4 @@
-﻿using EndlessRacer.Constants;
-using EndlessRacer.Environment;
+﻿using EndlessRacer.Environment;
 using EndlessRacer.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -37,8 +36,6 @@ namespace EndlessRacer
             // TODO: Add your initialization logic here
 
             base.Initialize();
-
-            EngineComponents.Set(_graphics, _spriteBatch);
 
             _level = new Level();
             _player = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, 100));
@@ -85,8 +82,8 @@ namespace EndlessRacer
 
             _spriteBatch.Begin();
 
-            _level.Draw();
-            _player.Draw();
+            _level.Draw(_spriteBatch);
+            _player.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

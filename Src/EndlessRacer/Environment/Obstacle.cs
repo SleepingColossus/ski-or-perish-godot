@@ -1,5 +1,4 @@
-﻿using EndlessRacer.Constants;
-using EndlessRacer.GameObjects;
+﻿using EndlessRacer.GameObjects;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
@@ -7,7 +6,6 @@ namespace EndlessRacer.Environment
 {
     internal abstract class Obstacle
     {
-        //private const string SpriteName = "tree";
         private readonly Texture2D _sprite;
 
         private Vector2 _position;
@@ -21,12 +19,12 @@ namespace EndlessRacer.Environment
 
         public virtual void Update(GameTime gameTime, Player player)
         {
-            _position.Y -= Gameplay.ScrollSpeed;
+            _position.Y -= Gameplay.GetScrollSpeed(gameTime);
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
-            EngineComponents.SpriteBatch.Draw(_sprite, _position, Color.White);
+            spriteBatch.Draw(_sprite, _position, Color.White);
         }
 
         public bool IsOffScreen() => _position.Y < -_sprite.Height;
