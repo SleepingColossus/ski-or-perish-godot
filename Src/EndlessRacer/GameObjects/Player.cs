@@ -1,4 +1,4 @@
-﻿using EndlessRacer.Constants;
+﻿using EndlessRacer.Environment;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

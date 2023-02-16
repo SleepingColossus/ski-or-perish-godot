@@ -1,5 +1,4 @@
-﻿using EndlessRacer.Constants;
-using EndlessRacer.GameObjects;
+﻿using EndlessRacer.GameObjects;
 using Microsoft.Xna.Framework;
 
 namespace EndlessRacer.Environment
