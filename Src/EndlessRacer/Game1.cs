@@ -11,14 +11,9 @@ namespace EndlessRacer
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Texture2D _treeSprite;
-        private Texture2D _rockSprite;
-        private Texture2D _rampSprite;
-
         private Texture2D _playerMovingSprite;
         private Texture2D _playerJumpingSprite;
 
-        private Level _level;
         private Player _player;
 
         public Game1()
@@ -37,7 +32,6 @@ namespace EndlessRacer
 
             base.Initialize();
 
-            _level = new Level();
             _player = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, 100));
         }
 
@@ -47,16 +41,9 @@ namespace EndlessRacer
 
             // TODO: use this.Content to load your game content here
 
-            _treeSprite = Content.Load<Texture2D>("ObstacleLarge");
-            _rockSprite = Content.Load<Texture2D>("Rock");
-            _rampSprite = Content.Load<Texture2D>("Ramp");
-
             _playerMovingSprite = Content.Load<Texture2D>("Player");
             _playerJumpingSprite = Content.Load<Texture2D>("PlayerJumping");
 
-            LevelSprites.Sprites.Add("tree", _treeSprite);
-            LevelSprites.Sprites.Add("rock", _rockSprite);
-            LevelSprites.Sprites.Add("ramp", _rampSprite);
             LevelSprites.Sprites.Add("player-moving", _playerMovingSprite);
             LevelSprites.Sprites.Add("player-jumping", _playerJumpingSprite);
         }
@@ -69,7 +56,6 @@ namespace EndlessRacer
             // TODO: Add your update logic here
 
             _player.Update(gameTime);
-            _level.Update(gameTime, _player);
 
             base.Update(gameTime);
         }
@@ -82,7 +68,6 @@ namespace EndlessRacer
 
             _spriteBatch.Begin();
 
-            _level.Draw(_spriteBatch);
             _player.Draw(_spriteBatch);
 
             _spriteBatch.End();
