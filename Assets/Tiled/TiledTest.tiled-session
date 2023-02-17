@@ -7,15 +7,40 @@
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "C:/Users/aca_m/Desktop/Projects/Video Games/endless-racer/Assets/Maps/TestMap1.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 956,
+                "y": 748
+            }
+        },
+        "C:/Users/aca_m/Desktop/Projects/Video Games/endless-racer/Assets/Maps/TestMap2.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 888,
+                "y": 460
+            }
+        },
+        "C:/Users/aca_m/Desktop/Projects/Video Games/endless-racer/Assets/TileSheets/GameTileSheet.tsx": {
+            "scaleInEditor": 1
+        },
+        "C:/Users/aca_m/Desktop/Projects/Video Games/endless-racer/Assets/TileSheets/OofSheet.tsx": {
+            "scaleInEditor": 1
+        }
     },
     "last.imagePath": "C:/Users/aca_m/Desktop/Projects/Video Games/endless-racer/Assets/TileSheets",
     "map.height": 17,
+    "map.lastUsedFormat": "tmx",
     "map.tileHeight": 64,
     "map.tileWidth": 64,
     "openFiles": [
     ],
     "project": "TiledTest.tiled-project",
     "recentFiles": [
+        "C:/Users/aca_m/Desktop/Projects/Video Games/endless-racer/Assets/TileSheets/GameTileSheet.tsx",
+        "C:/Users/aca_m/Desktop/Projects/Video Games/endless-racer/Assets/TileSheets/OofSheet.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
