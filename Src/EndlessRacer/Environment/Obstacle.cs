@@ -1,52 +1,35 @@
 ﻿using EndlessRacer.GameObjects;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 namespace EndlessRacer.Environment
 {
-    internal abstract class Obstacle
+    internal class Obstacle
     {
-        private readonly Texture2D _sprite;
-
         private Vector2 _position;
-        public float Height => _position.Y;
 
-        protected Obstacle(Vector2 initialPosition)
+        public Obstacle(Vector2 position)
         {
-            _sprite = LevelSprites.Sprites[SpriteName()];
-            _position = initialPosition;
+            _position = position;
         }
 
-        public virtual void Update(GameTime gameTime, Player player)
+        public void Update(GameTime gameTime, Player player)
         {
-            _position.Y -= Gameplay.GetScrollSpeed(gameTime);
+            var adjustedSpeed = Constants.GetScrollSpeed(gameTime);
+
+            _position.Y -= adjustedSpeed;
+
+            var playerHitBox = player.GetHitBox();
+            var myHitBox = GetHitBox();
+
+            if (myHitBox.Intersects(playerHitBox))
+            {
+                player.Crash();
+            }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public Rectangle GetHitBox()
         {
-            spriteBatch.Draw(_sprite, _position, Color.White);
-        }
-
-        public bool IsOffScreen() => _position.Y < -_sprite.Height;
-
-        protected static Vector2 IndexToCoordinates(float row, float col, Texture2D sprite)
-        {
-            var bounds = sprite.Bounds;
-
-            var x = col * bounds.Size.X;
-            var y = row * bounds.Size.Y;
-
-            return new Vector2(x, y);
-        }
-
-        protected abstract string SpriteName();
-
-        protected Rectangle GetRectangle()
-        {
-            var rect = _sprite.Bounds;
-            rect.X = (int)_position.X;
-            rect.Y = (int)_position.Y;
-            return rect;
+            return new Rectangle((int)_position.X, (int)_position.Y, Constants.TileSize, Constants.TileSize);
         }
     }
 }

@@ -9,170 +9,72 @@ namespace EndlessRacer.Environment
 {
     internal class Level
     {
-        private const int NumberOfRows = 18;
-        private const int RowLength = 30;
+        private const int SegmentHeight = Constants.NumberOfRows * Constants.TileSize;
 
-        private const int InitialGap = 24;
-        private int _currentGap;
+        private readonly List<LevelSegment> _segments;
+        private readonly Dictionary<CrossingPoint, List<LevelSegmentTemplate>> _templates;
+        private readonly Random _random;
 
-        private const int MinOffset = -2;
-        private const int MaxOffset = 2;
-        private const int OffsetStep = 1;
-        private int _currentOffset;
-        private Random _random;
-
-        private readonly List<Obstacle[]> _row;
-
-        private const int RockInterval = 10;
-        private int _rowsUntilRock = RockInterval;
-
-        private const int RampInterval = 8;
-        private int _rowsUntilRamp = RampInterval;
-
-        public Level()
+        public Level(Dictionary<CrossingPoint, List<LevelSegmentTemplate>> templates)
         {
-            _currentGap = InitialGap;
-            _currentOffset = 0;
+            _segments = new List<LevelSegment>();
+            _templates = templates;
             _random = new Random();
 
-            _row = new List<Obstacle[]>();
-
-            // initialize obstacles
-            for (int row = 0; row < NumberOfRows; row++)
-            {
-                _row.Add(InitializeRow(row, InitMode.Row));
-            }
+            InitLevel();
         }
 
         public void Update(GameTime gameTime, Player player)
         {
-            for (int row = 0; row < _row.Count; row++)
+            foreach (var segment in _segments)
             {
-                for (int col = 0; col < _row[row].Length; col++)
-                {
-                    if (_row[row][col] != null)
-                    {
-                        _row[row][col].Update(gameTime, player);
-                    }
-                }
+                segment.Update(gameTime, player);
             }
 
-            // is the first row out of bounds?
-            var outOfBounds = _row[0][0].IsOffScreen();
-
-            // if so, remove first row and add new row on bottom
-            if (outOfBounds)
+            if (_segments.First().IsOffScreen())
             {
-                _row.RemoveAt(0);
-
-                // get Y coord of last row
-                var lastHeight = _row[^1][0].Height;
-
-                var newRow = InitializeRow(lastHeight, InitMode.Height);
-
-                _row.Add(newRow);
-                SpawnRock(_row.Last());
-                SpawnRamp(_row.Last());
+                ExtendLevel();
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int row = 0; row < _row.Count; row++)
+            foreach (var segment in _segments)
             {
-                for (int col = 0; col < _row[row].Length; col++)
-                {
-                    if (_row[row][col] != null)
-                    {
-                        _row[row][col].Draw(spriteBatch);
-                    }
-                }
+                segment.Draw(spriteBatch);
             }
         }
 
-        private enum InitMode
+        private void InitLevel()
         {
-            Row,   // index in list
-            Height // position in pixels
+            AppendSegment(CrossingPoint.Center, 0, 0);
+            AppendSegment(CrossingPoint.Center, SegmentHeight);
         }
 
-        private Obstacle[] InitializeRow(float verticalPosition, InitMode mode)
+        private void ExtendLevel()
         {
-            var trees = new Obstacle[RowLength];
+            // delete first segment
+            _segments.RemoveAt(0);
 
-            var cellsToFill = (RowLength - _currentGap) / 2;
-
-            // fill left side
-            for (var i = 0; i < cellsToFill + _currentOffset; i++)
-            {
-                if (mode == InitMode.Row)
-                {
-                    trees[i] = Tree.BuildWithIndex(verticalPosition, i);
-                }
-                else
-                {
-                    trees[i] = Tree.BuildWithPosition(i, verticalPosition);
-                }
-            }
-
-            // fill left side
-            for (var i = RowLength - cellsToFill - 1 + _currentOffset; i < RowLength; i++)
-            {
-                if (mode == InitMode.Row)
-                {
-                    trees[i] = Tree.BuildWithIndex(verticalPosition, i);
-                }
-                else
-                {
-                    trees[i] = Tree.BuildWithPosition(i, verticalPosition);
-                }
-            }
-
-            var offsetChange = _random.Next(-OffsetStep, OffsetStep + 1);
-
-            _currentOffset += offsetChange;
-
-            if (_currentOffset < MinOffset)
-            {
-                _currentOffset = MinOffset;
-            }
-
-            if (_currentOffset > MaxOffset)
-            {
-                _currentOffset = MaxOffset;
-            }
-
-            return trees;
+            // check type of last segment
+            var lastSegment = _segments.Last();
+            AppendSegment(lastSegment.ExitPoint, lastSegment.GetY);
         }
 
-        private void SpawnRock(Obstacle[] currentRow)
+        private void AppendSegment(CrossingPoint lastExitPoint, float lastYPosition, int? offset=null)
         {
-            _rowsUntilRock--;
+            // get random segment that matches end of last segment
+            var matchingTemplates = _templates[lastExitPoint];
 
-            if (_rowsUntilRock <= 0)
-            {
-                _rowsUntilRock = RockInterval;
+            var x = 0;
+            var y = lastYPosition + offset ?? SegmentHeight;
+            var position = new Vector2(x, y);
 
-                var index = _random.Next(_currentOffset, _currentOffset + _currentGap);
-                index = Math.Clamp(index, MaxOffset, RowLength - MaxOffset);
+            var randomIndex = _random.Next(matchingTemplates.Count);
+            var nextTemplate = matchingTemplates[randomIndex];
+            var nextSegment = new LevelSegment(position, nextTemplate);
 
-                currentRow[index] = Rock.BuildWithIndex(NumberOfRows, index);
-            }
-        }
-
-        private void SpawnRamp(Obstacle[] currentRow)
-        {
-            _rowsUntilRamp--;
-
-            if (_rowsUntilRamp <= 0)
-            {
-                _rowsUntilRamp = RampInterval;
-
-                var index = _random.Next(_currentOffset, _currentOffset + _currentGap);
-                index = Math.Clamp(index, MaxOffset, RowLength - MaxOffset);
-
-                currentRow[index] = Ramp.BuildWithIndex(NumberOfRows, index);
-            }
+            _segments.Add(nextSegment);
         }
     }
 }

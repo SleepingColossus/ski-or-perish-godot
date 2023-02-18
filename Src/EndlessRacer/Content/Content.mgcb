@@ -10,20 +10,9 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\Models\bin\Debug\netstandard2.0\Models.dll
 
 #---------------------------------- Content ---------------------------------#
-
-#begin ../../../Assets/Sprites/Test/ObstacleLarge.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../Assets/Sprites/Test/ObstacleLarge.png;ObstacleLarge.png
 
 #begin ../../../Assets/Sprites/Test/Player.png
 /importer:TextureImporter
@@ -36,30 +25,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/Test/Player.png;Player.png
-
-#begin ../../../Assets/Sprites/Test/Ramp.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../Assets/Sprites/Test/Ramp.png;Ramp.png
-
-#begin ../../../Assets/Sprites/Test/Rock.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../Assets/Sprites/Test/Rock.png;Rock.png
 
 #begin PlayerJumping.png
 /importer:TextureImporter
