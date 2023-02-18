@@ -24,11 +24,11 @@ namespace EndlessRacer.Environment
             InitLevel();
         }
 
-        public void Update(GameTime gameTime, Player player)
+        public void Update(float scrollSpeed, Player player)
         {
             foreach (var segment in _segments)
             {
-                segment.Update(gameTime, player);
+                segment.Update(scrollSpeed, player);
             }
 
             if (_segments.First().IsOffScreen())

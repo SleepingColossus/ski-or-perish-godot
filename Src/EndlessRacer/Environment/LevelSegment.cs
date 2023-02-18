@@ -25,14 +25,13 @@ namespace EndlessRacer.Environment
             _obstacles = InitObstacles(template.ObstacleData);
         }
 
-        public void Update(GameTime gameTime, Player player)
+        public void Update(float scrollSpeed, Player player)
         {
-            var adjustedSpeed = Constants.GetScrollSpeed(gameTime);
-            _position.Y -= adjustedSpeed;
+            _position.Y -= scrollSpeed;
 
             foreach (var obstacle in _obstacles)
             {
-                obstacle?.Update(gameTime, player);
+                obstacle?.Update(scrollSpeed, player);
             }
         }
 

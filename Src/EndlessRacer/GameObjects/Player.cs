@@ -33,13 +33,15 @@ namespace EndlessRacer.GameObjects
             _turnTimer = TurnInterval;
         }
 
-        public void Update(GameTime gameTime)
+        public float Update(GameTime gameTime)
         {
             _ks = Keyboard.GetState();
 
+            var ySpeed = 0.0f;
+
             if (_ks.IsKeyDown(Controls.TurnLeft)) { Turn(-1); }
             if (_ks.IsKeyDown(Controls.TurnRight)) { Turn(1); }
-            if (_ks.IsKeyDown(Controls.Move)) { Move(gameTime); }
+            if (_ks.IsKeyDown(Controls.Move)) { ySpeed = Move(gameTime); }
 
             if (_state == PlayerState.Jumping)
             {
@@ -60,6 +62,8 @@ namespace EndlessRacer.GameObjects
                     _canTurn = true;
                 }
             }
+
+            return ySpeed;
         }
 
         // turn direction:
@@ -78,7 +82,7 @@ namespace EndlessRacer.GameObjects
             }
         }
 
-        private void Move(GameTime gameTime)
+        private float Move(GameTime gameTime)
         {
             var xIntensity = _angle.ToXIntensity();
             var yIntensity = _angle.ToYIntensity();
@@ -87,7 +91,9 @@ namespace EndlessRacer.GameObjects
             var ySpeed = yIntensity * BaseSpeed * gameTime.ElapsedGameTime.TotalSeconds;
 
             _position.X += (float)xSpeed;
-            _position.Y += (float)ySpeed;
+
+            // ySpeed is passed to level to set scroll speed;
+            return (float)ySpeed;
         }
 
         public void Draw(SpriteBatch spriteBatch)

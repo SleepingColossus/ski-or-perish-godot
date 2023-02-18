@@ -50,8 +50,8 @@ namespace EndlessRacer
 
             // TODO: Add your update logic here
 
-            _player.Update(gameTime);
-            _level.Update(gameTime, _player);
+            var scrollSpeed = _player.Update(gameTime);
+            _level.Update(scrollSpeed, _player);
 
             base.Update(gameTime);
         }

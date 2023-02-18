@@ -12,11 +12,9 @@ namespace EndlessRacer.Environment
             _position = position;
         }
 
-        public void Update(GameTime gameTime, Player player)
+        public void Update(float scrollSPeed, Player player)
         {
-            var adjustedSpeed = Constants.GetScrollSpeed(gameTime);
-
-            _position.Y -= adjustedSpeed;
+            _position.Y -= scrollSPeed;
 
             var playerHitBox = player.GetHitBox();
             var myHitBox = GetHitBox();
