@@ -48,7 +48,7 @@ namespace EndlessRacer.Environment
         private void InitLevel()
         {
             AppendSegment(CrossingPoint.Center, 0, 0);
-            AppendSegment(CrossingPoint.Center, SegmentHeight);
+            AppendSegment(_segments[0].ExitPoint, SegmentHeight);
         }
 
         private void ExtendLevel()
