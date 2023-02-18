@@ -32,7 +32,7 @@ namespace EndlessRacer.Environment
 
             foreach (var obstacle in _obstacles)
             {
-                obstacle.Update(gameTime, player);
+                obstacle?.Update(gameTime, player);
             }
         }
 
@@ -57,14 +57,14 @@ namespace EndlessRacer.Environment
             {
                 for (int j = 0; j < size2; j++)
                 {
-                    if (obstacleData[size1, size2])
+                    if (obstacleData[i, j])
                     {
                         var height = size1 * Constants.TileSize + _position.Y;
                         var width = size2 * Constants.TileSize;
 
                         var position = new Vector2(height, width);
 
-                        obstacles[size1, size2] = new Obstacle(position);
+                        obstacles[i, j] = new Obstacle(position);
                     }
                 }
             }

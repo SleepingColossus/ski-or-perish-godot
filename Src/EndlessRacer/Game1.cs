@@ -15,6 +15,7 @@ namespace EndlessRacer
         private Texture2D _playerJumpingSprite;
 
         private Player _player;
+        private Level _level;
 
         public Game1()
         {
@@ -46,6 +47,8 @@ namespace EndlessRacer
 
             LevelSprites.Sprites.Add("player-moving", _playerMovingSprite);
             LevelSprites.Sprites.Add("player-jumping", _playerJumpingSprite);
+
+            _level = new Level(LevelImporter.Import(Content));
         }
 
         protected override void Update(GameTime gameTime)
@@ -56,6 +59,7 @@ namespace EndlessRacer
             // TODO: Add your update logic here
 
             _player.Update(gameTime);
+            _level.Update(gameTime, _player);
 
             base.Update(gameTime);
         }
@@ -68,6 +72,7 @@ namespace EndlessRacer
 
             _spriteBatch.Begin();
 
+            _level.Draw(_spriteBatch);
             _player.Draw(_spriteBatch);
 
             _spriteBatch.End();
