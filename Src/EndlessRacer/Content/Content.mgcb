@@ -133,7 +133,7 @@
 /processor:PassThroughProcessor
 /build:../../../Assets/Maps/Exported/RR_01_collision.xml;Maps/RR_01_collision.xml
 
-#begin ../../../Assets/Sprites/Test/Player.png
+#begin ../../../Assets/Sprites/Player.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -143,17 +143,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../../Assets/Sprites/Test/Player.png;Player.png
-
-#begin PlayerJumping.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:PlayerJumping.png
+/build:../../../Assets/Sprites/Player.png;Player/Player.png
 

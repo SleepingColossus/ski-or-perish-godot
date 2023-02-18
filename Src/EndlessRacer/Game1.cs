@@ -11,9 +11,6 @@ namespace EndlessRacer
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Texture2D _playerMovingSprite;
-        private Texture2D _playerJumpingSprite;
-
         private Player _player;
         private Level _level;
 
@@ -32,8 +29,6 @@ namespace EndlessRacer
             // TODO: Add your initialization logic here
 
             base.Initialize();
-
-            _player = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, 100));
         }
 
         protected override void LoadContent()
@@ -42,12 +37,9 @@ namespace EndlessRacer
 
             // TODO: use this.Content to load your game content here
 
-            _playerMovingSprite = Content.Load<Texture2D>("Player");
-            _playerJumpingSprite = Content.Load<Texture2D>("PlayerJumping");
+            var playerSprite = Content.Load<Texture2D>("Player/Player");
 
-            LevelSprites.Sprites.Add("player-moving", _playerMovingSprite);
-            LevelSprites.Sprites.Add("player-jumping", _playerJumpingSprite);
-
+            _player = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, 100), playerSprite);
             _level = new Level(LevelImporter.Import(Content));
         }
 
