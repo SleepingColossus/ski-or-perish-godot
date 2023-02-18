@@ -4,7 +4,7 @@ namespace EndlessRacer
 {
     internal static class Constants
     {
-        private const int BaseScrollSpeed = 100;
+        private const int BaseScrollSpeed = 0;
         public const int TileSize = 64;
 
         public const int NumberOfRows = 18;

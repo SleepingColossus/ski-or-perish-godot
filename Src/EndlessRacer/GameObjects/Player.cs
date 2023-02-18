@@ -10,7 +10,7 @@ namespace EndlessRacer.GameObjects
         private readonly Texture2D _sprite;
 
         private Vector2 _position;
-        private readonly float _baseSpeed = 100f;
+        private const double BaseSpeed = 200f;
         private KeyboardState _ks;
 
         private PlayerState _state;
@@ -37,10 +37,9 @@ namespace EndlessRacer.GameObjects
         {
             _ks = Keyboard.GetState();
 
-            var adjustedSpeed = _baseSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             if (_ks.IsKeyDown(Controls.TurnLeft)) { Turn(-1); }
             if (_ks.IsKeyDown(Controls.TurnRight)) { Turn(1); }
+            if (_ks.IsKeyDown(Controls.Move)) { Move(gameTime); }
 
             if (_state == PlayerState.Jumping)
             {
@@ -77,6 +76,18 @@ namespace EndlessRacer.GameObjects
                 _canTurn = false;
                 _turnTimer = TurnInterval;
             }
+        }
+
+        private void Move(GameTime gameTime)
+        {
+            var xIntensity = _angle.ToXIntensity();
+            var yIntensity = _angle.ToYIntensity();
+
+            var xSpeed = xIntensity * BaseSpeed * gameTime.ElapsedGameTime.TotalSeconds;
+            var ySpeed = yIntensity * BaseSpeed * gameTime.ElapsedGameTime.TotalSeconds;
+
+            _position.X += (float)xSpeed;
+            _position.Y += (float)ySpeed;
         }
 
         public void Draw(SpriteBatch spriteBatch)
