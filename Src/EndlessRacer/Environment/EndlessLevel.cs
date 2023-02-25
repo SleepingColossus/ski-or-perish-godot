@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace EndlessRacer.Environment
 {
-    internal class Level
+    internal class EndlessLevel
     {
         private const int SegmentHeight = Constants.NumberOfRows * Constants.TileSize;
 
@@ -15,7 +15,7 @@ namespace EndlessRacer.Environment
         private readonly Dictionary<CrossingPoint, List<LevelSegmentTemplate>> _templates;
         private readonly Random _random;
 
-        public Level(Dictionary<CrossingPoint, List<LevelSegmentTemplate>> templates)
+        public EndlessLevel(Dictionary<CrossingPoint, List<LevelSegmentTemplate>> templates)
         {
             _segments = new List<LevelSegment>();
             _templates = templates;
