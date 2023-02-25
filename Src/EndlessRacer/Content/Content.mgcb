@@ -201,6 +201,18 @@
 /processor:PassThroughProcessor
 /build:../../../Assets/Maps/Exported/RR_01_collision.xml;Maps/RR_01_collision.xml
 
+#begin ../../../Assets/Sprites/PlayerHurt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/PlayerHurt.png;Player/PlayerHurt.png
+
 #begin ../../../Assets/Sprites/PlayerJump.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -224,4 +236,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/PlayerMove.png;Player/PlayerMove.png
+
+#begin ../../../Assets/Sprites/PlayerVictory.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/PlayerVictory.png;Player/PlayerVictory.png
 

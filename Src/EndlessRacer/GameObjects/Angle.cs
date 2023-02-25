@@ -2,6 +2,7 @@
 {
     internal enum Angle
     {
+        // ground
         Left,
         LeftDown1,
         LeftDown2,
@@ -10,7 +11,16 @@
         RightDown3,
         RightDown2,
         RightDown1,
-        Right
+        Right,
+
+        // ground & air
+        RightUp1,
+        RightUp2,
+        RightUp3,
+        Up,
+        LeftUp3,
+        LeftUp2,
+        LeftUp1,
     }
 
     internal static class AngleExtensions

@@ -39,12 +39,12 @@ namespace EndlessRacer
 
             var playerMoveSprite = Content.Load<Texture2D>("Player/PlayerMove");
             var playerJumpSprite = Content.Load<Texture2D>("Player/PlayerJump");
-            //var playerHurtSprite = Content.Load<Texture2D>("Player/PlayerHurt");
-            //var playerVictorySprite = Content.Load<Texture2D>("Player/PlayerVictory");
+            var playerHurtSprite = Content.Load<Texture2D>("Player/PlayerHurt");
+            var playerVictorySprite = Content.Load<Texture2D>("Player/PlayerVictory");
 
             var playerPosition = new Vector2((int)(_graphics.PreferredBackBufferWidth / 2), Constants.PlayerYPosition);
 
-            _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, null, null);
+            _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
             _endlessLevel = new EndlessLevel(LevelImporter.Import(Content));
         }
 

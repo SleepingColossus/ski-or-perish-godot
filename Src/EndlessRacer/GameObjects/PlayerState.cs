@@ -3,7 +3,9 @@
     internal enum PlayerState
     {
         Moving,
+        Invincible,
         Jumping,
-        Dead
+        Hurt,
+        Victory,
     }
 }
