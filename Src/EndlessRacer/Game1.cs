@@ -8,7 +8,7 @@ namespace EndlessRacer
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
         private Player _player;
@@ -37,9 +37,14 @@ namespace EndlessRacer
 
             // TODO: use this.Content to load your game content here
 
-            var playerSprite = Content.Load<Texture2D>("Player/Player");
+            var playerMoveSprite = Content.Load<Texture2D>("Player/PlayerMove");
+            var playerJumpSprite = Content.Load<Texture2D>("Player/PlayerJump");
+            //var playerHurtSprite = Content.Load<Texture2D>("Player/PlayerHurt");
+            //var playerVictorySprite = Content.Load<Texture2D>("Player/PlayerVictory");
 
-            _player = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, Constants.PlayerYPosition), playerSprite);
+            var playerPosition = new Vector2((int)(_graphics.PreferredBackBufferWidth / 2), Constants.PlayerYPosition);
+
+            _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, null, null);
             _endlessLevel = new EndlessLevel(LevelImporter.Import(Content));
         }
 

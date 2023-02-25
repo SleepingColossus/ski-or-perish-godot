@@ -7,7 +7,10 @@ namespace EndlessRacer.GameObjects
 {
     internal class Player
     {
-        private readonly Texture2D _sprite;
+        private readonly Texture2D _spriteMove;
+        private readonly Texture2D _spriteJump;
+        private readonly Texture2D _spriteHurt;
+        private readonly Texture2D _spriteVictory;
 
         private Vector2 _position;
         private const double BaseSpeed = 200f;          // speed when idle
@@ -25,14 +28,18 @@ namespace EndlessRacer.GameObjects
         private double _turnTimer;
         private bool _canTurn;
 
-        public Player(Vector2 initialPosition, Texture2D sprite)
+        public Player(Vector2 initialPosition, Texture2D spriteMove, Texture2D spriteJump, Texture2D spriteHurt, Texture2D spriteVictory)
         {
-            _sprite = sprite;
             _position = initialPosition;
             _state = PlayerState.Moving;
             _angle = Angle.Down;
 
             _turnTimer = TurnInterval;
+
+            _spriteMove = spriteMove;
+            _spriteJump = spriteJump;
+            _spriteHurt = spriteHurt;
+            _spriteVictory = spriteVictory;
         }
 
         public float Update(GameTime gameTime)
@@ -110,7 +117,7 @@ namespace EndlessRacer.GameObjects
         {
             var sourceRectangle = new Rectangle((int)_angle * Constants.TileSize, 0, Constants.TileSize, Constants.TileSize);
 
-            spriteBatch.Draw(_sprite, _position, sourceRectangle, Color.White);
+            spriteBatch.Draw(_spriteMove, _position, sourceRectangle, Color.White);
         }
 
         public void Jump()
