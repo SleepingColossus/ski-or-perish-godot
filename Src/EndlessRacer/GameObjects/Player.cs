@@ -43,6 +43,9 @@ namespace EndlessRacer.GameObjects
         private double _turnTimer;
         private bool _canTurn;
 
+        private const int VictoryFrameRate = 30;
+        private int _victoryFrame;
+
         public Player(Vector2 initialPosition, Texture2D spriteMove, Texture2D spriteJump, Texture2D spriteHurt, Texture2D spriteVictory)
         {
             _position = initialPosition;
@@ -146,6 +149,11 @@ namespace EndlessRacer.GameObjects
                 }
             }
 
+            if (_currentState == PlayerState.Victory)
+            {
+                _speed = Vector2.Zero;
+            }
+
             if (!_canTurn)
             {
                 _turnTimer -= dt;
@@ -157,6 +165,11 @@ namespace EndlessRacer.GameObjects
             }
 
             _frame++;
+
+            if (_frame % VictoryFrameRate == 0)
+            {
+                _victoryFrame++;
+            }
 
             // Y speed is passed to level to set scroll speed;
             return _speed.Y;
@@ -226,6 +239,15 @@ namespace EndlessRacer.GameObjects
                 var position = new Vector2(_position.X, _position.Y - (float)_currentAscension);
                 spriteBatch.Draw(_sprite, position, sourceRectangle, Color.White);
             }
+            else if (_currentState == PlayerState.Victory) // change source rectangle every few frames
+            {
+                var index = _victoryFrame % 2 == 0 ? 0 : 1;
+                var x = index * Constants.TileSize;
+                var y = 0;
+
+                sourceRectangle = new Rectangle(x, y, Constants.TileSize, Constants.TileSize);
+                spriteBatch.Draw(_sprite, _position, sourceRectangle, Color.White);
+            }
             else
             {
                 spriteBatch.Draw(_sprite, _position, sourceRectangle, Color.White);
@@ -267,6 +289,9 @@ namespace EndlessRacer.GameObjects
                     _hurtTimeRemaining = HurtDuration;
                     _angle = Angle.Down;
                     break;
+                case PlayerState.Victory:
+                    _sprite = _spriteVictory;
+                    break;
             }
         }
 
@@ -285,6 +310,11 @@ namespace EndlessRacer.GameObjects
             {
                 ChangeState(PlayerState.Hurt);
             }
+        }
+
+        public void Win()
+        {
+            ChangeState(PlayerState.Victory);
         }
     }
 }

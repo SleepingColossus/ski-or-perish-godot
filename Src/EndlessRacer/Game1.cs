@@ -12,7 +12,7 @@ namespace EndlessRacer
         private SpriteBatch _spriteBatch;
 
         private Player _player;
-        private EndlessLevel _endlessLevel;
+        private Level _level;
 
         public Game1()
         {
@@ -45,7 +45,9 @@ namespace EndlessRacer
             var playerPosition = new Vector2((int)(_graphics.PreferredBackBufferWidth / 2), Constants.PlayerYPosition);
 
             _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
-            _endlessLevel = new EndlessLevel(LevelImporter.Import(Content));
+
+            //_level = new EndlessLevel(LevelImporter.ImportByEntryPoint(Content));
+            _level = new PredefinedLevel(LevelImporter.ImportLevel1(Content));
         }
 
         protected override void Update(GameTime gameTime)
@@ -56,7 +58,7 @@ namespace EndlessRacer
             // TODO: Add your update logic here
 
             var scrollSpeed = _player.Update(gameTime);
-            _endlessLevel.Update(scrollSpeed, _player);
+            _level.Update(scrollSpeed, _player);
 
             base.Update(gameTime);
         }
@@ -69,7 +71,7 @@ namespace EndlessRacer
 
             _spriteBatch.Begin();
 
-            _endlessLevel.Draw(_spriteBatch);
+            _level.Draw(_spriteBatch);
             _player.Draw(_spriteBatch);
 
             _spriteBatch.End();

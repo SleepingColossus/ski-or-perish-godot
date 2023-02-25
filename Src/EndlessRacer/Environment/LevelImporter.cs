@@ -12,7 +12,9 @@ namespace EndlessRacer.Environment
         private const string BackgroundExtension = "_bg";
         private const string CollisionExtension = "_collision";
 
-        private static List<Tuple<string, CrossingPoint, CrossingPoint>> _levelAssets = new()
+        private static readonly string[] Level1 = new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" };
+
+        private static readonly List<Tuple<string, CrossingPoint, CrossingPoint>> LevelAssets = new()
         {
             // starts in center
             new Tuple<string, CrossingPoint, CrossingPoint>("CC_01", CrossingPoint.Center, CrossingPoint.Center),
@@ -34,11 +36,30 @@ namespace EndlessRacer.Environment
             new Tuple<string, CrossingPoint, CrossingPoint>("FinishLine", CrossingPoint.Center, CrossingPoint.Center),
         };
 
-        public static Dictionary<CrossingPoint, List<LevelSegmentTemplate>> Import(ContentManager content)
+        public static List<LevelSegmentTemplate> ImportLevel1(ContentManager content)
+        {
+            return ImportLevel(content, Level1);
+        }
+
+        private static List<LevelSegmentTemplate> ImportLevel(ContentManager content, string[] level)
+        {
+            var templatesByName = ImportByName(content);
+
+            var templates = new List<LevelSegmentTemplate>();
+
+            foreach (var name in level)
+            {
+                templates.Add(templatesByName[name]);
+            }
+
+            return templates;
+        }
+
+        public static Dictionary<CrossingPoint, List<LevelSegmentTemplate>> ImportByEntryPoint(ContentManager content)
         {
             var templates = new Dictionary<CrossingPoint, List<LevelSegmentTemplate>>();
 
-            foreach (var asset in _levelAssets)
+            foreach (var asset in LevelAssets)
             {
                 var (name, entryPoint, exitPoint) = asset;
 
@@ -53,6 +74,25 @@ namespace EndlessRacer.Environment
                 }
 
                 templates[entryPoint].Add(template);
+            }
+
+            return templates;
+        }
+
+        private static Dictionary<string, LevelSegmentTemplate> ImportByName(ContentManager content)
+        {
+            var templates = new Dictionary<string, LevelSegmentTemplate>();
+
+            foreach (var asset in LevelAssets)
+            {
+                var (name, entryPoint, exitPoint) = asset;
+
+                var sprite = content.Load<Texture2D>($"{BasePath}{name}{BackgroundExtension}");
+                var collisionData = content.Load<CollisionData>($"{BasePath}{name}{CollisionExtension}");
+
+                var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray());
+
+                templates.Add(name, template);
             }
 
             return templates;

@@ -44,7 +44,7 @@ namespace EndlessRacer.Environment
 
                 if (_type == SpecialTileType.End)
                 {
-                    // TODO: handle case
+                    player.Win();
                 }
             }
         }
