@@ -24,6 +24,11 @@ namespace EndlessRacer.GameObjects
 
         private const double JumpDuration = 1.5;
         private double _jumpTimeRemaining;
+        private int MaxAscensionHeight = Constants.TileSize / 2;
+        private const double AscensionRate = 100.0;
+        private const double DescensionRate = 30.0;
+        private double _currentAscension;
+        private bool _ascensionReached;
 
         private const double HurtDuration = 1.5;
         private double _hurtTimeRemaining;
@@ -55,6 +60,8 @@ namespace EndlessRacer.GameObjects
 
         public float Update(GameTime gameTime)
         {
+            var dt = gameTime.ElapsedGameTime.TotalSeconds;
+
             _ks = Keyboard.GetState();
 
             if (_currentState != PlayerState.Hurt)
@@ -81,7 +88,7 @@ namespace EndlessRacer.GameObjects
 
             if (_currentState == PlayerState.Invincible)
             {
-                _invincibleRemaining -= gameTime.ElapsedGameTime.TotalSeconds;
+                _invincibleRemaining -= dt;
 
                 if (_invincibleRemaining <= 0)
                 {
@@ -93,7 +100,26 @@ namespace EndlessRacer.GameObjects
 
             if (_currentState == PlayerState.Jumping)
             {
-                _jumpTimeRemaining -= gameTime.ElapsedGameTime.TotalSeconds;
+                _jumpTimeRemaining -= dt;
+
+                if (_ascensionReached)
+                {
+                    _currentAscension -= DescensionRate * dt;
+
+                    if (_currentAscension <= 0)
+                    {
+                        _currentAscension = 0;
+                    }
+                }
+                else
+                {
+                    _currentAscension += AscensionRate * dt;
+
+                    if (_currentAscension >= MaxAscensionHeight)
+                    {
+                        _ascensionReached = true;
+                    }
+                }
 
                 if (_jumpTimeRemaining <= 0)
                 {
@@ -112,7 +138,7 @@ namespace EndlessRacer.GameObjects
             {
                 _speed = Vector2.Zero;
 
-                _hurtTimeRemaining -= gameTime.ElapsedGameTime.TotalSeconds;
+                _hurtTimeRemaining -= dt;
 
                 if (_hurtTimeRemaining <= 0)
                 {
@@ -122,7 +148,7 @@ namespace EndlessRacer.GameObjects
 
             if (!_canTurn)
             {
-                _turnTimer -= gameTime.ElapsedGameTime.TotalSeconds;
+                _turnTimer -= dt;
 
                 if (_turnTimer <= 0)
                 {
@@ -195,6 +221,11 @@ namespace EndlessRacer.GameObjects
             {
                 spriteBatch.Draw(_sprite, _position, Color.White);
             }
+            else if (_currentState == PlayerState.Jumping) // draw ascending/descending sprite
+            {
+                var position = new Vector2(_position.X, _position.Y - (float)_currentAscension);
+                spriteBatch.Draw(_sprite, position, sourceRectangle, Color.White);
+            }
             else
             {
                 spriteBatch.Draw(_sprite, _position, sourceRectangle, Color.White);
@@ -228,6 +259,8 @@ namespace EndlessRacer.GameObjects
                     _sprite = _spriteJump;
                     _jumpTimeRemaining = JumpDuration;
                     _turnInterval = TurnIntervalAir;
+                    _currentAscension = 0;
+                    _ascensionReached = false;
                     break;
                 case PlayerState.Hurt:
                     _sprite = _spriteHurt;
