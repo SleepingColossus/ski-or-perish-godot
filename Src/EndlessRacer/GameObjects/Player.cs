@@ -239,8 +239,8 @@ namespace EndlessRacer.GameObjects
 
         public Rectangle GetHitBox()
         {
-            var location = new Point((int)_position.X, (int)_position.Y);
-            var size = new Point(Constants.TileSize, Constants.TileSize);
+            var location = new Point((int)_position.X + Constants.ObstaclePositionOffset, (int)_position.Y + Constants.ObstaclePositionOffset);
+            var size = new Point(Constants.ObstacleTileSize, Constants.ObstacleTileSize);
             var rect = new Rectangle(location, size);
 
             return rect;
