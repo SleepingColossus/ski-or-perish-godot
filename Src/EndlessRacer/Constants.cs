@@ -6,5 +6,7 @@
 
         public const int NumberOfRows = 18;
         public const int NumberOfColumns = 30;
+
+        public const int PlayerYPosition = 100;
     }
 }

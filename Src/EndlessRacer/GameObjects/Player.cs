@@ -140,15 +140,15 @@ namespace EndlessRacer.GameObjects
 
         public Rectangle GetHitBox()
         {
-            var rect = _sprite.Bounds;
-            rect.X = (int)_position.X;
-            rect.Y = (int)_position.Y;
+            var location = new Point((int)_position.X, (int)_position.Y);
+            var size = new Point(Constants.TileSize, Constants.TileSize);
+            var rect = new Rectangle(location, size);
+
             return rect;
         }
 
         public void Crash()
         {
-            System.Diagnostics.Debug.WriteLine("I crashed! B(");
         }
     }
 }

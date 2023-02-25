@@ -6,7 +6,7 @@ namespace EndlessRacer.Environment
 {
     internal class LevelSegment : LevelSegmentTemplate
     {
-        public Vector2 _position;
+        private Vector2 _position;
         private readonly SpecialTile[,] _specialTiles;
 
         public float GetY => _position.Y;
@@ -38,6 +38,15 @@ namespace EndlessRacer.Environment
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Sprite, _position, Color.White);
+
+//#if DEBUG
+//            {
+//                foreach (var specialTile in _specialTiles)
+//                {
+//                    specialTile?.Draw(spriteBatch);
+//                }
+//            }
+//#endif
         }
 
         public bool IsOffScreen()
@@ -58,10 +67,10 @@ namespace EndlessRacer.Environment
                 {
                     if (specialTileData[i, j] > 0 && specialTileData[i, j] < 4)
                     {
-                        var height = size1 * Constants.TileSize + _position.Y;
-                        var width = size2 * Constants.TileSize;
+                        var x = j * Constants.TileSize;
+                        var y = i * Constants.TileSize + _position.Y;
 
-                        var position = new Vector2(height, width);
+                        var position = new Vector2(x, y);
 
                         var type = (SpecialTileType)specialTileData[i, j];
 

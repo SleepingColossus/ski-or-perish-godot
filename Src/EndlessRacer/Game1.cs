@@ -39,7 +39,7 @@ namespace EndlessRacer
 
             var playerSprite = Content.Load<Texture2D>("Player/Player");
 
-            _player = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, 100), playerSprite);
+            _player = new Player(new Vector2(_graphics.PreferredBackBufferWidth / 2, Constants.PlayerYPosition), playerSprite);
             _endlessLevel = new EndlessLevel(LevelImporter.Import(Content));
         }
 
