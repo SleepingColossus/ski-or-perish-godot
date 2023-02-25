@@ -8,14 +8,14 @@ namespace EndlessRacer.Environment
         public CrossingPoint EntryPoint { get; init; }
         public CrossingPoint ExitPoint { get; init; }
         public Texture2D Sprite { get; init; }
-        public bool[,] ObstacleData { get; init; }
+        public bool[,] SpecialTileData { get; init; }
 
-        public LevelSegmentTemplate(CrossingPoint entryPoint, CrossingPoint exitPoint, Texture2D sprite, bool[,] obstacleData)
+        public LevelSegmentTemplate(CrossingPoint entryPoint, CrossingPoint exitPoint, Texture2D sprite, bool[,] specialTileData)
         {
             EntryPoint = entryPoint;
             ExitPoint = exitPoint;
             Sprite = sprite;
-            ObstacleData = obstacleData;
+            SpecialTileData = specialTileData;
         }
     }
 }

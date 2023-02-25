@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework;
 
 namespace EndlessRacer.Environment
 {
-    internal class Obstacle
+    internal class SpecialTile
     {
         private Vector2 _position;
 
-        public Obstacle(Vector2 position)
+        public SpecialTile(Vector2 position)
         {
             _position = position;
         }
