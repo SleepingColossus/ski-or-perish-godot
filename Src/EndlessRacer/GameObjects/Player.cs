@@ -10,7 +10,9 @@ namespace EndlessRacer.GameObjects
         private readonly Texture2D _sprite;
 
         private Vector2 _position;
-        private const double BaseSpeed = 200f;
+        private const double BaseSpeed = 200f;          // speed when idle
+        private const double AcceleratedSpeed = 400f;   // speed when holding down move button
+        private double _speed;
         private KeyboardState _ks;
 
         private PlayerState _state;
@@ -37,11 +39,19 @@ namespace EndlessRacer.GameObjects
         {
             _ks = Keyboard.GetState();
 
-            var ySpeed = 0.0f;
-
             if (_ks.IsKeyDown(Controls.TurnLeft)) { Turn(-1); }
             if (_ks.IsKeyDown(Controls.TurnRight)) { Turn(1); }
-            if (_ks.IsKeyDown(Controls.Move)) { ySpeed = Move(gameTime); }
+
+            if (_ks.IsKeyDown(Controls.Move))
+            {
+                _speed = AcceleratedSpeed;
+            }
+            else
+            {
+                _speed = BaseSpeed;
+            }
+
+            var ySpeed = Move(_speed, gameTime);
 
             if (_state == PlayerState.Jumping)
             {
@@ -82,13 +92,13 @@ namespace EndlessRacer.GameObjects
             }
         }
 
-        private float Move(GameTime gameTime)
+        private float Move(double speed, GameTime gameTime)
         {
             var xIntensity = _angle.ToXIntensity();
             var yIntensity = _angle.ToYIntensity();
 
-            var xSpeed = xIntensity * BaseSpeed * gameTime.ElapsedGameTime.TotalSeconds;
-            var ySpeed = yIntensity * BaseSpeed * gameTime.ElapsedGameTime.TotalSeconds;
+            var xSpeed = xIntensity * speed * gameTime.ElapsedGameTime.TotalSeconds;
+            var ySpeed = yIntensity * speed * gameTime.ElapsedGameTime.TotalSeconds;
 
             _position.X += (float)xSpeed;
 
