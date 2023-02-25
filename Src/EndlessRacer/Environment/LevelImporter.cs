@@ -14,15 +14,24 @@ namespace EndlessRacer.Environment
 
         private static List<Tuple<string, CrossingPoint, CrossingPoint>> _levelAssets = new()
         {
+            // starts in center
             new Tuple<string, CrossingPoint, CrossingPoint>("CC_01", CrossingPoint.Center, CrossingPoint.Center),
+            new Tuple<string, CrossingPoint, CrossingPoint>("CC_02", CrossingPoint.Center, CrossingPoint.Center),
             new Tuple<string, CrossingPoint, CrossingPoint>("CL_01", CrossingPoint.Center, CrossingPoint.Left),
             new Tuple<string, CrossingPoint, CrossingPoint>("CR_01", CrossingPoint.Center, CrossingPoint.Right),
+            new Tuple<string, CrossingPoint, CrossingPoint>("CR_02", CrossingPoint.Center, CrossingPoint.Right),
 
+            // starts on left
             new Tuple<string, CrossingPoint, CrossingPoint>("LL_01", CrossingPoint.Left, CrossingPoint.Left),
             new Tuple<string, CrossingPoint, CrossingPoint>("LC_01", CrossingPoint.Left, CrossingPoint.Center),
 
+            // starts on left
             new Tuple<string, CrossingPoint, CrossingPoint>("RR_01", CrossingPoint.Right, CrossingPoint.Right),
             new Tuple<string, CrossingPoint, CrossingPoint>("RC_01", CrossingPoint.Right, CrossingPoint.Center),
+            new Tuple<string, CrossingPoint, CrossingPoint>("RC_02", CrossingPoint.Right, CrossingPoint.Center),
+
+            // special
+            new Tuple<string, CrossingPoint, CrossingPoint>("FinishLine", CrossingPoint.Center, CrossingPoint.Center),
         };
 
         public static Dictionary<CrossingPoint, List<LevelSegmentTemplate>> Import(ContentManager content)
