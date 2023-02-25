@@ -36,7 +36,7 @@ namespace EndlessRacer.Environment
                 var sprite = content.Load<Texture2D>($"{BasePath}{name}{BackgroundExtension}");
                 var collisionData = content.Load<CollisionData>($"{BasePath}{name}{CollisionExtension}");
 
-                var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToBoolMultiDimArray());
+                var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray());
 
                 if (!templates.ContainsKey(entryPoint))
                 {

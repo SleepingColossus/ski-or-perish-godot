@@ -5,10 +5,12 @@ namespace EndlessRacer.Environment
 {
     internal class SpecialTile
     {
+        private SpecialTileType _type;
         private Vector2 _position;
 
-        public SpecialTile(Vector2 position)
+        public SpecialTile(SpecialTileType type, Vector2 position)
         {
+            _type = type;
             _position = position;
         }
 
@@ -21,7 +23,20 @@ namespace EndlessRacer.Environment
 
             if (myHitBox.Intersects(playerHitBox))
             {
-                player.Crash();
+                if (_type == SpecialTileType.Obstacle)
+                {
+                    player.Crash();
+                }
+
+                if (_type == SpecialTileType.Jump)
+                {
+                    player.Jump();
+                }
+
+                if (_type == SpecialTileType.End)
+                {
+                    // TODO: handle case
+                }
             }
         }
 

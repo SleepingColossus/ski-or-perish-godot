@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 
 namespace EndlessRacer.Environment
 {
@@ -8,9 +7,9 @@ namespace EndlessRacer.Environment
         public CrossingPoint EntryPoint { get; init; }
         public CrossingPoint ExitPoint { get; init; }
         public Texture2D Sprite { get; init; }
-        public bool[,] SpecialTileData { get; init; }
+        public int[,] SpecialTileData { get; init; }
 
-        public LevelSegmentTemplate(CrossingPoint entryPoint, CrossingPoint exitPoint, Texture2D sprite, bool[,] specialTileData)
+        public LevelSegmentTemplate(CrossingPoint entryPoint, CrossingPoint exitPoint, Texture2D sprite, int[,] specialTileData)
         {
             EntryPoint = entryPoint;
             ExitPoint = exitPoint;

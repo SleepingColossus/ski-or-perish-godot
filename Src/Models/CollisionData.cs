@@ -6,24 +6,22 @@ namespace Models
     {
         public int[] Data;
 
-        public bool[,] ToBoolMultiDimArray()
+        public int[,] ToMultiDimArray()
         {
             // TODO access from constants
             var width = 30;
 
             int height = (int)Math.Ceiling(Data.Length / (double)width);
-            bool[,] result = new bool[height, width];
-            int rowIndex, colIndex;
+            int[,] result = new int[height, width];
 
             for (int index = 0; index < Data.Length; index++)
             {
-                rowIndex = index / width;
-                colIndex = index % width;
-                result[rowIndex, colIndex] = ToBool(Data[index]);
+                var rowIndex = index / width;
+                var colIndex = index % width;
+                result[rowIndex, colIndex] = Data[index];
             }
+
             return result;
         }
-
-        private bool ToBool(int i) => i != 0;
     }
 }
