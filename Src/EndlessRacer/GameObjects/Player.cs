@@ -32,7 +32,9 @@ namespace EndlessRacer.GameObjects
         private double _invincibleRemaining;
         private int _frame = 0;
 
-        private const double TurnInterval = 0.1f;
+        private const double TurnIntervalGround = 0.1f;
+        private const double TurnIntervalAir = 0.05f;
+        private double _turnInterval;
         private double _turnTimer;
         private bool _canTurn;
 
@@ -42,8 +44,6 @@ namespace EndlessRacer.GameObjects
             _currentState = PlayerState.Moving;
 
             _angle = Angle.Down;
-
-            _turnTimer = TurnInterval;
 
             _spriteMove = spriteMove;
             _spriteJump = spriteJump;
@@ -163,7 +163,7 @@ namespace EndlessRacer.GameObjects
                 }
 
                 _canTurn = false;
-                _turnTimer = TurnInterval;
+                _turnTimer = _turnInterval;
             }
         }
 
@@ -217,14 +217,17 @@ namespace EndlessRacer.GameObjects
             {
                 case PlayerState.Moving:
                     _sprite = _spriteMove;
+                    _turnInterval = TurnIntervalGround;
                     break;
                 case PlayerState.Invincible:
                     _sprite = _spriteMove;
                     _invincibleRemaining = InvincibleDuration;
+                    _turnInterval = TurnIntervalGround;
                     break;
                 case PlayerState.Jumping:
                     _sprite = _spriteJump;
                     _jumpTimeRemaining = JumpDuration;
+                    _turnInterval = TurnIntervalAir;
                     break;
                 case PlayerState.Hurt:
                     _sprite = _spriteHurt;
