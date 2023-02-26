@@ -13,11 +13,11 @@ namespace EndlessRacer.Menu
 
         private readonly Texture2D _spriteSheet;
         private readonly Vector2 _position;
-        public MainMenuButtonType Type { get; }
+        public MenuButtonType Type { get; }
 
         public bool Enabled { get; private set; }
 
-        public MenuButton(Texture2D spriteSheet, Vector2 position, MainMenuButtonType type, bool selected=false)
+        public MenuButton(Texture2D spriteSheet, Vector2 position, MenuButtonType type, bool selected=false)
         {
             _spriteSheet = spriteSheet;
             _position = position;

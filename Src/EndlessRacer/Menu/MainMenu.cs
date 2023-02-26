@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
-using EndlessRacer.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
 
-namespace EndlessRacer.GameScreens
+namespace EndlessRacer.Menu
 {
-    internal class TitleScreen : GameScreen
+    internal class MainMenu : GameScreen
     {
         private new Game1 Game => (Game1)base.Game;
 
@@ -22,7 +21,7 @@ namespace EndlessRacer.GameScreens
         private KeyboardState _ks;
         private KeyboardState _ksPrevious;
 
-        public TitleScreen(Game game) : base(game)
+        public MainMenu(Game game) : base(game)
         {
         }
 
@@ -35,10 +34,10 @@ namespace EndlessRacer.GameScreens
 
             _buttons = new[]
             {
-                new MenuButton(_buttonSheet, new Vector2(1300, 100), MainMenuButtonType.PlayCareer, true),
-                new MenuButton(_buttonSheet, new Vector2(1300, 300), MainMenuButtonType.PlayEndless),
-                new MenuButton(_buttonSheet, new Vector2(1300, 500), MainMenuButtonType.Help),
-                new MenuButton(_buttonSheet, new Vector2(1300, 700), MainMenuButtonType.Exit),
+                new MenuButton(_buttonSheet, new Vector2(1300, 100), MenuButtonType.PlayCareer, true),
+                new MenuButton(_buttonSheet, new Vector2(1300, 300), MenuButtonType.PlayEndless),
+                new MenuButton(_buttonSheet, new Vector2(1300, 500), MenuButtonType.Help),
+                new MenuButton(_buttonSheet, new Vector2(1300, 700), MenuButtonType.Exit),
             };
 
             _maxButtonIndex = _buttons.Length - 1;
@@ -107,16 +106,16 @@ namespace EndlessRacer.GameScreens
 
             switch (activeButton.Type)
             {
-                case MainMenuButtonType.PlayEndless:
+                case MenuButtonType.PlayEndless:
                     Game.LoadEndlessScreen();
                     break;
-                case MainMenuButtonType.PlayCareer:
+                case MenuButtonType.PlayCareer:
                     Game.LoadCareerProgressScreen();
                     break;
-                case MainMenuButtonType.Help:
+                case MenuButtonType.Help:
                     // TODO implement help screen
                     break;
-                case MainMenuButtonType.Exit:
+                case MenuButtonType.Exit:
                     Game.Exit();
                     break;
             }

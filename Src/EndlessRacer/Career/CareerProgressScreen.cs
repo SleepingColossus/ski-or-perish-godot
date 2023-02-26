@@ -1,9 +1,8 @@
-﻿using EndlessRacer.Career;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Screens;
 
-namespace EndlessRacer.GameScreens
+namespace EndlessRacer.Career
 {
     internal class CareerProgressScreen : GameScreen
     {

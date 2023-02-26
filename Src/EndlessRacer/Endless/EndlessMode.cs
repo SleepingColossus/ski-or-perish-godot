@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Screens;
 
-namespace EndlessRacer.GameScreens
+namespace EndlessRacer.Endless
 {
     internal class EndlessMode : GameScreen
     {
@@ -27,7 +27,7 @@ namespace EndlessRacer.GameScreens
             var playerHurtSprite = Content.Load<Texture2D>("Player/PlayerHurt");
             var playerVictorySprite = Content.Load<Texture2D>("Player/PlayerVictory");
 
-            var playerPosition = new Vector2((int)(Game.Graphics.PreferredBackBufferWidth / 2), Constants.PlayerYPosition);
+            var playerPosition = new Vector2(Game.Graphics.PreferredBackBufferWidth / 2, Constants.PlayerYPosition);
 
             _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
 

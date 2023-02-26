@@ -1,6 +1,6 @@
 ﻿namespace EndlessRacer.Menu
 {
-    internal enum MainMenuButtonType
+    internal enum MenuButtonType
     {
         PlayCareer,
         PlayEndless,

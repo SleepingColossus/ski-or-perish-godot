@@ -1,4 +1,6 @@
-﻿using EndlessRacer.GameScreens;
+﻿using EndlessRacer.Career;
+using EndlessRacer.Endless;
+using EndlessRacer.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Screens;
@@ -30,7 +32,7 @@ namespace EndlessRacer
         {
             // TODO: Add your initialization logic here
 
-            LoadTitleScreen();
+            LoadMainMenu();
 
             base.Initialize();
         }
@@ -56,9 +58,9 @@ namespace EndlessRacer
             base.Draw(gameTime);
         }
 
-        public void LoadTitleScreen()
+        public void LoadMainMenu()
         {
-            _screenManager.LoadScreen(new TitleScreen(this), new FadeTransition(GraphicsDevice, Color.Black));
+            _screenManager.LoadScreen(new MainMenu(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
 
         public void LoadEndlessScreen()
