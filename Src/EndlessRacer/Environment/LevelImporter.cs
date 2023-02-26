@@ -12,7 +12,10 @@ namespace EndlessRacer.Environment
         private const string BackgroundExtension = "_bg";
         private const string CollisionExtension = "_collision";
 
-        private static readonly string[] Level1 = new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" };
+        private static readonly string[][] CareerLevels = new[]
+        {
+            new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+        };
 
         private static readonly List<Tuple<string, CrossingPoint, CrossingPoint>> LevelAssets = new()
         {
@@ -36,14 +39,16 @@ namespace EndlessRacer.Environment
             new Tuple<string, CrossingPoint, CrossingPoint>("FinishLine", CrossingPoint.Center, CrossingPoint.Center),
         };
 
-        public static List<LevelSegmentTemplate> ImportLevel1(ContentManager content)
+        public static List<LevelSegmentTemplate> ImportCareerLevel(ContentManager content, int levelNumber)
         {
-            return ImportLevel(content, Level1);
+            return ImportLevel(content, levelNumber);
         }
 
         // used by predefined levels
-        private static List<LevelSegmentTemplate> ImportLevel(ContentManager content, string[] level)
+        private static List<LevelSegmentTemplate> ImportLevel(ContentManager content, int levelNumber)
         {
+            var level = CareerLevels[levelNumber];
+
             static Dictionary<string, LevelSegmentTemplate> ImportByName(ContentManager content)
             {
                 var templates = new Dictionary<string, LevelSegmentTemplate>();

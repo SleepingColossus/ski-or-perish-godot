@@ -5,17 +5,19 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
 
-namespace EndlessRacer.Endless
+namespace EndlessRacer.Career
 {
-    internal class EndlessMode : GameScreen
+    internal class CareerLevelMode : GameScreen
     {
         private new Game1 Game => (Game1)base.Game;
 
         private Player _player;
         private Level _level;
+        private int _levelNumber;
 
-        public EndlessMode(Game game) : base(game)
+        public CareerLevelMode(Game game, int levelNumber) : base(game)
         {
+            _levelNumber = levelNumber;
         }
 
         public override void LoadContent()
@@ -31,8 +33,7 @@ namespace EndlessRacer.Endless
 
             _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
 
-            _level = new EndlessLevel(LevelImporter.ImportByEntryPoint(Content));
-            //_level = new PredefinedLevel(LevelImporter.ImportLevel1(Content));
+            _level = new PredefinedLevel(LevelImporter.ImportCareerLevel(Content, _levelNumber));
         }
 
         public override void Update(GameTime gameTime)

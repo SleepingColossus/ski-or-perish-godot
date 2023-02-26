@@ -12,6 +12,8 @@ namespace EndlessRacer.Career
         private Texture2D _mapMarkerSheet;
         private MapMarker[] _markers;
 
+        private double _timeout = 3;
+
         public CareerProgressScreen(Game game) : base(game)
         {
         }
@@ -44,6 +46,13 @@ namespace EndlessRacer.Career
             foreach (var marker in _markers)
             {
                 marker.Update();
+            }
+
+            _timeout -= gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (_timeout <= 0)
+            {
+                Game.LoadCareerLevel(0);
             }
         }
 
