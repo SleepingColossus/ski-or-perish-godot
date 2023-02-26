@@ -11,9 +11,9 @@ namespace EndlessRacer.Menu
         private const int SpriteW = 511;
         private const int SpriteH = 147;
 
-        private Texture2D _spriteSheet;
-        private Vector2 _position;
-        private MainMenuButtonType _type;
+        private readonly Texture2D _spriteSheet;
+        private readonly Vector2 _position;
+        public MainMenuButtonType Type { get; }
 
         public bool Enabled { get; private set; }
 
@@ -21,14 +21,14 @@ namespace EndlessRacer.Menu
         {
             _spriteSheet = spriteSheet;
             _position = position;
-            _type = type;
+            Type = type;
 
             Enabled = selected;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            var x = (int)_type * SpriteW;
+            var x = (int)Type * SpriteW;
             var y = Enabled ? EnabledRow * SpriteH : DisabledRow;
 
             var sourceRectangle = new Rectangle(x, y, SpriteW, SpriteH);

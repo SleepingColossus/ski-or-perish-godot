@@ -1,4 +1,6 @@
-﻿using EndlessRacer.Menu;
+﻿using System;
+using System.Linq;
+using EndlessRacer.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -66,6 +68,11 @@ namespace EndlessRacer.GameScreens
                 }
             }
 
+            if (_ks.IsKeyDown(Keys.Enter))
+            {
+                HandleButtonPress();
+            }
+
             foreach (var button in _buttons)
             {
                 button.Disable();
@@ -92,6 +99,27 @@ namespace EndlessRacer.GameScreens
 
             // ---
             Game.SpriteBatch.End();
+        }
+
+        private void HandleButtonPress()
+        {
+            var activeButton = _buttons.First(btn => btn.Enabled);
+
+            switch (activeButton.Type)
+            {
+                case MainMenuButtonType.PlayEndless:
+                    Game.LoadEndlessScreen();
+                    break;
+                case MainMenuButtonType.PlayCareer:
+                    Game.LoadCareerProgressScreen();
+                    break;
+                case MainMenuButtonType.Help:
+                    // TODO implement help screen
+                    break;
+                case MainMenuButtonType.Exit:
+                    Game.Exit();
+                    break;
+            }
         }
     }
 }

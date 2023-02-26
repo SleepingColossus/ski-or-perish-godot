@@ -56,17 +56,17 @@ namespace EndlessRacer
             base.Draw(gameTime);
         }
 
-        private void LoadTitleScreen()
+        public void LoadTitleScreen()
         {
             _screenManager.LoadScreen(new TitleScreen(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
 
-        private void LoadEndlessScreen()
+        public void LoadEndlessScreen()
         {
             _screenManager.LoadScreen(new EndlessMode(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
 
-        private void LoadCareerProgressScreen()
+        public void LoadCareerProgressScreen()
         {
             _screenManager.LoadScreen(new CareerProgressScreen(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
