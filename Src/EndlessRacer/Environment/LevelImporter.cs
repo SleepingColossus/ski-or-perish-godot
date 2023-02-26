@@ -41,8 +41,28 @@ namespace EndlessRacer.Environment
             return ImportLevel(content, Level1);
         }
 
+        // used by predefined levels
         private static List<LevelSegmentTemplate> ImportLevel(ContentManager content, string[] level)
         {
+            static Dictionary<string, LevelSegmentTemplate> ImportByName(ContentManager content)
+            {
+                var templates = new Dictionary<string, LevelSegmentTemplate>();
+
+                foreach (var asset in LevelAssets)
+                {
+                    var (name, entryPoint, exitPoint) = asset;
+
+                    var sprite = content.Load<Texture2D>($"{BasePath}{name}{BackgroundExtension}");
+                    var collisionData = content.Load<CollisionData>($"{BasePath}{name}{CollisionExtension}");
+
+                    var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray());
+
+                    templates.Add(name, template);
+                }
+
+                return templates;
+            }
+
             var templatesByName = ImportByName(content);
 
             var templates = new List<LevelSegmentTemplate>();
@@ -55,6 +75,7 @@ namespace EndlessRacer.Environment
             return templates;
         }
 
+        // used by endless level
         public static Dictionary<CrossingPoint, List<LevelSegmentTemplate>> ImportByEntryPoint(ContentManager content)
         {
             var templates = new Dictionary<CrossingPoint, List<LevelSegmentTemplate>>();
@@ -62,6 +83,12 @@ namespace EndlessRacer.Environment
             foreach (var asset in LevelAssets)
             {
                 var (name, entryPoint, exitPoint) = asset;
+
+                // skip finish line in endless
+                if (name == "FinishLine")
+                {
+                    continue;
+                }
 
                 var sprite = content.Load<Texture2D>($"{BasePath}{name}{BackgroundExtension}");
                 var collisionData = content.Load<CollisionData>($"{BasePath}{name}{CollisionExtension}");
@@ -74,25 +101,6 @@ namespace EndlessRacer.Environment
                 }
 
                 templates[entryPoint].Add(template);
-            }
-
-            return templates;
-        }
-
-        private static Dictionary<string, LevelSegmentTemplate> ImportByName(ContentManager content)
-        {
-            var templates = new Dictionary<string, LevelSegmentTemplate>();
-
-            foreach (var asset in LevelAssets)
-            {
-                var (name, entryPoint, exitPoint) = asset;
-
-                var sprite = content.Load<Texture2D>($"{BasePath}{name}{BackgroundExtension}");
-                var collisionData = content.Load<CollisionData>($"{BasePath}{name}{CollisionExtension}");
-
-                var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray());
-
-                templates.Add(name, template);
             }
 
             return templates;
