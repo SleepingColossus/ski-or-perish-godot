@@ -29,13 +29,13 @@
             angle switch
             {
                 Angle.Left => -1,
-                Angle.LeftDown1 => -0.75,
-                Angle.LeftDown2 => -0.5,
-                Angle.LeftDown3 => -0.25,
+                Angle.LeftDown1 => -1,
+                Angle.LeftDown2 => -0.75,
+                Angle.LeftDown3 => -0.5,
                 Angle.Down => 0,
-                Angle.RightDown3 => 0.25,
-                Angle.RightDown2 => 0.5,
-                Angle.RightDown1 => 0.75,
+                Angle.RightDown3 => 0.5,
+                Angle.RightDown2 => 0.75,
+                Angle.RightDown1 => 1,
                 Angle.Right => 1
             };
 
