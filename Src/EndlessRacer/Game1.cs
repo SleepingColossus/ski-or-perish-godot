@@ -52,7 +52,7 @@ namespace EndlessRacer
 
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
-                LoadCareerProgressScreen();
+                LoadEndlessScreen();
             }
 
             base.Update(gameTime);
