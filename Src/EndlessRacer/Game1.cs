@@ -52,7 +52,7 @@ namespace EndlessRacer
 
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
-                LoadEndlessScreen();
+                LoadCareerProgressScreen();
             }
 
             base.Update(gameTime);
@@ -60,8 +60,6 @@ namespace EndlessRacer
 
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.Snow);
-
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
@@ -75,6 +73,11 @@ namespace EndlessRacer
         private void LoadEndlessScreen()
         {
             _screenManager.LoadScreen(new EndlessMode(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
+
+        private void LoadCareerProgressScreen()
+        {
+            _screenManager.LoadScreen(new CareerProgressScreen(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
     }
 }

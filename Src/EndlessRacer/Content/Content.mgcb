@@ -201,6 +201,42 @@
 /processor:PassThroughProcessor
 /build:../../../Assets/Maps/Exported/RR_01_collision.xml;Maps/RR_01_collision.xml
 
+#begin ../../../Assets/Sprites/Arrow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/Arrow.png;Career/Arrow.png
+
+#begin ../../../Assets/Sprites/CareerProgressScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/CareerProgressScreen.png;Career/CareerProgressScreen.png
+
+#begin ../../../Assets/Sprites/MapMarker.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/MapMarker.png;Career/MapMarker.png
+
 #begin ../../../Assets/Sprites/PlayerHurt.png
 /importer:TextureImporter
 /processor:TextureProcessor
