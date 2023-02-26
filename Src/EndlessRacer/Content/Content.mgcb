@@ -213,6 +213,18 @@
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/Arrow.png;Career/Arrow.png
 
+#begin ../../../Assets/Sprites/Buttons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/Buttons.png;Menu/Buttons.png
+
 #begin ../../../Assets/Sprites/CareerProgressScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -236,6 +248,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/MapMarker.png;Career/MapMarker.png
+
+#begin ../../../Assets/Sprites/MenuScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/MenuScreen.png;Menu/MenuScreen.png
 
 #begin ../../../Assets/Sprites/PlayerHurt.png
 /importer:TextureImporter
@@ -284,16 +308,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/PlayerVictory.png;Player/PlayerVictory.png
-
-#begin ../../../Assets/Sprites/TitleScreen.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../Assets/Sprites/TitleScreen.png;TitleScreen.png
 

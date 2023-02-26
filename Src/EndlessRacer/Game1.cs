@@ -1,7 +1,6 @@
 ﻿using EndlessRacer.GameScreens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
 
@@ -45,15 +44,7 @@ namespace EndlessRacer
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             // TODO: Add your update logic here
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-            {
-                LoadEndlessScreen();
-            }
 
             base.Update(gameTime);
         }
