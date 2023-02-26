@@ -13,11 +13,11 @@ namespace EndlessRacer.Career
 
         private Player _player;
         private Level _level;
-        private int _levelNumber;
 
-        public CareerLevelMode(Game game, int levelNumber) : base(game)
+        private double _victoryTimer = 3;
+
+        public CareerLevelMode(Game game) : base(game)
         {
-            _levelNumber = levelNumber;
         }
 
         public override void LoadContent()
@@ -33,7 +33,9 @@ namespace EndlessRacer.Career
 
             _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
 
-            _level = new PredefinedLevel(LevelImporter.ImportCareerLevel(Content, _levelNumber));
+            var careerProgress = CareerProgress.Get();
+
+            _level = new PredefinedLevel(LevelImporter.ImportCareerLevel(Content, careerProgress.CurrentLevel));
         }
 
         public override void Update(GameTime gameTime)
@@ -44,6 +46,16 @@ namespace EndlessRacer.Career
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Game.LoadMainMenu();
+            }
+
+            if (_player.IsVictorious)
+            {
+                _victoryTimer -= gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (_victoryTimer <= 0)
+                {
+                    Game.LoadCareerProgressScreen();
+                }
             }
         }
 

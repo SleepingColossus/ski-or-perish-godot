@@ -13,7 +13,7 @@ namespace EndlessRacer.Career
 
         private Texture2D _spriteSheet;
         private Vector2 _position;
-        private MapMarkerState _state;
+        public MapMarkerState State { get; set; }
 
         private int _currentFrame = 0;
         private int _frameStep = 1;
@@ -21,11 +21,10 @@ namespace EndlessRacer.Career
         private const int FrameRate = 5;
         private int _animationFrame = 0;
 
-        public MapMarker(Texture2D spriteSheet, Vector2 position, MapMarkerState state)
+        public MapMarker(Texture2D spriteSheet, Vector2 position)
         {
             _spriteSheet = spriteSheet;
             _position = position;
-            _state = state;
         }
 
         public void Update()
@@ -49,13 +48,13 @@ namespace EndlessRacer.Career
         {
             Rectangle sourceRectangle;
 
-            if (_state == MapMarkerState.NotCompleted)
+            if (State == MapMarkerState.NotCompleted)
             {
                 sourceRectangle = new Rectangle(NotCompletedFrame, 0, spriteW, spriteH);
             }
-            else if (_state == MapMarkerState.Completed)
+            else if (State == MapMarkerState.Completed)
             {
-                sourceRectangle = new Rectangle(CompletedFrame, 0, spriteW, spriteH);
+                sourceRectangle = new Rectangle(CompletedFrame * spriteW, 0, spriteW, spriteH);
             }
             else
             {

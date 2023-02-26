@@ -1,4 +1,5 @@
 ﻿using System;
+using EndlessRacer.Career;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -45,6 +46,7 @@ namespace EndlessRacer.GameObjects
 
         private const int VictoryFrameRate = 30;
         private int _victoryFrame;
+        public bool IsVictorious;
 
         public Player(Vector2 initialPosition, Texture2D spriteMove, Texture2D spriteJump, Texture2D spriteHurt, Texture2D spriteVictory)
         {
@@ -315,6 +317,14 @@ namespace EndlessRacer.GameObjects
         public void Win()
         {
             ChangeState(PlayerState.Victory);
+
+            if (!IsVictorious)
+            {
+                IsVictorious = true;
+
+                var careerProgress = CareerProgress.Get();
+                careerProgress.NextLevel();
+            }
         }
     }
 }

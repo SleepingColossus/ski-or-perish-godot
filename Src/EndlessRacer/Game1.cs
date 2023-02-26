@@ -73,9 +73,9 @@ namespace EndlessRacer
             _screenManager.LoadScreen(new CareerProgressScreen(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
 
-        public void LoadCareerLevel(int levelNumber)
+        public void LoadCareerLevel()
         {
-            _screenManager.LoadScreen(new CareerLevelMode(this, levelNumber), new FadeTransition(GraphicsDevice, Color.Black));
+            _screenManager.LoadScreen(new CareerLevelMode(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
     }
 }

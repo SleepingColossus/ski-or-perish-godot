@@ -14,7 +14,16 @@ namespace EndlessRacer.Environment
 
         private static readonly string[][] CareerLevels = new[]
         {
-            new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 01 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 02 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 03 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 04 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 05 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 06 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 07 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 08 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 09 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 10 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
         };
 
         private static readonly List<Tuple<string, CrossingPoint, CrossingPoint>> LevelAssets = new()
