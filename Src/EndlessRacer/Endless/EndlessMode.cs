@@ -3,6 +3,7 @@ using EndlessRacer.Environment;
 using EndlessRacer.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
 
 namespace EndlessRacer.Endless
@@ -39,6 +40,11 @@ namespace EndlessRacer.Endless
         {
             var scrollSpeed = _player.Update(gameTime);
             _level.Update(scrollSpeed, _player);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                Game.LoadMainMenu();
+            }
         }
 
         public override void Draw(GameTime gameTime)
