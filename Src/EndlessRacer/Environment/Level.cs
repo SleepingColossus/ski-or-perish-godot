@@ -23,5 +23,13 @@ internal abstract class Level
         }
     }
 
+    public void DrawForeground(SpriteBatch spriteBatch)
+    {
+        foreach (var segment in Segments)
+        {
+            segment.DrawForeground(spriteBatch);
+        }
+    }
+
     public abstract void Update(float scrollSpeed, Player player);
 }

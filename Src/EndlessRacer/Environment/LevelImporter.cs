@@ -10,7 +10,10 @@ namespace EndlessRacer.Environment
     {
         private const string BasePath = "Maps/";
         private const string BackgroundExtension = "_bg";
+        private const string ForegroundExtension = "_fg";
         private const string CollisionExtension = "_collision";
+
+        public const string FinishLine = "FinishLine";
 
         private static readonly string[][] CareerLevels = new[]
         {
@@ -45,7 +48,7 @@ namespace EndlessRacer.Environment
             new Tuple<string, CrossingPoint, CrossingPoint>("RC_02", CrossingPoint.Right, CrossingPoint.Center),
 
             // special
-            new Tuple<string, CrossingPoint, CrossingPoint>("FinishLine", CrossingPoint.Center, CrossingPoint.Center),
+            new Tuple<string, CrossingPoint, CrossingPoint>(FinishLine, CrossingPoint.Center, CrossingPoint.Center),
         };
 
         public static List<LevelSegmentTemplate> ImportCareerLevel(ContentManager content, int levelNumber)
@@ -69,7 +72,14 @@ namespace EndlessRacer.Environment
                     var sprite = content.Load<Texture2D>($"{BasePath}{name}{BackgroundExtension}");
                     var collisionData = content.Load<CollisionData>($"{BasePath}{name}{CollisionExtension}");
 
-                    var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray());
+                    Texture2D foreground = null;
+
+                    if (name == FinishLine)
+                    {
+                        foreground = content.Load<Texture2D>($"{BasePath}{name}{ForegroundExtension}");
+                    }
+
+                    var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray(), foreground);
 
                     templates.Add(name, template);
                 }
@@ -99,7 +109,7 @@ namespace EndlessRacer.Environment
                 var (name, entryPoint, exitPoint) = asset;
 
                 // skip finish line in endless
-                if (name == "FinishLine")
+                if (name == FinishLine)
                 {
                     continue;
                 }

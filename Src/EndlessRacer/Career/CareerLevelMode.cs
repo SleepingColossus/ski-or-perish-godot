@@ -67,6 +67,7 @@ namespace EndlessRacer.Career
             // ---
             _level.Draw(Game.SpriteBatch);
             _player.Draw(Game.SpriteBatch);
+            _level.DrawForeground(Game.SpriteBatch);
             // ---
             Game.SpriteBatch.End();
         }

@@ -11,15 +11,8 @@ namespace EndlessRacer.Environment
 
         public float GetY => _position.Y;
 
-        public LevelSegment(Vector2 position, CrossingPoint entryPoint, CrossingPoint exitPoint, Texture2D sprite, int[,] specialTileData) :
-            base(entryPoint, exitPoint, sprite, specialTileData)
-        {
-            _position = position;
-            _specialTiles = InitSpecialTiles(specialTileData);
-        }
-
         public LevelSegment(Vector2 position, LevelSegmentTemplate template) :
-            base(template.EntryPoint, template.ExitPoint, template.Sprite, template.SpecialTileData)
+            base(template.EntryPoint, template.ExitPoint, template.Background, template.SpecialTileData, template.Foreground)
         {
             _position = position;
             _specialTiles = InitSpecialTiles(template.SpecialTileData);
@@ -37,7 +30,7 @@ namespace EndlessRacer.Environment
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Sprite, _position, Color.White);
+            spriteBatch.Draw(Background, _position, Color.White);
 
 //#if DEBUG
 //            {
@@ -49,9 +42,17 @@ namespace EndlessRacer.Environment
 //#endif
         }
 
+        public void DrawForeground(SpriteBatch spriteBatch)
+        {
+            if (Foreground != null)
+            {
+                spriteBatch.Draw(Foreground, _position, Color.White);
+            }
+        }
+
         public bool IsOffScreen()
         {
-            return _position.Y < - Sprite.Height;
+            return _position.Y < - Background.Height;
         }
 
         private SpecialTile[,] InitSpecialTiles(int[,] specialTileData)
