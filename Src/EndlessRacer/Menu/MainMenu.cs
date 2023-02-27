@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 
 namespace EndlessRacer.Menu
@@ -21,6 +23,9 @@ namespace EndlessRacer.Menu
         private KeyboardState _ks;
         private KeyboardState _ksPrevious;
 
+        private Song _bgm;
+        private SoundEffect _menuSound;
+
         public MainMenu(Game game) : base(game)
         {
         }
@@ -31,6 +36,12 @@ namespace EndlessRacer.Menu
 
             _titleScreen = Game.Content.Load<Texture2D>("Menu/MenuScreen");
             _buttonSheet = Game.Content.Load<Texture2D>("Menu/Buttons");
+
+            _bgm = Game.Content.Load<Song>("Audio/MenuTheme");
+            _menuSound = Game.Content.Load<SoundEffect>("Audio/MenuNavigation");
+
+            MediaPlayer.Play(_bgm);
+            MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
 
             _buttons = new[]
             {
@@ -50,6 +61,7 @@ namespace EndlessRacer.Menu
             if (_ks.IsKeyDown(Keys.Up) && !_ksPrevious.IsKeyDown(Keys.Up))
             {
                 _buttonIndex--;
+                _menuSound.Play();
 
                 if (_buttonIndex < _minButtonIndex)
                 {
@@ -60,6 +72,7 @@ namespace EndlessRacer.Menu
             if (_ks.IsKeyDown(Keys.Down) && !_ksPrevious.IsKeyDown(Keys.Down))
             {
                 _buttonIndex++;
+                _menuSound.Play();
 
                 if (_buttonIndex > _maxButtonIndex)
                 {
@@ -119,6 +132,11 @@ namespace EndlessRacer.Menu
                     Game.Exit();
                     break;
             }
+        }
+
+        private void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
+        {
+            MediaPlayer.Play(_bgm);
         }
     }
 }

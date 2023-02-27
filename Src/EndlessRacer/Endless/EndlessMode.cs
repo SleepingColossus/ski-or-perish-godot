@@ -1,8 +1,10 @@
 ﻿using EndlessRacer.Environment;
 using EndlessRacer.GameObjects;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 
 namespace EndlessRacer.Endless
@@ -13,6 +15,10 @@ namespace EndlessRacer.Endless
 
         private Player _player;
         private Level _level;
+
+        private Song _bgm;
+        private SoundEffect _crashSound;
+        private SoundEffect _winSound;
 
         public EndlessMode(Game game) : base(game)
         {
@@ -27,9 +33,16 @@ namespace EndlessRacer.Endless
             var playerHurtSprite = Content.Load<Texture2D>("Player/PlayerHurt");
             var playerVictorySprite = Content.Load<Texture2D>("Player/PlayerVictory");
 
+            _bgm = Game.Content.Load<Song>("Audio/StageTheme");
+            _crashSound = Game.Content.Load<SoundEffect>("Audio/Crash");
+            _winSound = Game.Content.Load<SoundEffect>("Audio/Victory");
+
+            MediaPlayer.Play(_bgm);
+            MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+
             var playerPosition = new Vector2(Game.Graphics.PreferredBackBufferWidth / 2, Constants.PlayerYPosition);
 
-            _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
+            _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite, _crashSound, _winSound);
 
             _level = new EndlessLevel(LevelImporter.ImportByEntryPoint(Content));
             //_level = new PredefinedLevel(LevelImporter.ImportLevel1(Content));
@@ -57,6 +70,11 @@ namespace EndlessRacer.Endless
             _level.DrawForeground(Game.SpriteBatch);
             // ---
             Game.SpriteBatch.End();
+        }
+
+        private void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
+        {
+            MediaPlayer.Play(_bgm);
         }
     }
 }

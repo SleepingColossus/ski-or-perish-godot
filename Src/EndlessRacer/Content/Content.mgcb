@@ -213,6 +213,36 @@
 /processor:PassThroughProcessor
 /build:../../../Assets/Maps/Exported/RR_01_collision.xml;Maps/RR_01_collision.xml
 
+#begin ../../../Assets/Sounds/Crash.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../../Assets/Sounds/Crash.ogg;Audio/Crash.ogg
+
+#begin ../../../Assets/Sounds/MenuNavigation.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../../Assets/Sounds/MenuNavigation.ogg;Audio/MenuNavigation.ogg
+
+#begin ../../../Assets/Sounds/MenuTheme.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:../../../Assets/Sounds/MenuTheme.ogg;Audio/MenuTheme.ogg
+
+#begin ../../../Assets/Sounds/StageTheme.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:../../../Assets/Sounds/StageTheme.ogg;Audio/StageTheme.ogg
+
+#begin ../../../Assets/Sounds/Victory.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../../Assets/Sounds/Victory.ogg;Audio/Victory.ogg
+
 #begin ../../../Assets/Sprites/Arrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
