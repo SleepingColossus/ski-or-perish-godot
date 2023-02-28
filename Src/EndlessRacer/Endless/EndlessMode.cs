@@ -1,5 +1,6 @@
 ﻿using EndlessRacer.Environment;
 using EndlessRacer.GameObjects;
+using EndlessRacer.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,6 +16,7 @@ namespace EndlessRacer.Endless
 
         private Player _player;
         private Level _level;
+        private Score _score;
 
         private Song _bgm;
         private SoundEffect _crashSound;
@@ -33,6 +35,8 @@ namespace EndlessRacer.Endless
             var playerHurtSprite = Content.Load<Texture2D>("Player/PlayerHurt");
             var playerVictorySprite = Content.Load<Texture2D>("Player/PlayerVictory");
 
+            var scoreSheet = Content.Load<Texture2D>("UI/Score");
+
             _bgm = Game.Content.Load<Song>("Audio/StageTheme");
             _crashSound = Game.Content.Load<SoundEffect>("Audio/Crash");
             _winSound = Game.Content.Load<SoundEffect>("Audio/Victory");
@@ -45,13 +49,15 @@ namespace EndlessRacer.Endless
             _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite, _crashSound, _winSound);
 
             _level = new EndlessLevel(LevelImporter.ImportByEntryPoint(Content));
-            //_level = new PredefinedLevel(LevelImporter.ImportLevel1(Content));
+
+            _score = new Score(scoreSheet);
         }
 
         public override void Update(GameTime gameTime)
         {
             var scrollSpeed = _player.Update(gameTime);
             _level.Update(scrollSpeed, _player);
+            _score.AddDistance(scrollSpeed);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
@@ -68,6 +74,7 @@ namespace EndlessRacer.Endless
             _level.Draw(Game.SpriteBatch);
             _player.Draw(Game.SpriteBatch);
             _level.DrawForeground(Game.SpriteBatch);
+            _score.Draw(Game.SpriteBatch);
             // ---
             Game.SpriteBatch.End();
         }
