@@ -56,7 +56,7 @@ namespace EndlessRacer.GameObjects
 
         public Player(Vector2 initialPosition, PlayerSprites sprites, PlayerSounds sounds)
         {
-            _position = initialPosition;
+            _position = new Vector2(initialPosition.X - Constants.TileSize / 2, initialPosition.Y);
 
             _angle = Angle.Down;
 
