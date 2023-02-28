@@ -12,20 +12,28 @@ namespace EndlessRacer.UI
         private const int PositionY = 10;
         private const int StartingPositionX = 950;
         private const int ScoreRate = 100; // after how many pixels to award 1 point
+        private const int JumpRate = 25;
 
-        public float DistanceTraveled { get; private set; }
+        public float _distanceTraveled;
+        private int _timesJumped;
 
-        private int CurrentScore => (int)(DistanceTraveled / ScoreRate);
+        private int CurrentScore => (int)(_distanceTraveled / ScoreRate) + _timesJumped * JumpRate;
 
         public Score(Texture2D spriteSheet)
         {
             _spriteSheet = spriteSheet;
-            DistanceTraveled = 0;
+            _distanceTraveled = 0;
+            _timesJumped = 0;
         }
 
         public void AddDistance(float deltaDistance)
         {
-            DistanceTraveled += deltaDistance;
+            _distanceTraveled += deltaDistance;
+        }
+
+        public void AddJump()
+        {
+            _timesJumped++;
         }
 
         public void Draw(SpriteBatch spriteBatch)

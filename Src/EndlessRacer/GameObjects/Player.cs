@@ -36,6 +36,10 @@ namespace EndlessRacer.GameObjects
         private double _currentAscension;
         private bool _ascensionReached;
 
+        // 360 jump checks
+        public event EventHandler FullCircleJump;
+        private Angle _startingJumpAngle;
+
         // hurt state
         private const double HurtDuration = 1.5;
         private double _hurtTimeRemaining;
@@ -201,6 +205,12 @@ namespace EndlessRacer.GameObjects
                     {
                         _angle = Angle.Left;
                     }
+
+                    if (_angle == _startingJumpAngle)
+                    {
+                        // TODO prevent cheating by moving back and forth by 1 increment
+                        OnFullCircleJump();
+                    }
                 }
 
                 _canTurn = false;
@@ -256,14 +266,6 @@ namespace EndlessRacer.GameObjects
             }
         }
 
-        public void Jump()
-        {
-            if (_currentState == PlayerState.Moving || _currentState == PlayerState.Invincible)
-            {
-                ChangeState(PlayerState.Jumping);
-            }
-        }
-
         private void ChangeState(PlayerState newState)
         {
             _currentState = newState;
@@ -285,6 +287,7 @@ namespace EndlessRacer.GameObjects
                     _turnInterval = TurnIntervalAir;
                     _currentAscension = 0;
                     _ascensionReached = false;
+                    _startingJumpAngle = _angle;
                     _sounds.JumpSound.Play();
                     break;
                 case PlayerState.Hurt:
@@ -306,6 +309,25 @@ namespace EndlessRacer.GameObjects
             var rect = new Rectangle(location, size);
 
             return rect;
+        }
+
+        public void Jump()
+        {
+            if (_currentState == PlayerState.Moving || _currentState == PlayerState.Invincible)
+            {
+                ChangeState(PlayerState.Jumping);
+            }
+        }
+
+        public void OnFullCircleJump()
+        {
+            EventHandler fullCircleJumpEvent = FullCircleJump;
+
+            if (fullCircleJumpEvent != null)
+            {
+                _sounds.Spin360Sound.Play();
+                fullCircleJumpEvent(this, EventArgs.Empty);
+            }
         }
 
         public void Crash()
