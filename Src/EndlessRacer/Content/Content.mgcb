@@ -392,3 +392,15 @@
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/Score.png;UI/Score.png
 
+#begin ../../../Assets/Sprites/StartCounter.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/StartCounter.png;UI/StartCounter.png
+

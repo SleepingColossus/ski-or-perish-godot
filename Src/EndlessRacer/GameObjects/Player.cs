@@ -57,18 +57,22 @@ namespace EndlessRacer.GameObjects
         public Player(Vector2 initialPosition, PlayerSprites sprites, PlayerSounds sounds)
         {
             _position = initialPosition;
-            _currentState = PlayerState.Moving;
 
             _angle = Angle.Down;
 
             _sprites = sprites;
             _sounds = sounds;
 
-            ChangeState(PlayerState.Moving);
+            ChangeState(PlayerState.Idle);
         }
 
         public float Update(GameTime gameTime)
         {
+            if (_currentState == PlayerState.Idle)
+            {
+                return 0;
+            }
+
             var dt = gameTime.ElapsedGameTime.TotalSeconds;
 
             _ks = Keyboard.GetState();
@@ -272,6 +276,9 @@ namespace EndlessRacer.GameObjects
 
             switch (newState)
             {
+                case PlayerState.Idle:
+                    _sprite = _sprites.MoveSprite;
+                    break;
                 case PlayerState.Moving:
                     _sprite = _sprites.MoveSprite;
                     _turnInterval = TurnIntervalGround;
@@ -309,6 +316,11 @@ namespace EndlessRacer.GameObjects
             var rect = new Rectangle(location, size);
 
             return rect;
+        }
+
+        public void Start()
+        {
+            ChangeState(PlayerState.Moving);
         }
 
         public void Jump()

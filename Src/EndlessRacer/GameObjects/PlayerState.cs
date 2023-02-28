@@ -2,6 +2,7 @@
 {
     internal enum PlayerState
     {
+        Idle,
         Moving,
         Invincible,
         Jumping,

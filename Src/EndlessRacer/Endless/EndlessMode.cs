@@ -17,6 +17,8 @@ namespace EndlessRacer.Endless
         private Player _player;
         private Level _level;
         private Score _score;
+        private CountdownTimer _countdownTimer;
+        private bool _gameStarted = false;
 
         private Song _bgm;
 
@@ -27,6 +29,9 @@ namespace EndlessRacer.Endless
         public override void LoadContent()
         {
             base.LoadContent();
+
+            var centerWidth = Game.Graphics.PreferredBackBufferWidth / 2;
+            var centerHeight = Game.Graphics.PreferredBackBufferHeight / 2;
 
             var playerMoveSprite = Content.Load<Texture2D>("Player/PlayerMove");
             var playerJumpSprite = Content.Load<Texture2D>("Player/PlayerJump");
@@ -41,12 +46,13 @@ namespace EndlessRacer.Endless
             var playerSpinSound = Game.Content.Load<SoundEffect>("Audio/Spin360");
             var playerSounds = new PlayerSounds(playerCrashSound, playerJumpSound, playerSpinSound, playerWinSound);
 
-            var playerPosition = new Vector2(Game.Graphics.PreferredBackBufferWidth / 2, Constants.PlayerYPosition);
+            var playerPosition = new Vector2(centerWidth, Constants.PlayerYPosition);
             _player = new Player(playerPosition, playerSprites, playerSounds);
 
             _player.FullCircleJump += Player_HandleFullCircleJump;
 
             var scoreSheet = Content.Load<Texture2D>("UI/Score");
+            var countdownSheet = Content.Load<Texture2D>("UI/StartCounter");
 
             _bgm = Game.Content.Load<Song>("Audio/StageTheme");
 
@@ -56,6 +62,7 @@ namespace EndlessRacer.Endless
             _level = new EndlessLevel(LevelImporter.ImportByEntryPoint(Content));
 
             _score = new Score(scoreSheet);
+            _countdownTimer = new CountdownTimer(countdownSheet, new Vector2(centerWidth, centerHeight));
         }
 
         public override void Update(GameTime gameTime)
@@ -63,6 +70,16 @@ namespace EndlessRacer.Endless
             var scrollSpeed = _player.Update(gameTime);
             _level.Update(scrollSpeed, _player);
             _score.AddDistance(scrollSpeed);
+            _countdownTimer.Update(gameTime);
+
+            if (_countdownTimer.IsReady)
+            {
+                if (!_gameStarted)
+                {
+                    _gameStarted = true;
+                    _player.Start();
+                }
+            }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
@@ -80,6 +97,7 @@ namespace EndlessRacer.Endless
             _player.Draw(Game.SpriteBatch);
             _level.DrawForeground(Game.SpriteBatch);
             _score.Draw(Game.SpriteBatch);
+            _countdownTimer.Draw(Game.SpriteBatch);
             // ---
             Game.SpriteBatch.End();
         }
