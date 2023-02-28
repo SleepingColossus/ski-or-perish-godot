@@ -10,10 +10,7 @@ namespace EndlessRacer.GameObjects
     internal class Player
     {
         private Texture2D _sprite;
-        private readonly Texture2D _spriteMove;
-        private readonly Texture2D _spriteJump;
-        private readonly Texture2D _spriteHurt;
-        private readonly Texture2D _spriteVictory;
+        private readonly PlayerSprites _sprites;
 
         private readonly SoundEffect _crashSound;
         private readonly SoundEffect _winSound;
@@ -52,7 +49,7 @@ namespace EndlessRacer.GameObjects
         private int _victoryFrame;
         public bool IsVictorious;
 
-        public Player(Vector2 initialPosition, Texture2D spriteMove, Texture2D spriteJump, Texture2D spriteHurt, Texture2D spriteVictory,
+        public Player(Vector2 initialPosition, PlayerSprites sprites,
             SoundEffect crashSound, SoundEffect winSound)
         {
             _position = initialPosition;
@@ -60,10 +57,7 @@ namespace EndlessRacer.GameObjects
 
             _angle = Angle.Down;
 
-            _spriteMove = spriteMove;
-            _spriteJump = spriteJump;
-            _spriteHurt = spriteHurt;
-            _spriteVictory = spriteVictory;
+            _sprites = sprites;
 
             _crashSound = crashSound;
             _winSound = winSound;
@@ -279,29 +273,29 @@ namespace EndlessRacer.GameObjects
             switch (newState)
             {
                 case PlayerState.Moving:
-                    _sprite = _spriteMove;
+                    _sprite = _sprites.MoveSprite;
                     _turnInterval = TurnIntervalGround;
                     break;
                 case PlayerState.Invincible:
-                    _sprite = _spriteMove;
+                    _sprite = _sprites.MoveSprite;
                     _invincibleRemaining = InvincibleDuration;
                     _turnInterval = TurnIntervalGround;
                     break;
                 case PlayerState.Jumping:
-                    _sprite = _spriteJump;
+                    _sprite = _sprites.JumpSprite;
                     _jumpTimeRemaining = JumpDuration;
                     _turnInterval = TurnIntervalAir;
                     _currentAscension = 0;
                     _ascensionReached = false;
                     break;
                 case PlayerState.Hurt:
-                    _sprite = _spriteHurt;
+                    _sprite = _sprites.HurtSprite;
                     _hurtTimeRemaining = HurtDuration;
                     _angle = Angle.Down;
                     _crashSound.Play();
                     break;
                 case PlayerState.Victory:
-                    _sprite = _spriteVictory;
+                    _sprite = _sprites.WinSprite;
                     break;
             }
         }

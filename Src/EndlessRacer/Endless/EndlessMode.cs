@@ -46,7 +46,8 @@ namespace EndlessRacer.Endless
 
             var playerPosition = new Vector2(Game.Graphics.PreferredBackBufferWidth / 2, Constants.PlayerYPosition);
 
-            _player = new Player(playerPosition, playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite, _crashSound, _winSound);
+            var playerSprites = new PlayerSprites(playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
+            _player = new Player(playerPosition, playerSprites, _crashSound, _winSound);
 
             _level = new EndlessLevel(LevelImporter.ImportByEntryPoint(Content));
 
