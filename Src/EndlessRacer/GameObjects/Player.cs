@@ -1,7 +1,6 @@
 ﻿using System;
 using EndlessRacer.Career;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -22,6 +21,13 @@ namespace EndlessRacer.GameObjects
         private PlayerState _currentState;
         private Angle _angle;
 
+        private const double TurnIntervalGround = 0.1f;
+        private const double TurnIntervalAir = 0.05f;
+        private double _turnInterval;
+        private double _turnTimer;
+        private bool _canTurn;
+
+        // jump state
         private const double JumpDuration = 1.5;
         private double _jumpTimeRemaining;
         private int MaxAscensionHeight = Constants.TileSize / 2;
@@ -30,19 +36,16 @@ namespace EndlessRacer.GameObjects
         private double _currentAscension;
         private bool _ascensionReached;
 
+        // hurt state
         private const double HurtDuration = 1.5;
         private double _hurtTimeRemaining;
 
+        // invincible state
         private const double InvincibleDuration = 1.5;
         private double _invincibleRemaining;
         private int _frame = 0;
 
-        private const double TurnIntervalGround = 0.1f;
-        private const double TurnIntervalAir = 0.05f;
-        private double _turnInterval;
-        private double _turnTimer;
-        private bool _canTurn;
-
+        // victory state
         private const int VictoryFrameRate = 30;
         private int _victoryFrame;
         public bool IsVictorious;
