@@ -65,6 +65,23 @@
 /processor:PassThroughProcessor
 /build:../../../Assets/Maps/Exported/CL_01_collision.xml;Maps/CL_01_collision.xml
 
+#begin ../../../Assets/Maps/Exported/CL_02_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Maps/Exported/CL_02_bg.png;Maps/CL_02_bg.png
+
+#begin ../../../Assets/Maps/Exported/CL_02_collision.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:../../../Assets/Maps/Exported/CL_02_collision.xml;Maps/CL_02_collision.xml
+
 #begin ../../../Assets/Maps/Exported/CR_01_bg.png
 /importer:TextureImporter
 /processor:TextureProcessor

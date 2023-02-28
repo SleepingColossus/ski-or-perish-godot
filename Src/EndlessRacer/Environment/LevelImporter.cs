@@ -17,7 +17,7 @@ namespace EndlessRacer.Environment
 
         private static readonly string[][] CareerLevels = new[]
         {
-            /* Level 01 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
+            /* Level 01 */ new[] { "CC_02", "CL_02", "RC_02", "FinishLine", "CC_02" },
             /* Level 02 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
             /* Level 03 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
             /* Level 04 */ new[] { "CC_02", "CR_02", "RC_02", "FinishLine", "CC_02" },
@@ -35,6 +35,7 @@ namespace EndlessRacer.Environment
             new Tuple<string, CrossingPoint, CrossingPoint>("CC_01", CrossingPoint.Center, CrossingPoint.Center),
             new Tuple<string, CrossingPoint, CrossingPoint>("CC_02", CrossingPoint.Center, CrossingPoint.Center),
             new Tuple<string, CrossingPoint, CrossingPoint>("CL_01", CrossingPoint.Center, CrossingPoint.Left),
+            new Tuple<string, CrossingPoint, CrossingPoint>("CL_02", CrossingPoint.Center, CrossingPoint.Left),
             new Tuple<string, CrossingPoint, CrossingPoint>("CR_01", CrossingPoint.Center, CrossingPoint.Right),
             new Tuple<string, CrossingPoint, CrossingPoint>("CR_02", CrossingPoint.Center, CrossingPoint.Right),
 
