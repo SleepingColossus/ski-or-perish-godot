@@ -19,8 +19,6 @@ namespace EndlessRacer.Endless
         private Score _score;
 
         private Song _bgm;
-        private SoundEffect _crashSound;
-        private SoundEffect _winSound;
 
         public EndlessMode(Game game) : base(game)
         {
@@ -34,20 +32,24 @@ namespace EndlessRacer.Endless
             var playerJumpSprite = Content.Load<Texture2D>("Player/PlayerJump");
             var playerHurtSprite = Content.Load<Texture2D>("Player/PlayerHurt");
             var playerVictorySprite = Content.Load<Texture2D>("Player/PlayerVictory");
+            var playerSprites = new PlayerSprites(playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
+
+
+            var playerCrashSound = Game.Content.Load<SoundEffect>("Audio/Crash");
+            var playerWinSound = Game.Content.Load<SoundEffect>("Audio/Victory");
+            var playerJumpSound = Game.Content.Load<SoundEffect>("Audio/Jump");
+            var playerSpinSound = Game.Content.Load<SoundEffect>("Audio/Spin360");
+            var playerSounds = new PlayerSounds(playerCrashSound, playerJumpSound, playerSpinSound, playerWinSound);
+
+            var playerPosition = new Vector2(Game.Graphics.PreferredBackBufferWidth / 2, Constants.PlayerYPosition);
+            _player = new Player(playerPosition, playerSprites, playerSounds);
 
             var scoreSheet = Content.Load<Texture2D>("UI/Score");
 
             _bgm = Game.Content.Load<Song>("Audio/StageTheme");
-            _crashSound = Game.Content.Load<SoundEffect>("Audio/Crash");
-            _winSound = Game.Content.Load<SoundEffect>("Audio/Victory");
 
             MediaPlayer.Play(_bgm);
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-
-            var playerPosition = new Vector2(Game.Graphics.PreferredBackBufferWidth / 2, Constants.PlayerYPosition);
-
-            var playerSprites = new PlayerSprites(playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
-            _player = new Player(playerPosition, playerSprites, _crashSound, _winSound);
 
             _level = new EndlessLevel(LevelImporter.ImportByEntryPoint(Content));
 

@@ -11,9 +11,7 @@ namespace EndlessRacer.GameObjects
     {
         private Texture2D _sprite;
         private readonly PlayerSprites _sprites;
-
-        private readonly SoundEffect _crashSound;
-        private readonly SoundEffect _winSound;
+        private readonly PlayerSounds _sounds;
 
         private Vector2 _position;
         private const double BaseSpeed = 200f;          // speed when idle
@@ -49,8 +47,7 @@ namespace EndlessRacer.GameObjects
         private int _victoryFrame;
         public bool IsVictorious;
 
-        public Player(Vector2 initialPosition, PlayerSprites sprites,
-            SoundEffect crashSound, SoundEffect winSound)
+        public Player(Vector2 initialPosition, PlayerSprites sprites, PlayerSounds sounds)
         {
             _position = initialPosition;
             _currentState = PlayerState.Moving;
@@ -58,9 +55,7 @@ namespace EndlessRacer.GameObjects
             _angle = Angle.Down;
 
             _sprites = sprites;
-
-            _crashSound = crashSound;
-            _winSound = winSound;
+            _sounds = sounds;
 
             ChangeState(PlayerState.Moving);
         }
@@ -287,12 +282,13 @@ namespace EndlessRacer.GameObjects
                     _turnInterval = TurnIntervalAir;
                     _currentAscension = 0;
                     _ascensionReached = false;
+                    _sounds.JumpSound.Play();
                     break;
                 case PlayerState.Hurt:
                     _sprite = _sprites.HurtSprite;
                     _hurtTimeRemaining = HurtDuration;
                     _angle = Angle.Down;
-                    _crashSound.Play();
+                    _sounds.CrashSound.Play();
                     break;
                 case PlayerState.Victory:
                     _sprite = _sprites.WinSprite;
@@ -324,7 +320,7 @@ namespace EndlessRacer.GameObjects
             if (!IsVictorious)
             {
                 IsVictorious = true;
-                _winSound.Play();
+                _sounds.WinSound.Play();
 
                 var careerProgress = CareerProgress.Get();
                 careerProgress.NextLevel();

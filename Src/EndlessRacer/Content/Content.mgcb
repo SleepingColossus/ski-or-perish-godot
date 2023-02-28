@@ -236,6 +236,12 @@
 /processorParam:Quality=Best
 /build:../../../Assets/Sounds/Crash.ogg;Audio/Crash.ogg
 
+#begin ../../../Assets/Sounds/Jump.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../../Assets/Sounds/Jump.ogg;Audio/Jump.ogg
+
 #begin ../../../Assets/Sounds/MenuNavigation.ogg
 /importer:OggImporter
 /processor:SoundEffectProcessor
@@ -247,6 +253,12 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:../../../Assets/Sounds/MenuTheme.ogg;Audio/MenuTheme.ogg
+
+#begin ../../../Assets/Sounds/Spin360.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../../Assets/Sounds/Spin360.ogg;Audio/Spin360.ogg
 
 #begin ../../../Assets/Sounds/StageTheme.ogg
 /importer:OggImporter
