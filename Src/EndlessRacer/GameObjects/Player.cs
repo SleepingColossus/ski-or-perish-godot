@@ -39,6 +39,10 @@ namespace EndlessRacer.GameObjects
         // 360 jump checks
         public event EventHandler FullCircleJump;
         private Angle _startingJumpAngle;
+        private const int VfxFrameCount = 3;
+        private const float VfxAlphaFadeRate = 0.02f;
+        private float _vfxCurrentAlpha;
+        private int _vfxCurrentFrame;
 
         // hurt state
         private const double HurtDuration = 1.5;
@@ -268,6 +272,14 @@ namespace EndlessRacer.GameObjects
             {
                 spriteBatch.Draw(_sprite, _position, sourceRectangle, Color.White);
             }
+
+            if (_vfxCurrentAlpha > 0)
+            {
+                var vfxColor = new Color(Color.White, _vfxCurrentAlpha);
+                var vfxSourceRectangle = new Rectangle(_vfxCurrentFrame * Constants.TileSize, 0, Constants.TileSize, Constants.TileSize);
+                spriteBatch.Draw(_sprites.SpecialEffects, _position, vfxSourceRectangle, vfxColor);
+                _vfxCurrentAlpha -= VfxAlphaFadeRate;
+            }
         }
 
         private void ChangeState(PlayerState newState)
@@ -338,6 +350,14 @@ namespace EndlessRacer.GameObjects
             if (fullCircleJumpEvent != null)
             {
                 _sounds.Spin360Sound.Play();
+                _vfxCurrentAlpha = 1;
+                _vfxCurrentFrame++;
+
+                if (_vfxCurrentFrame >= VfxFrameCount)
+                {
+                    _vfxCurrentFrame = 0;
+                }
+
                 fullCircleJumpEvent(this, EventArgs.Empty);
             }
         }

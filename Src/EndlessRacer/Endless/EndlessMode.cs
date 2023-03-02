@@ -37,7 +37,8 @@ namespace EndlessRacer.Endless
             var playerJumpSprite = Content.Load<Texture2D>("Player/PlayerJump");
             var playerHurtSprite = Content.Load<Texture2D>("Player/PlayerHurt");
             var playerVictorySprite = Content.Load<Texture2D>("Player/PlayerVictory");
-            var playerSprites = new PlayerSprites(playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite);
+            var playerVfx = Content.Load<Texture2D>("Player/PlayerVFX");
+            var playerSprites = new PlayerSprites(playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite, playerVfx);
 
 
             var playerCrashSound = Game.Content.Load<SoundEffect>("Audio/Crash");
