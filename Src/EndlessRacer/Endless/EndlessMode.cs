@@ -16,9 +16,12 @@ namespace EndlessRacer.Endless
 
         private Player _player;
         private Level _level;
+
+        // UI
         private Score _score;
         private CountdownTimer _countdownTimer;
         private HealthIndicator _healthIndicator;
+        private GameOverOverlay _gameOverOverlay;
         private EndlessGameState _gameState;
 
         private Song _bgm;
@@ -57,6 +60,11 @@ namespace EndlessRacer.Endless
             var scoreSheet = Content.Load<Texture2D>("UI/Score");
             var countdownSheet = Content.Load<Texture2D>("UI/StartCounter");
             var heartSprite = Content.Load<Texture2D>("UI/Heart");
+            var keysSheet = Content.Load<Texture2D>("UI/Keys");
+
+            var gameOverText = Content.Load<Texture2D>("UI/GameOver");
+            var tryAgainText = Content.Load<Texture2D>("UI/TryAgain");
+            var quitText = Content.Load<Texture2D>("UI/Quit");
 
             _bgm = Game.Content.Load<Song>("Audio/StageTheme");
 
@@ -65,9 +73,13 @@ namespace EndlessRacer.Endless
 
             _level = new EndlessLevel(LevelImporter.ImportByEntryPoint(Content));
 
+            var screenSize = new Vector2(Game.Graphics.PreferredBackBufferWidth,
+                Game.Graphics.PreferredBackBufferHeight);
+
             _score = new Score(scoreSheet);
             _countdownTimer = new CountdownTimer(countdownSheet, new Vector2(centerWidth, centerHeight));
             _healthIndicator = new HealthIndicator(heartSprite);
+            _gameOverOverlay = new GameOverOverlay(gameOverText, tryAgainText, quitText, keysSheet, screenSize);
         }
 
         public override void Update(GameTime gameTime)
@@ -91,7 +103,7 @@ namespace EndlessRacer.Endless
 
             if (_gameState == EndlessGameState.GameOver)
             {
-                // TODO add UI
+                _gameOverOverlay.Update(gameTime);
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -116,6 +128,7 @@ namespace EndlessRacer.Endless
             _score.Draw(Game.SpriteBatch);
             _countdownTimer.Draw(Game.SpriteBatch);
             _healthIndicator.Draw(Game.SpriteBatch);
+            _gameOverOverlay.Draw(Game.SpriteBatch);
 
             // ---
             Game.SpriteBatch.End();
@@ -138,6 +151,7 @@ namespace EndlessRacer.Endless
             if (_healthIndicator.IsDead())
             {
                 _gameState = EndlessGameState.GameOver;
+                _gameOverOverlay.Show();
             }
         }
     }

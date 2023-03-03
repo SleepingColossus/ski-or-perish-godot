@@ -308,6 +308,18 @@
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/CareerProgressScreen.png;Career/CareerProgressScreen.png
 
+#begin ../../../Assets/Sprites/GameOver.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/GameOver.png;UI/GameOver.png
+
 #begin ../../../Assets/Sprites/Heart.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -319,6 +331,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/Heart.png;UI/Heart.png
+
+#begin ../../../Assets/Sprites/Keys.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/Keys.png;UI/Keys.png
 
 #begin ../../../Assets/Sprites/MapMarker.png
 /importer:TextureImporter
@@ -404,6 +428,18 @@
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/PlayerVictory.png;Player/PlayerVictory.png
 
+#begin ../../../Assets/Sprites/Quit.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/Quit.png;UI/Quit.png
+
 #begin ../../../Assets/Sprites/Score.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -427,4 +463,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../../../Assets/Sprites/StartCounter.png;UI/StartCounter.png
+
+#begin ../../../Assets/Sprites/TryAgain.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Sprites/TryAgain.png;UI/TryAgain.png
 
