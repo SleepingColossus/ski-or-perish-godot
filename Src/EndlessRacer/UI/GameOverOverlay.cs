@@ -33,12 +33,12 @@ namespace EndlessRacer.UI
             _quitTextPosition = new Vector2(screenSize.X / 2 - _quitTextSprite.Width / 2 + _quitTextSprite.Width,
                                             screenSize.Y / 2 - _quitTextSprite.Height / 2);
 
-            var rKeyPosition = new Vector2(_tryAgainTextPosition.X + _tryAgainTextSprite.Width / 4, _tryAgainTextPosition.Y + Constants.TileSize128);
-            //var rKeyPosition = new Vector2(_tryAgainTextPosition.X - _tryAgainTextSprite.Width, _tryAgainTextPosition.Y);
+            var rKeyPosition = new Vector2(_tryAgainTextPosition.X + _tryAgainTextSprite.Width / 4,
+                                           _tryAgainTextPosition.Y + Constants.TileSize128);
             _rKey = new AnimatedKey(AnimatedKeyType.R, true, rKeyPosition, animatedKeys);
 
-            var escKeyPosition = new Vector2(_quitTextPosition.X + _quitTextSprite.Width / 4, _quitTextPosition.Y + Constants.TileSize128);
-            //var escKeyPosition = new Vector2(_quitTextPosition.X + _quitTextSprite.Width, _quitTextPosition.Y);
+            var escKeyPosition = new Vector2(_quitTextPosition.X + _quitTextSprite.Width / 4,
+                                             _quitTextPosition.Y + Constants.TileSize128);
             _escKey = new AnimatedKey(AnimatedKeyType.Esc, true, escKeyPosition, animatedKeys);
         }
 
