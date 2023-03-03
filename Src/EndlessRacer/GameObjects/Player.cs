@@ -147,7 +147,8 @@ namespace EndlessRacer.GameObjects
                     }
                     else
                     {
-                        ChangeState(PlayerState.Hurt);
+                        ChangeState(PlayerState.Moving);
+                        Crash();
                     }
                 }
             }
