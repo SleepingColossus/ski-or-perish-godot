@@ -8,15 +8,19 @@ namespace EndlessRacer.GameObjects
 {
     internal class Player
     {
+        private KeyboardState _ks;
+
         private Texture2D _sprite;
         private readonly PlayerSprites _sprites;
         private readonly PlayerSounds _sounds;
 
         private Vector2 _position;
-        private const double BaseSpeed = 200f;          // speed when idle
-        private const double AcceleratedSpeed = 400f;   // speed when holding down move button
+        private const double BaseSpeed = 200;             // speed when idle
+        private const double AcceleratedSpeed = 400;      // speed when holding down move button
+        private const double SpeedIncrement = 50;         // how many speed units to add per difficulty level
+        private const double DistanceToIncrement = 10000; // distance after which the difficulty increases
+        private double _distanceTraversed;
         private Vector2 _speed;
-        private KeyboardState _ks;
 
         private PlayerState _currentState;
         private Angle _angle;
@@ -89,14 +93,15 @@ namespace EndlessRacer.GameObjects
             }
 
             double speed;
+            var bonusSpeed = CalculateBonusSpeed();
 
             if (_ks.IsKeyDown(Controls.Move))
             {
-                speed = AcceleratedSpeed;
+                speed = AcceleratedSpeed + bonusSpeed;
             }
             else
             {
-                speed = BaseSpeed;
+                speed = BaseSpeed + bonusSpeed;
             }
 
             if (_currentState == PlayerState.Moving || _currentState == PlayerState.Invincible)
@@ -187,8 +192,18 @@ namespace EndlessRacer.GameObjects
                 _victoryFrame++;
             }
 
+            _distanceTraversed += _speed.Y;
+
             // Y speed is passed to level to set scroll speed;
             return _speed.Y;
+        }
+
+        // speed added by difficulty
+        private double CalculateBonusSpeed()
+        {
+            var difficultyIncrements = (int)(_distanceTraversed / DistanceToIncrement);
+
+            return difficultyIncrements * SpeedIncrement;
         }
 
         // turn direction:
