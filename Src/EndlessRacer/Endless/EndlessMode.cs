@@ -110,6 +110,11 @@ namespace EndlessRacer.Endless
             {
                 Game.LoadMainMenu();
             }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                Game.LoadEndlessScreen();
+            }
         }
 
         public override void Draw(GameTime gameTime)
