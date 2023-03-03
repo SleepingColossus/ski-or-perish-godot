@@ -1,8 +1,10 @@
 ﻿namespace EndlessRacer
 {
+    // TODO refactor: add several tile sizes; replace all hardcoded size values
     internal static class Constants
     {
         public const int TileSize = 64;
+        public const int TileSize32 = 32;
         public const int ObstacleTileSize = 32;
         public const int ObstaclePositionOffset = 16;
 

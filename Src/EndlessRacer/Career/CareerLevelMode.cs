@@ -35,7 +35,6 @@ namespace EndlessRacer.Career
             var playerVfx = Content.Load<Texture2D>("Player/PlayerVFX");
             var playerSprites = new PlayerSprites(playerMoveSprite, playerJumpSprite, playerHurtSprite, playerVictorySprite, playerVfx);
 
-
             var playerCrashSound = Game.Content.Load<SoundEffect>("Audio/Crash");
             var playerWinSound = Game.Content.Load<SoundEffect>("Audio/Victory");
             var playerJumpSound = Game.Content.Load<SoundEffect>("Audio/Jump");

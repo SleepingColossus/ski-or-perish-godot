@@ -45,6 +45,7 @@ namespace EndlessRacer.GameObjects
         private int _vfxCurrentFrame;
 
         // hurt state
+        public event EventHandler PlayerCrashed;
         private const double HurtDuration = 1.5;
         private double _hurtTimeRemaining;
 
@@ -362,11 +363,22 @@ namespace EndlessRacer.GameObjects
             }
         }
 
+        public void OnPlayerCrashed()
+        {
+            EventHandler playerCrashedEvent = PlayerCrashed;
+
+            if (playerCrashedEvent != null)
+            {
+                playerCrashedEvent(this, EventArgs.Empty);
+            }
+        }
+
         public void Crash()
         {
             if (_currentState == PlayerState.Moving)
             {
                 ChangeState(PlayerState.Hurt);
+                OnPlayerCrashed();
             }
         }
 
