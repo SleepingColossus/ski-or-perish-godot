@@ -19,12 +19,13 @@ namespace EndlessRacer.Endless
         private Score _score;
         private CountdownTimer _countdownTimer;
         private HealthIndicator _healthIndicator;
-        private bool _gameStarted = false;
+        private EndlessGameState _gameState;
 
         private Song _bgm;
 
         public EndlessMode(Game game) : base(game)
         {
+            _gameState = EndlessGameState.Ready;
         }
 
         public override void LoadContent()
@@ -71,18 +72,26 @@ namespace EndlessRacer.Endless
 
         public override void Update(GameTime gameTime)
         {
-            var scrollSpeed = _player.Update(gameTime);
-            _level.Update(scrollSpeed, _player);
-            _score.AddDistance(scrollSpeed);
-            _countdownTimer.Update(gameTime);
-
-            if (_countdownTimer.IsReady)
+            if (_countdownTimer.IsReady && _gameState == EndlessGameState.Ready)
             {
-                if (!_gameStarted)
-                {
-                    _gameStarted = true;
-                    _player.Start();
-                }
+                _gameState = EndlessGameState.Playing;
+                _player.Start();
+            }
+            else
+            {
+                _countdownTimer.Update(gameTime);
+            }
+
+            if (_gameState == EndlessGameState.Playing)
+            {
+                var scrollSpeed = _player.Update(gameTime);
+                _level.Update(scrollSpeed, _player);
+                _score.AddDistance(scrollSpeed);
+            }
+
+            if (_gameState == EndlessGameState.GameOver)
+            {
+                // TODO add UI
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -125,6 +134,11 @@ namespace EndlessRacer.Endless
         private void Player_OnPlayerCrashed(object sender, System.EventArgs e)
         {
             _healthIndicator.Damage();
+
+            if (_healthIndicator.IsDead())
+            {
+                _gameState = EndlessGameState.GameOver;
+            }
         }
     }
 }
