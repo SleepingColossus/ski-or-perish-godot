@@ -43,6 +43,7 @@ namespace EndlessRacer.Career
 
             var playerPosition = new Vector2(Game.Graphics.PreferredBackBufferWidth / 2, Constants.PlayerYPosition);
             _player = new Player(playerPosition, playerSprites, playerSounds);
+            _player.Start();
 
             _bgm = Game.Content.Load<Song>("Audio/StageTheme");
 
