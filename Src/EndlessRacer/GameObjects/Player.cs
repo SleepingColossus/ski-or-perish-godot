@@ -30,7 +30,7 @@ namespace EndlessRacer.GameObjects
         // jump state
         private const double JumpDuration = 1.5;
         private double _jumpTimeRemaining;
-        private int MaxAscensionHeight = Constants.TileSize / 2;
+        private int MaxAscensionHeight = Constants.TileSize64 / 2;
         private const double AscensionRate = 100.0;
         private const double DescensionRate = 30.0;
         private double _currentAscension;
@@ -61,7 +61,7 @@ namespace EndlessRacer.GameObjects
 
         public Player(Vector2 initialPosition, PlayerSprites sprites, PlayerSounds sounds)
         {
-            _position = new Vector2(initialPosition.X - Constants.TileSize / 2, initialPosition.Y);
+            _position = new Vector2(initialPosition.X - Constants.TileSize64 / 2, initialPosition.Y);
 
             _angle = Angle.Down;
 
@@ -240,7 +240,7 @@ namespace EndlessRacer.GameObjects
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            var sourceRectangle = new Rectangle((int)_angle * Constants.TileSize, 0, Constants.TileSize, Constants.TileSize);
+            var sourceRectangle = new Rectangle((int)_angle * Constants.TileSize64, 0, Constants.TileSize64, Constants.TileSize64);
 
             // flicker when invincible
             if (_currentState == PlayerState.Invincible)
@@ -263,10 +263,10 @@ namespace EndlessRacer.GameObjects
             else if (_currentState == PlayerState.Victory) // change source rectangle every few frames
             {
                 var index = _victoryFrame % 2 == 0 ? 0 : 1;
-                var x = index * Constants.TileSize;
+                var x = index * Constants.TileSize64;
                 var y = 0;
 
-                sourceRectangle = new Rectangle(x, y, Constants.TileSize, Constants.TileSize);
+                sourceRectangle = new Rectangle(x, y, Constants.TileSize64, Constants.TileSize64);
                 spriteBatch.Draw(_sprite, _position, sourceRectangle, Color.White);
             }
             else
@@ -277,7 +277,7 @@ namespace EndlessRacer.GameObjects
             if (_vfxCurrentAlpha > 0)
             {
                 var vfxColor = new Color(Color.White, _vfxCurrentAlpha);
-                var vfxSourceRectangle = new Rectangle(_vfxCurrentFrame * Constants.TileSize, 0, Constants.TileSize, Constants.TileSize);
+                var vfxSourceRectangle = new Rectangle(_vfxCurrentFrame * Constants.TileSize64, 0, Constants.TileSize64, Constants.TileSize64);
                 spriteBatch.Draw(_sprites.SpecialEffects, _position, vfxSourceRectangle, vfxColor);
                 _vfxCurrentAlpha -= VfxAlphaFadeRate;
             }

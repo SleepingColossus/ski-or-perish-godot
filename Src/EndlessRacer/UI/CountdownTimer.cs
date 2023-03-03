@@ -20,7 +20,7 @@ namespace EndlessRacer.UI
         private const double CountDownInterval = 1;
         private double _timeToNextState;
 
-        private const int SpriteSize = 128;
+        private const int SpriteSize = Constants.TileSize128;
 
         public CountdownTimer(Texture2D spriteSheet, Vector2 position)
         {

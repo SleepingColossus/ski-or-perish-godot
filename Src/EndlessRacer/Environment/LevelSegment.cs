@@ -68,8 +68,8 @@ namespace EndlessRacer.Environment
                 {
                     if (specialTileData[i, j] > 0 && specialTileData[i, j] < 4)
                     {
-                        var x = j * Constants.TileSize;
-                        var y = i * Constants.TileSize + _position.Y;
+                        var x = j * Constants.TileSize64;
+                        var y = i * Constants.TileSize64 + _position.Y;
 
                         var position = new Vector2(x, y);
 

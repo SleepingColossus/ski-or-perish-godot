@@ -6,7 +6,7 @@ namespace EndlessRacer.Environment;
 
 internal abstract class Level
 {
-    protected const int SegmentHeight = Constants.NumberOfRows * Constants.TileSize;
+    protected const int SegmentHeight = Constants.NumberOfRows * Constants.TileSize64;
 
     protected readonly List<LevelSegment> Segments;
 

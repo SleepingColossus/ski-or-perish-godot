@@ -8,7 +8,7 @@ namespace EndlessRacer.UI
     internal class Score
     {
         private readonly Texture2D _spriteSheet;
-        private const int DigitSize = 32;
+        private const int DigitSize = Constants.TileSize32;
         private const int PositionY = 10;
         private const int StartingPositionX = 950;
         private const int ScoreRate = 100; // after how many pixels to award 1 point
