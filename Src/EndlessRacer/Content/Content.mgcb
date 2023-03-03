@@ -48,6 +48,23 @@
 /processor:PassThroughProcessor
 /build:../../../Assets/Maps/Exported/CC_02_collision.xml;Maps/CC_02_collision.xml
 
+#begin ../../../Assets/Maps/Exported/CC_03_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Maps/Exported/CC_03_bg.png;Maps/CC_03_bg.png
+
+#begin ../../../Assets/Maps/Exported/CC_03_collision.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:../../../Assets/Maps/Exported/CC_03_collision.xml;Maps/CC_03_collision.xml
+
 #begin ../../../Assets/Maps/Exported/CL_01_bg.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -179,6 +196,23 @@
 /processor:PassThroughProcessor
 /build:../../../Assets/Maps/Exported/LL_01_collision.xml;Maps/LL_01_collision.xml
 
+#begin ../../../Assets/Maps/Exported/LR_01_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Maps/Exported/LR_01_bg.png;Maps/LR_01_bg.png
+
+#begin ../../../Assets/Maps/Exported/LR_01_collision.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:../../../Assets/Maps/Exported/LR_01_collision.xml;Maps/LR_01_collision.xml
+
 #begin ../../../Assets/Maps/Exported/RC_01_bg.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -212,6 +246,23 @@
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:../../../Assets/Maps/Exported/RC_02_collision.xml;Maps/RC_02_collision.xml
+
+#begin ../../../Assets/Maps/Exported/RL_01_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Assets/Maps/Exported/RL_01_bg.png;Maps/RL_01_bg.png
+
+#begin ../../../Assets/Maps/Exported/RL_01_collision.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:../../../Assets/Maps/Exported/RL_01_collision.xml;Maps/RL_01_collision.xml
 
 #begin ../../../Assets/Maps/Exported/RR_01_bg.png
 /importer:TextureImporter
