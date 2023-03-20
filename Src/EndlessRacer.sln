@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndlessRacer", "EndlessRacer\EndlessRacer.csproj", "{DCC9B95E-F015-43B6-B785-5E6EE53D4052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{F610B329-FA8E-4DAF-8C47-BC261389295F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{F610B329-FA8E-4DAF-8C47-BC261389295F}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FileDetector", "FileDetector\FileDetector.fsproj", "{D350BB7A-CAEF-4123-9DD2-38DA8BE6FD42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F610B329-FA8E-4DAF-8C47-BC261389295F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F610B329-FA8E-4DAF-8C47-BC261389295F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F610B329-FA8E-4DAF-8C47-BC261389295F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D350BB7A-CAEF-4123-9DD2-38DA8BE6FD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D350BB7A-CAEF-4123-9DD2-38DA8BE6FD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D350BB7A-CAEF-4123-9DD2-38DA8BE6FD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D350BB7A-CAEF-4123-9DD2-38DA8BE6FD42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
