@@ -11,6 +11,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FileDetector", "FileDetecto
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CollisionFileGenerator", "CollisionFileGenerator\CollisionFileGenerator.fsproj", "{E8AFDCC1-715C-4200-885C-EA75023B2E0C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{C18300E1-04A8-4500-8B0A-F7A5EE3DE451}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D350BB7A-CAEF-4123-9DD2-38DA8BE6FD42} = {C18300E1-04A8-4500-8B0A-F7A5EE3DE451}
+		{E8AFDCC1-715C-4200-885C-EA75023B2E0C} = {C18300E1-04A8-4500-8B0A-F7A5EE3DE451}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B50E295-E808-44AD-8E34-2A61CBC274E7}

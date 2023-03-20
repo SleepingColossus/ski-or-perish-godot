@@ -1,4 +1,4 @@
-﻿namespace CollisionFileGenerator
+﻿namespace Util.CollisionFileGenerator
 
 open System.IO
 open System.Linq

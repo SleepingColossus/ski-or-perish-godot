@@ -1,4 +1,4 @@
-﻿namespace FileDetector
+﻿namespace Util.FileDetector
 
 open System.IO
 
