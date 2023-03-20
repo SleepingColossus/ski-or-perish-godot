@@ -5,7 +5,6 @@ open System.IO
 module Program =
 
     let [<Literal>] TemplateFile = "_template.tmx"
-    let [<Literal>] BackgroundFileIdentifier = "_bg"
     let [<Literal>] CollisionFileIdentifier = "_collision"
 
     let getDirectoryInfos : DirectoryInfo * DirectoryInfo =
@@ -39,7 +38,7 @@ module Program =
         for file in tmxFiles do
             let baseName = Path.GetFileNameWithoutExtension(file.Name)
 
-            let pngName = sprintf "%s%s.png" baseName BackgroundFileIdentifier
+            let pngName = sprintf "%s.png" baseName
             let xmlName = sprintf "%s%s.xml" baseName CollisionFileIdentifier
 
             let pngExists = exportedPngs |> Array.map(fun fileInfo -> fileInfo.Name) |> Array.contains(pngName)
