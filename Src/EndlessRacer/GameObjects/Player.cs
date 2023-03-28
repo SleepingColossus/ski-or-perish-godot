@@ -67,6 +67,11 @@ namespace EndlessRacer.GameObjects
         {
             _position = new Vector2(initialPosition.X - Constants.TileSize64 / 2, initialPosition.Y);
 
+            // Fixes a bug where the player cannot crash until he turns
+            // I don't know why this works!
+            // I assume there is a calculation error with the default X coordinate?
+            _position.X -= 0.1f;
+
             _angle = Angle.Down;
 
             _sprites = sprites;
