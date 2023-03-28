@@ -56,6 +56,7 @@ namespace EndlessRacer.Endless
 
             _player.FullCircleJump += Player_HandleFullCircleJump;
             _player.PlayerCrashed += Player_OnPlayerCrashed;
+            _player.PlayerHealed += Player_OnPlayerHealed;
 
             var scoreSheet = Content.Load<Texture2D>("UI/Score");
             var countdownSheet = Content.Load<Texture2D>("UI/StartCounter");
@@ -158,6 +159,11 @@ namespace EndlessRacer.Endless
                 _gameState = EndlessGameState.GameOver;
                 _gameOverOverlay.Show();
             }
+        }
+
+        private void Player_OnPlayerHealed(object sender, System.EventArgs e)
+        {
+            _healthIndicator.Heal();
         }
     }
 }

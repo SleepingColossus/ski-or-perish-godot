@@ -52,6 +52,7 @@ namespace EndlessRacer.GameObjects
 
         // hurt state
         public event EventHandler PlayerCrashed;
+        public event EventHandler PlayerHealed;
         private const double HurtDuration = 1.5;
         private double _hurtTimeRemaining;
 
@@ -419,6 +420,21 @@ namespace EndlessRacer.GameObjects
 
                 var careerProgress = CareerProgress.Get();
                 careerProgress.NextLevel();
+            }
+        }
+
+        public void Heal()
+        {
+            OnPlayerHealed();
+        }
+
+        public void OnPlayerHealed()
+        {
+            EventHandler playerHealedEvent = PlayerHealed;
+
+            if (playerHealedEvent != null)
+            {
+                playerHealedEvent(this, EventArgs.Empty);
             }
         }
     }

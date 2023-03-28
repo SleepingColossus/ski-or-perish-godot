@@ -28,6 +28,11 @@ namespace EndlessRacer.UI
         public void Heal()
         {
             _currentHealth++;
+
+            if (_currentHealth > MaxHealth)
+            {
+                _currentHealth = MaxHealth;
+            }
         }
 
         public bool IsDead()

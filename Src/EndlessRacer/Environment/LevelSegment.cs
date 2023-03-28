@@ -32,14 +32,10 @@ namespace EndlessRacer.Environment
         {
             spriteBatch.Draw(Background, _position, Color.White);
 
-//#if DEBUG
-//            {
-//                foreach (var specialTile in _specialTiles)
-//                {
-//                    specialTile?.Draw(spriteBatch);
-//                }
-//            }
-//#endif
+            foreach (var specialTile in _specialTiles)
+            {
+                specialTile?.Draw(spriteBatch, HeartSprite);
+            }
         }
 
         public void DrawForeground(SpriteBatch spriteBatch)

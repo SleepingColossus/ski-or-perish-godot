@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Models;
@@ -149,7 +150,14 @@ namespace EndlessRacer.Environment
                         foreground = content.Load<Texture2D>($"{BasePath}{name}{ForegroundExtension}");
                     }
 
-                    var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray(), foreground);
+                    Texture2D heartSprite = null;
+
+                    if (collisionData.Data.Contains((int)SpecialTileType.Heart))
+                    {
+                        heartSprite = content.Load<Texture2D>("UI/Heart");
+                    }
+
+                    var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray(), foreground, heartSprite);
 
                     templates.Add(name, template);
                 }
