@@ -12,7 +12,7 @@ namespace EndlessRacer.Environment
         public float GetY => _position.Y;
 
         public LevelSegment(Vector2 position, LevelSegmentTemplate template) :
-            base(template.EntryPoint, template.ExitPoint, template.Background, template.SpecialTileData, template.Foreground)
+            base(template.EntryPoint, template.ExitPoint, template.Background, template.SpecialTileData, template.Foreground, template.HeartSprite)
         {
             _position = position;
             _specialTiles = InitSpecialTiles(template.SpecialTileData);
@@ -62,7 +62,7 @@ namespace EndlessRacer.Environment
             {
                 for (int j = 0; j < size2; j++)
                 {
-                    if (specialTileData[i, j] > 0 && specialTileData[i, j] < 4)
+                    if (specialTileData[i, j] > 0 && specialTileData[i, j] <= System.Enum.GetNames(typeof(SpecialTileType)).Length)
                     {
                         var x = j * Constants.TileSize64;
                         var y = i * Constants.TileSize64 + _position.Y;

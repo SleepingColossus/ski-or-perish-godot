@@ -150,14 +150,7 @@ namespace EndlessRacer.Environment
                         foreground = content.Load<Texture2D>($"{BasePath}{name}{ForegroundExtension}");
                     }
 
-                    Texture2D heartSprite = null;
-
-                    if (collisionData.Data.Contains((int)SpecialTileType.Heart))
-                    {
-                        heartSprite = content.Load<Texture2D>("UI/Heart");
-                    }
-
-                    var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray(), foreground, heartSprite);
+                    var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray(), foreground);
 
                     templates.Add(name, template);
                 }
@@ -195,7 +188,14 @@ namespace EndlessRacer.Environment
                 var sprite = content.Load<Texture2D>($"{BasePath}{name}");
                 var collisionData = content.Load<CollisionData>($"{BasePath}{name}{CollisionExtension}");
 
-                var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray());
+                Texture2D heartSprite = null;
+
+                if (collisionData.Data.Contains((int)SpecialTileType.Heart))
+                {
+                    heartSprite = content.Load<Texture2D>("UI/Heart");
+                }
+
+                var template = new LevelSegmentTemplate(entryPoint, exitPoint, sprite, collisionData.ToMultiDimArray(), heartSprite: heartSprite);
 
                 if (!templates.ContainsKey(entryPoint))
                 {
