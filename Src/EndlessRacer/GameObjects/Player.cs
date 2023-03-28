@@ -47,6 +47,8 @@ namespace EndlessRacer.GameObjects
         private const float VfxAlphaFadeRate = 0.02f;
         private float _vfxCurrentAlpha;
         private int _vfxCurrentFrame;
+        private int _timesTurnedThisJump = 0;
+        private int _turnsForFullCircle = Enum.GetNames(typeof(Angle)).Length;
 
         // hurt state
         public event EventHandler PlayerCrashed;
@@ -226,6 +228,8 @@ namespace EndlessRacer.GameObjects
                 }
                 else if (_currentState == PlayerState.Jumping)
                 {
+                    _timesTurnedThisJump++;
+
                     if (_angle < 0)
                     {
                         _angle = Angle.LeftUp1;
@@ -236,9 +240,9 @@ namespace EndlessRacer.GameObjects
                         _angle = Angle.Left;
                     }
 
-                    if (_angle == _startingJumpAngle)
+                    if (_angle == _startingJumpAngle && _timesTurnedThisJump >= _turnsForFullCircle)
                     {
-                        // TODO prevent cheating by moving back and forth by 1 increment
+                        _timesTurnedThisJump = 0;
                         OnFullCircleJump();
                     }
                 }
@@ -330,6 +334,7 @@ namespace EndlessRacer.GameObjects
                     _ascensionReached = false;
                     _startingJumpAngle = _angle;
                     _sounds.JumpSound.Play();
+                    _timesTurnedThisJump = 0;
                     break;
                 case PlayerState.Hurt:
                     _sprite = _sprites.HurtSprite;
