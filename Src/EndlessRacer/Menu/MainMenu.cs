@@ -45,10 +45,10 @@ namespace EndlessRacer.Menu
 
             _buttons = new[]
             {
-                new MenuButton(_buttonSheet, new Vector2(1300, 100), MenuButtonType.PlayCareer, true),
-                new MenuButton(_buttonSheet, new Vector2(1300, 300), MenuButtonType.PlayEndless),
-                new MenuButton(_buttonSheet, new Vector2(1300, 500), MenuButtonType.Help),
-                new MenuButton(_buttonSheet, new Vector2(1300, 700), MenuButtonType.Exit),
+                //new MenuButton(_buttonSheet, new Vector2(1300, 100), MenuButtonType.PlayCareer, true),
+                new MenuButton(_buttonSheet, new Vector2(1300, 100), MenuButtonType.PlayEndless, true),
+                new MenuButton(_buttonSheet, new Vector2(1300, 300), MenuButtonType.Help),
+                new MenuButton(_buttonSheet, new Vector2(1300, 500), MenuButtonType.Exit),
             };
 
             _maxButtonIndex = _buttons.Length - 1;
