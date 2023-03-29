@@ -48,8 +48,12 @@ namespace EndlessRacer.Environment
 
                 if (_type == SpecialTileType.Heart)
                 {
+                    if (!_collided)
+                    {
+                        player.Heal();
+                    }
+
                     _collided = true;
-                    player.Heal();
                 }
             }
         }
