@@ -1,0 +1,195 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+        "Tilesets",
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "CC_01.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 985.7458933959103,
+                "y": 633.34897753939
+            }
+        },
+        "CC_02.tmx": {
+            "scale": 0.7288281249999999,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 959.0738557187266,
+                "y": 574.8954871904813
+            }
+        },
+        "CC_03.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 959.6781763325513,
+                "y": 575.4207173985922
+            }
+        },
+        "CL_01.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 959.6781763325513,
+                "y": 575.4207173985922
+            }
+        },
+        "CL_02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 960,
+                "y": 576
+            }
+        },
+        "CR_01.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 1237.2510895072078,
+                "y": 631.4180355346967
+            }
+        },
+        "CR_02.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 960.1609118337246,
+                "y": 576.8689239021121
+            }
+        },
+        "FinishLine.tmx": {
+            "scale": 0.7698958333333333,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 2851.6844811256933,
+                "y": 1076.7690434312
+            }
+        },
+        "LC_01.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 959.6781763325513,
+                "y": 575.4207173985922
+            }
+        },
+        "LL_01.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 959.6781763325513,
+                "y": 575.4207173985922
+            }
+        },
+        "LR_01.tmx": {
+            "scale": 0.7951302083333334,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 959.5912619133396,
+                "y": 574.7486326269936
+            }
+        },
+        "RC_01.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 959.6781763325513,
+                "y": 575.4207173985922
+            }
+        },
+        "RC_02.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 959.6781763325513,
+                "y": 575.4207173985922
+            }
+        },
+        "RL_01.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 959.6781763325513,
+                "y": 575.4207173985922
+            }
+        },
+        "RR_01.tmx": {
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 960,
+                "y": 576
+            }
+        },
+        "Tilesets/BackgroundTileset.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "Tilesets/SpecialTileset.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "_template.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 11,
+            "viewCenter": {
+                "x": 960.1609118337246,
+                "y": 576.3861884009389
+            }
+        },
+        "cc_01.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 934.6666666666666,
+                "y": 612
+            }
+        },
+        "cc_02.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1233.3333333333333,
+                "y": 685.3333333333333
+            }
+        },
+        "lake.tmx": {
+            "scale": 1.0357638888888887,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 535.3536708012069,
+                "y": 599.557492457258
+            }
+        }
+    },
+    "map.height": 18,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
+    "openFiles": [
+    ],
+    "project": "EndlessRacer.tiled-project",
+    "recentFiles": [
+        "FinishLine.tmx",
+        "RR_01.tmx",
+        "RL_01.tmx",
+        "RC_02.tmx",
+        "RC_01.tmx",
+        "LR_01.tmx",
+        "LL_01.tmx",
+        "LC_01.tmx",
+        "CL_02.tmx",
+        "CL_01.tmx",
+        "CC_03.tmx",
+        "CC_02.tmx"
+    ]
+}
