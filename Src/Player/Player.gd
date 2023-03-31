@@ -1,4 +1,4 @@
-extends Node
+extends CharacterBody2D
 
 enum PlayerState {
     IDLE,
@@ -33,7 +33,7 @@ enum Angle {
 @export var max_health : int = 3
 var health : int = max_health
 
-@export var base_speed = 100
+@export var base_speed = 200
 
 var current_state = PlayerState.IDLE
 var angle := Angle.DOWN
@@ -45,20 +45,23 @@ var angle := Angle.DOWN
 var can_turn_ground := true
 var can_turn_air := true
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
     change_state(PlayerState.MOVE)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     if(current_state == PlayerState.MOVE or current_state == PlayerState.JUMP):
         if Input.is_action_pressed("left"):
-            rotate(-1)
+            rotate_angle(-1)
         elif Input.is_action_pressed("right"):
-            rotate(1)
+            rotate_angle(1)
 
-func rotate(angle_delta: int):
+        var x_velocity = get_x_intensity() * base_speed * delta
+
+        velocity.x = x_velocity
+
+        move_and_collide(velocity)
+
+func rotate_angle(angle_delta: int):
     if(current_state == PlayerState.MOVE):
         if(can_turn_ground):
             can_turn_ground = false
@@ -109,6 +112,17 @@ func change_state(state):
         PlayerState.WIN:
             sprite.play("win")
 
+func get_x_intensity():
+    match angle:
+        Angle.LEFT: return -1
+        Angle.LEFT_DOWN1: return -1
+        Angle.LEFT_DOWN2: return -0.75
+        Angle.LEFT_DOWN3: return -0.5
+        Angle.DOWN: return 0
+        Angle.RIGHT_DOWN3: return 0.5
+        Angle.RIGHT_DOWN2: return 0.75
+        Angle.RIGHT_DOWN1: return 1
+        Angle.RIGHT: return 1
 
 func _on_turn_timer_ground_timeout():
     can_turn_ground = true
