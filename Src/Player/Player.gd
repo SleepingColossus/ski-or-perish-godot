@@ -150,6 +150,7 @@ func change_state(state):
         PlayerState.WIN:
             sprite.play("win")
             vertical_velocity_changed.emit(0)
+            $VictorySound.play()
 
 
 # determine how fast the player should be moving horizontally based on current angle

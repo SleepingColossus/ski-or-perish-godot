@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b0bxiwitqqr1n"]
+[gd_scene load_steps=41 format=3 uid="uid://b0bxiwitqqr1n"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_f2isu"]
 [ext_resource type="Texture2D" uid="uid://b2q7hxjawlwx1" path="res://Player/PlayerHurt.png" id="2_yu4o2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://st42lq0k4bu4" path="res://Player/PlayerJump.png" id="4_f0eo5"]
 [ext_resource type="Texture2D" uid="uid://bcvu80253re5m" path="res://Player/PlayerVictory.png" id="5_irpgj"]
 [ext_resource type="AudioStream" uid="uid://co5ftivdys2t0" path="res://Player/Crash.ogg" id="6_qktk2"]
+[ext_resource type="AudioStream" uid="uid://b0o0uibrpbxdb" path="res://Player/Victory.ogg" id="7_f6sdo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2rv7p"]
 atlas = ExtResource("2_yu4o2")
@@ -301,6 +302,9 @@ libraries = {
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 1.5
+
+[node name="VictorySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_f6sdo")
 
 [connection signal="timeout" from="TurnTimerGround" to="." method="_on_turn_timer_ground_timeout"]
 [connection signal="timeout" from="TurnTimerAir" to="." method="_on_turn_timer_air_timeout"]
