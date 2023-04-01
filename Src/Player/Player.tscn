@@ -268,6 +268,7 @@ _data = {
 script = ExtResource("1_f2isu")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+z_index = 100
 sprite_frames = SubResource("SpriteFrames_lnir2")
 animation = &"win"
 autoplay = "win"
