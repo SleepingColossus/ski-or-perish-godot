@@ -200,11 +200,12 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_ind
             if not (tile_data is TileData):
                 continue
 
-            var terrain_mask = tile_data.get_custom_data_by_layer_id(0)
+            var tile_type = tile_data.get_custom_data_by_layer_id(0)
 
-            if terrain_mask == 0:
-                change_state(PlayerState.CRASH)
-            elif terrain_mask == 1:
+            if tile_type == 0:
+                if current_state == PlayerState.MOVE:
+                    change_state(PlayerState.CRASH)
+            elif tile_type == 1:
                 change_state(PlayerState.WIN)
 
 
