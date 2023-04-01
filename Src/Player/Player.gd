@@ -210,7 +210,8 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_ind
                 if current_state == PlayerState.MOVE:
                     change_state(PlayerState.CRASH)
             elif tile_type == 1:
-                change_state(PlayerState.WIN)
+                if not current_state == PlayerState.WIN:
+                    change_state(PlayerState.WIN)
 
 
 func _on_crash_timer_timeout():
