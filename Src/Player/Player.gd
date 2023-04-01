@@ -108,6 +108,7 @@ func change_state(state):
             sprite.play("move")
             sprite.pause()
             sprite.frame = angle
+            $InvincibilityFlicker.stop()
         PlayerState.JUMP:
             sprite.play("jump")
             sprite.pause()
@@ -120,6 +121,8 @@ func change_state(state):
             sprite.play("move")
             sprite.pause()
             sprite.frame = angle
+            $InvincibilityFlicker.play("flicker_on")
+            $InvincibilityTimer.start()
         PlayerState.WIN:
             sprite.play("win")
 
@@ -137,6 +140,7 @@ func get_x_intensity():
         Angle.RIGHT: return 1
 
 
+# TODO: merge with _on_area_2d_body_entered?
 func _crash():
     change_state(PlayerState.CRASH)
 
@@ -157,3 +161,8 @@ func _on_area_2d_body_entered(_body):
 func _on_crash_timer_timeout():
     if current_state == PlayerState.CRASH:
         change_state(PlayerState.INVINCIBLE)
+
+
+func _on_invincibility_timer_timeout():
+    if current_state == PlayerState.INVINCIBLE:
+        change_state(PlayerState.MOVE)
