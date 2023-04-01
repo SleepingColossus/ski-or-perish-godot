@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxclox5api1f8"]
+
+[ext_resource type="Script" path="res://EndlessMode/EndlessMode.gd" id="1_anuxd"]
+[ext_resource type="PackedScene" uid="uid://d1vl63liolidu" path="res://Maps/Map_CC_01.tscn" id="1_rtt38"]
+[ext_resource type="PackedScene" uid="uid://b0bxiwitqqr1n" path="res://Player/Player.tscn" id="2_r5ki3"]
+
+[node name="EndlessMode" type="Node2D"]
+script = ExtResource("1_anuxd")
+
+[node name="Player" parent="." instance=ExtResource("2_r5ki3")]
+position = Vector2(926, 189)
+
+[node name="Maps" type="Node2D" parent="."]
+
+[node name="Map_CC_01" parent="Maps" instance=ExtResource("1_rtt38")]

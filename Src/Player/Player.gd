@@ -31,10 +31,16 @@ enum Angle {
     LEFT_UP1,
 }
 
+signal vertical_velocity_changed(new_velocity: float)
+
 @export var max_health : int = 3
 var health : int = max_health
 
-@export var base_speed = 200
+# multiply vertical velocity by -1 instead of using negative literals which look ugly
+const DIRECTION := -1
+@export var base_speed :float = 200
+@export var accelerated_speed :float = 400
+var _accelerating := false
 
 var current_state = PlayerState.IDLE
 var angle := Angle.DOWN
@@ -49,6 +55,7 @@ var can_turn_air := true
 
 func _ready():
     change_state(PlayerState.MOVE)
+    vertical_velocity_changed.emit(base_speed)
 
 
 func _process(delta):
@@ -64,6 +71,13 @@ func _process(delta):
 
         move_and_collide(velocity)
 
+    if current_state == PlayerState.MOVE or current_state == PlayerState.INVINCIBLE:
+        if Input.is_action_just_pressed("down"):
+            _accelerating = true
+        if Input.is_action_just_released("down"):
+            _accelerating = false
+
+        _adjust_velocity()
 
 func rotate_angle(angle_delta: int):
     if(current_state == PlayerState.MOVE or current_state == PlayerState.INVINCIBLE):
@@ -81,6 +95,7 @@ func rotate_angle(angle_delta: int):
             angle = Angle.RIGHT
 
         sprite.frame = angle
+        _adjust_velocity()
 
     if(current_state == PlayerState.JUMP):
         if(can_turn_air):
@@ -99,11 +114,19 @@ func rotate_angle(angle_delta: int):
         sprite.frame = angle
 
 
+func _adjust_velocity():
+    var y_base := accelerated_speed if _accelerating else base_speed
+    var y_intensity := get_y_intensity()
+    var y_final = y_base * y_intensity * DIRECTION
+
+    vertical_velocity_changed.emit(y_final)
+
 func change_state(state):
     current_state = state
     match state:
         PlayerState.IDLE:
             sprite.play("idle")
+            vertical_velocity_changed.emit(0)
         PlayerState.MOVE:
             sprite.play("move")
             sprite.pause()
@@ -115,6 +138,7 @@ func change_state(state):
             sprite.frame = angle
         PlayerState.CRASH:
             sprite.play("crash")
+            vertical_velocity_changed.emit(0)
             $CrashSound.play()
             $CrashTimer.start()
         PlayerState.INVINCIBLE:
@@ -125,9 +149,11 @@ func change_state(state):
             $InvincibilityTimer.start()
         PlayerState.WIN:
             sprite.play("win")
+            vertical_velocity_changed.emit(0)
 
 
-func get_x_intensity():
+# determine how fast the player should be moving horizontally based on current angle
+func get_x_intensity() -> float:
     match angle:
         Angle.LEFT: return -1
         Angle.LEFT_DOWN1: return -1
@@ -138,6 +164,22 @@ func get_x_intensity():
         Angle.RIGHT_DOWN2: return 0.75
         Angle.RIGHT_DOWN1: return 1
         Angle.RIGHT: return 1
+        _ : return 0
+
+
+# determine how fast the player should be moving vertically based on current angle
+func get_y_intensity() -> float:
+    match angle:
+        Angle.LEFT: return 0
+        Angle.LEFT_DOWN1: return 0.25
+        Angle.LEFT_DOWN2: return 0.5
+        Angle.LEFT_DOWN3: return 0.75
+        Angle.DOWN: return 1
+        Angle.RIGHT_DOWN3: return 0.75
+        Angle.RIGHT_DOWN2: return 0.5
+        Angle.RIGHT_DOWN1: return 0.25
+        Angle.RIGHT: return 0
+        _ : return 0
 
 
 # TODO: merge with _on_area_2d_body_entered?
