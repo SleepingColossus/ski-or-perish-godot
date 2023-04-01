@@ -195,6 +195,10 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_ind
         var collided_tile_coords = body.get_coords_for_body_rid(body_rid)
 
         for index in body.get_layers_count():
+            # do not check for collisions on background layer
+            if index == 0:
+                continue
+
             var tile_data = body.get_cell_tile_data(index, collided_tile_coords)
 
             if not (tile_data is TileData):
