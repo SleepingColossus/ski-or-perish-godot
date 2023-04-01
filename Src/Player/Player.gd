@@ -182,11 +182,6 @@ func get_y_intensity() -> float:
         _ : return 0
 
 
-# TODO: merge with _on_area_2d_body_entered?
-func _crash():
-    change_state(PlayerState.CRASH)
-
-
 func _on_turn_timer_ground_timeout():
     can_turn_ground = true
 
@@ -195,9 +190,22 @@ func _on_turn_timer_air_timeout():
     can_turn_air = true
 
 
-func _on_area_2d_body_entered(_body):
-    if current_state == PlayerState.MOVE:
-        _crash()
+func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
+    if body is TileMap:
+        var collided_tile_coords = body.get_coords_for_body_rid(body_rid)
+
+        for index in body.get_layers_count():
+            var tile_data = body.get_cell_tile_data(index, collided_tile_coords)
+
+            if not (tile_data is TileData):
+                continue
+
+            var terrain_mask = tile_data.get_custom_data_by_layer_id(0)
+
+            if terrain_mask == 0:
+                change_state(PlayerState.CRASH)
+            elif terrain_mask == 1:
+                change_state(PlayerState.WIN)
 
 
 func _on_crash_timer_timeout():
