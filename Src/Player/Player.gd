@@ -5,6 +5,7 @@ enum PlayerState {
     MOVE,
     JUMP,
     CRASH,
+    INVINCIBLE,
     WIN,
 }
 
@@ -45,11 +46,13 @@ var angle := Angle.DOWN
 var can_turn_ground := true
 var can_turn_air := true
 
+
 func _ready():
     change_state(PlayerState.MOVE)
 
+
 func _process(delta):
-    if(current_state == PlayerState.MOVE or current_state == PlayerState.JUMP):
+    if(current_state == PlayerState.MOVE or current_state == PlayerState.JUMP) or current_state == PlayerState.INVINCIBLE:
         if Input.is_action_pressed("left"):
             rotate_angle(-1)
         elif Input.is_action_pressed("right"):
@@ -61,8 +64,9 @@ func _process(delta):
 
         move_and_collide(velocity)
 
+
 func rotate_angle(angle_delta: int):
-    if(current_state == PlayerState.MOVE):
+    if(current_state == PlayerState.MOVE or current_state == PlayerState.INVINCIBLE):
         if(can_turn_ground):
             can_turn_ground = false
             turn_timer_ground.start()
@@ -94,6 +98,7 @@ func rotate_angle(angle_delta: int):
 
         sprite.frame = angle
 
+
 func change_state(state):
     current_state = state
     match state:
@@ -109,8 +114,15 @@ func change_state(state):
             sprite.frame = angle
         PlayerState.CRASH:
             sprite.play("crash")
+            $CrashSound.play()
+            $CrashTimer.start()
+        PlayerState.INVINCIBLE:
+            sprite.play("move")
+            sprite.pause()
+            sprite.frame = angle
         PlayerState.WIN:
             sprite.play("win")
+
 
 func get_x_intensity():
     match angle:
@@ -124,9 +136,24 @@ func get_x_intensity():
         Angle.RIGHT_DOWN1: return 1
         Angle.RIGHT: return 1
 
+
+func _crash():
+    change_state(PlayerState.CRASH)
+
+
 func _on_turn_timer_ground_timeout():
     can_turn_ground = true
 
 
 func _on_turn_timer_air_timeout():
     can_turn_air = true
+
+
+func _on_area_2d_body_entered(_body):
+    if current_state == PlayerState.MOVE:
+        _crash()
+
+
+func _on_crash_timer_timeout():
+    if current_state == PlayerState.CRASH:
+        change_state(PlayerState.INVINCIBLE)

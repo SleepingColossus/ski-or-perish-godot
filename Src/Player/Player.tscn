@@ -1,10 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://b0bxiwitqqr1n"]
+[gd_scene load_steps=38 format=3 uid="uid://b0bxiwitqqr1n"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_f2isu"]
 [ext_resource type="Texture2D" uid="uid://b2q7hxjawlwx1" path="res://Player/PlayerHurt.png" id="2_yu4o2"]
 [ext_resource type="Texture2D" uid="uid://di7d87xlmrm85" path="res://Player/PlayerMove.png" id="3_x6nck"]
 [ext_resource type="Texture2D" uid="uid://st42lq0k4bu4" path="res://Player/PlayerJump.png" id="4_f0eo5"]
 [ext_resource type="Texture2D" uid="uid://bcvu80253re5m" path="res://Player/PlayerVictory.png" id="5_irpgj"]
+[ext_resource type="AudioStream" uid="uid://co5ftivdys2t0" path="res://Player/Crash.ogg" id="6_qktk2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2rv7p"]
 atlas = ExtResource("2_yu4o2")
@@ -257,8 +258,18 @@ autostart = true
 wait_time = 0.05
 autostart = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_0qj03")
+
+[node name="CrashTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="CrashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_qktk2")
 
 [connection signal="timeout" from="TurnTimerGround" to="." method="_on_turn_timer_ground_timeout"]
 [connection signal="timeout" from="TurnTimerAir" to="." method="_on_turn_timer_air_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="CrashTimer" to="." method="_on_crash_timer_timeout"]
