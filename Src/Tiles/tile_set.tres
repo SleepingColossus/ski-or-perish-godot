@@ -598,6 +598,7 @@ texture_region_size = Vector2i(64, 64)
 5:8/0 = 0
 5:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:8/0/physics_layer_0/angular_velocity = 0.0
+5:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-33, -96, -87, -6.5, -99.5, 49.5, 95, 67, 69.5, -29, 39.5, -89)
 8:8/size_in_atlas = Vector2i(5, 5)
 8:8/0 = 0
 8:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
