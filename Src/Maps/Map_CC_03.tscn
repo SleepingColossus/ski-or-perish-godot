@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://br7hb7jwykgxj"]
+[gd_scene load_steps=3 format=3 uid="uid://dmvyy4au5bip7"]
 
-[ext_resource type="TileSet" uid="uid://dwtbm2m0gfgr" path="res://Tiles/tile_set.tres" id="1_2uqy6"]
-[ext_resource type="Script" path="res://Maps/Map.gd" id="1_uhikh"]
+[ext_resource type="Script" path="res://Maps/Map.gd" id="1_25gbg"]
+[ext_resource type="TileSet" uid="uid://dwtbm2m0gfgr" path="res://Tiles/tile_set.tres" id="2_gk1t6"]
 
 [node name="Map_CC_01" type="CharacterBody2D"]
-script = ExtResource("1_uhikh")
+script = ExtResource("1_25gbg")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("1_2uqy6")
+tile_set = ExtResource("2_gk1t6")
 cell_quadrant_size = 32
 format = 2
 layer_0/name = "Ground"
@@ -18,4 +18,4 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(131074, 1, 8, 393218, 1, 8, 131085, 1, 8, 393229, 1, 8)
+layer_1/tile_data = PackedInt32Array(393223, 1179649, 0, 393224, 1179649, 0, 458752, 1376257, 0, 458753, 1376257, 0, 458754, 1376257, 0, 458755, 1376257, 0, 458756, 1376257, 0, 458757, 1376257, 0, 458758, 1376257, 0, 458759, 1376257, 0, 458760, 1376257, 0, 458761, 1376257, 0, 458762, 1376257, 0, 458763, 1376257, 0, 458764, 1376257, 0, 458765, 1376257, 0, 458766, 1376257, 0, 458767, 1376257, 0, 524303, 1376257, 2, 524302, 1376257, 2, 524301, 1376257, 2, 524300, 1376257, 2, 524299, 1376257, 2, 524298, 1376257, 2, 524297, 1376257, 2, 524296, 1376257, 2, 524295, 1376257, 2, 524294, 1376257, 2, 524293, 1376257, 2, 524292, 1376257, 2, 524291, 1376257, 2, 524290, 1376257, 2, 524289, 1376257, 2, 524288, 1376257, 2)
