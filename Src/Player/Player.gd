@@ -59,23 +59,21 @@ func _ready():
 
 
 func _process(delta):
-    if(current_state == PlayerState.MOVE or current_state == PlayerState.JUMP) or current_state == PlayerState.INVINCIBLE:
+    if current_state == PlayerState.MOVE or current_state == PlayerState.JUMP or current_state == PlayerState.INVINCIBLE:
         if Input.is_action_pressed("left"):
             rotate_angle(-1)
         elif Input.is_action_pressed("right"):
             rotate_angle(1)
-
-        var x_velocity = get_x_intensity() * base_speed * delta
-
-        velocity.x = x_velocity
-
-        move_and_collide(velocity)
 
     if current_state == PlayerState.MOVE or current_state == PlayerState.INVINCIBLE:
         if Input.is_action_just_pressed("down"):
             _accelerating = true
         if Input.is_action_just_released("down"):
             _accelerating = false
+
+        var x_velocity = get_x_intensity() * base_speed * delta
+        velocity.x = x_velocity
+        move_and_collide(velocity)
 
         _adjust_velocity()
 
@@ -133,6 +131,7 @@ func change_state(state):
             sprite.frame = angle
             $InvincibilityFlicker.stop()
         PlayerState.JUMP:
+            $JumpAnimation.play("jump_on")
             sprite.play("jump")
             sprite.pause()
             sprite.frame = angle
@@ -151,6 +150,10 @@ func change_state(state):
             sprite.play("win")
             vertical_velocity_changed.emit(0)
             $VictorySound.play()
+
+
+func land():
+    change_state(PlayerState.MOVE)
 
 
 # determine how fast the player should be moving horizontally based on current angle
@@ -213,6 +216,9 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_ind
             elif tile_type == 1:
                 if not current_state == PlayerState.WIN:
                     change_state(PlayerState.WIN)
+            elif tile_type == 2:
+                if not current_state == PlayerState.JUMP:
+                    change_state(PlayerState.JUMP)
 
 
 func _on_crash_timer_timeout():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b0bxiwitqqr1n"]
+[gd_scene load_steps=43 format=3 uid="uid://b0bxiwitqqr1n"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_f2isu"]
 [ext_resource type="Texture2D" uid="uid://b2q7hxjawlwx1" path="res://Player/PlayerHurt.png" id="2_yu4o2"]
@@ -265,7 +265,43 @@ _data = {
 "flicker_on": SubResource("Animation_00pgx")
 }
 
+[sub_resource type="Animation" id="Animation_ap4qh"]
+resource_name = "jump_on"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"land"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38bx5"]
+_data = {
+"jump_on": SubResource("Animation_ap4qh")
+}
+
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(-1, 0)
 script = ExtResource("1_f2isu")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
@@ -273,6 +309,7 @@ z_index = 100
 sprite_frames = SubResource("SpriteFrames_lnir2")
 animation = &"win"
 autoplay = "win"
+offset = Vector2(0, -10)
 
 [node name="TurnTimerGround" type="Timer" parent="."]
 wait_time = 0.1
@@ -306,6 +343,11 @@ wait_time = 1.5
 
 [node name="VictorySound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_f6sdo")
+
+[node name="JumpAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_38bx5")
+}
 
 [connection signal="timeout" from="TurnTimerGround" to="." method="_on_turn_timer_ground_timeout"]
 [connection signal="timeout" from="TurnTimerAir" to="." method="_on_turn_timer_air_timeout"]
