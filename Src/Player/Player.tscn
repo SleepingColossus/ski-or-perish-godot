@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b0bxiwitqqr1n"]
+[gd_scene load_steps=52 format=3 uid="uid://b0bxiwitqqr1n"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_f2isu"]
 [ext_resource type="Texture2D" uid="uid://b2q7hxjawlwx1" path="res://Player/PlayerHurt.png" id="2_yu4o2"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bcvu80253re5m" path="res://Player/PlayerVictory.png" id="5_irpgj"]
 [ext_resource type="AudioStream" uid="uid://co5ftivdys2t0" path="res://Player/Crash.ogg" id="6_qktk2"]
 [ext_resource type="AudioStream" uid="uid://b0o0uibrpbxdb" path="res://Player/Victory.ogg" id="7_f6sdo"]
+[ext_resource type="AudioStream" uid="uid://b4vs221258v1w" path="res://Player/Jump.ogg" id="8_evauf"]
+[ext_resource type="AudioStream" uid="uid://carylbq68kdy6" path="res://Player/Spin360.ogg" id="9_l3o2x"]
+[ext_resource type="Texture2D" uid="uid://bjrrgqu4fm4qi" path="res://Player/PlayerVFX.png" id="10_kuv76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2rv7p"]
 atlas = ExtResource("2_yu4o2")
@@ -300,6 +303,55 @@ _data = {
 "jump_on": SubResource("Animation_ap4qh")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fx5y"]
+atlas = ExtResource("10_kuv76")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v320c"]
+atlas = ExtResource("10_kuv76")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgjfk"]
+atlas = ExtResource("10_kuv76")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_liaka"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fx5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v320c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgjfk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="Animation" id="Animation_2iy1v"]
+resource_name = "360_vfx_on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spin360Vfx:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7e1e0"]
+_data = {
+"360_vfx_on": SubResource("Animation_2iy1v")
+}
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-1, 0)
 script = ExtResource("1_f2isu")
@@ -347,6 +399,24 @@ stream = ExtResource("7_f6sdo")
 [node name="JumpAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_38bx5")
+}
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_evauf")
+
+[node name="Spin360Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_l3o2x")
+
+[node name="Spin360Vfx" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 101
+sprite_frames = SubResource("SpriteFrames_liaka")
+autoplay = "default"
+frame_progress = 0.906963
+
+[node name="Spin360Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7e1e0")
 }
 
 [connection signal="timeout" from="TurnTimerGround" to="." method="_on_turn_timer_ground_timeout"]

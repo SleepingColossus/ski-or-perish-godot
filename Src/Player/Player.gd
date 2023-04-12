@@ -52,6 +52,8 @@ var _angle := Angle.DOWN
 var _can_turn_ground := true
 var _can_turn_air := true
 
+var _starting_jump_angle
+var _times_turned_this_jump
 
 func _ready():
     _change_state(PlayerState.MOVE)
@@ -111,6 +113,13 @@ func _rotate_angle(angle_delta: int):
 
         sprite.frame = _angle
 
+        _times_turned_this_jump += 1
+
+        if _angle == _starting_jump_angle and _times_turned_this_jump >= Angle.size():
+            _times_turned_this_jump = 0
+            $Spin360Sound.play()
+            $Spin360Animation.play("360_vfx_on")
+
 
 func _adjust_velocity():
     var y_base := accelerated_speed if _accelerating else base_speed
@@ -131,10 +140,13 @@ func _change_state(state):
             sprite.frame = _angle
             $InvincibilityFlicker.stop()
         PlayerState.JUMP:
-            $JumpAnimation.play("jump_on")
             sprite.play("jump")
             sprite.pause()
             sprite.frame = _angle
+            _starting_jump_angle = _angle
+            _times_turned_this_jump = 0
+            $JumpAnimation.play("jump_on")
+            $JumpSound.play()
         PlayerState.CRASH:
             sprite.play("crash")
             vertical_velocity_changed.emit(0)
