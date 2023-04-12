@@ -42,85 +42,85 @@ const DIRECTION := -1
 @export var accelerated_speed :float = 400
 var _accelerating := false
 
-var current_state = PlayerState.IDLE
-var angle := Angle.DOWN
+var _current_state = PlayerState.IDLE
+var _angle := Angle.DOWN
 
 @onready var sprite := $AnimatedSprite
 
 @onready var turn_timer_ground = $TurnTimerGround
 @onready var turn_timer_air = $TurnTimerAir
-var can_turn_ground := true
-var can_turn_air := true
+var _can_turn_ground := true
+var _can_turn_air := true
 
 
 func _ready():
-    change_state(PlayerState.MOVE)
+    _change_state(PlayerState.MOVE)
     vertical_velocity_changed.emit(base_speed)
 
 
 func _process(delta):
-    if current_state == PlayerState.MOVE or current_state == PlayerState.JUMP or current_state == PlayerState.INVINCIBLE:
+    if _current_state == PlayerState.MOVE or _current_state == PlayerState.JUMP or _current_state == PlayerState.INVINCIBLE:
         if Input.is_action_pressed("left"):
-            rotate_angle(-1)
+            _rotate_angle(-1)
         elif Input.is_action_pressed("right"):
-            rotate_angle(1)
+            _rotate_angle(1)
 
-    if current_state == PlayerState.MOVE or current_state == PlayerState.INVINCIBLE:
+    if _current_state == PlayerState.MOVE or _current_state == PlayerState.INVINCIBLE:
         if Input.is_action_just_pressed("down"):
             _accelerating = true
         if Input.is_action_just_released("down"):
             _accelerating = false
 
-        var x_velocity = get_x_intensity() * base_speed * delta
+        var x_velocity = _get_x_intensity() * base_speed * delta
         velocity.x = x_velocity
         move_and_collide(velocity)
 
         _adjust_velocity()
 
-func rotate_angle(angle_delta: int):
-    if(current_state == PlayerState.MOVE or current_state == PlayerState.INVINCIBLE):
-        if(can_turn_ground):
-            can_turn_ground = false
+func _rotate_angle(angle_delta: int):
+    if(_current_state == PlayerState.MOVE or _current_state == PlayerState.INVINCIBLE):
+        if(_can_turn_ground):
+            _can_turn_ground = false
             turn_timer_ground.start()
         else:
             return
 
-        angle = angle + angle_delta as Angle
+        _angle = _angle + angle_delta as Angle
 
-        if(angle < 0):
-            angle = Angle.LEFT
-        elif(angle > Angle.RIGHT):
-            angle = Angle.RIGHT
+        if(_angle < 0):
+            _angle = Angle.LEFT
+        elif(_angle > Angle.RIGHT):
+            _angle = Angle.RIGHT
 
-        sprite.frame = angle
+        sprite.frame = _angle
         _adjust_velocity()
 
-    if(current_state == PlayerState.JUMP):
-        if(can_turn_air):
-            can_turn_air = false
+    if(_current_state == PlayerState.JUMP):
+        if(_can_turn_air):
+            _can_turn_air = false
             turn_timer_air.start()
         else:
             return
 
-        angle = angle + angle_delta as Angle
+        _angle = _angle + angle_delta as Angle
 
-        if(angle < Angle.LEFT):
-            angle = Angle.LEFT_UP1
-        elif(angle > Angle.LEFT_UP1):
-            angle = Angle.LEFT
+        if(_angle < Angle.LEFT):
+            _angle = Angle.LEFT_UP1
+        elif(_angle > Angle.LEFT_UP1):
+            _angle = Angle.LEFT
 
-        sprite.frame = angle
+        sprite.frame = _angle
 
 
 func _adjust_velocity():
     var y_base := accelerated_speed if _accelerating else base_speed
-    var y_intensity := get_y_intensity()
+    var y_intensity := _get_y_intensity()
     var y_final = y_base * y_intensity * DIRECTION
 
     vertical_velocity_changed.emit(y_final)
 
-func change_state(state):
-    current_state = state
+func _change_state(state):
+    _current_state = state
     match state:
         PlayerState.IDLE:
             sprite.play("idle")
@@ -128,13 +128,13 @@ func change_state(state):
         PlayerState.MOVE:
             sprite.play("move")
             sprite.pause()
-            sprite.frame = angle
+            sprite.frame = _angle
             $InvincibilityFlicker.stop()
         PlayerState.JUMP:
             $JumpAnimation.play("jump_on")
             sprite.play("jump")
             sprite.pause()
-            sprite.frame = angle
+            sprite.frame = _angle
         PlayerState.CRASH:
             sprite.play("crash")
             vertical_velocity_changed.emit(0)
@@ -143,7 +143,7 @@ func change_state(state):
         PlayerState.INVINCIBLE:
             sprite.play("move")
             sprite.pause()
-            sprite.frame = angle
+            sprite.frame = _angle
             $InvincibilityFlicker.play("flicker_on")
             $InvincibilityTimer.start()
         PlayerState.WIN:
@@ -153,16 +153,16 @@ func change_state(state):
 
 
 func land():
-    if angle >= Angle.LEFT and angle <= Angle.RIGHT:
-        change_state(PlayerState.MOVE)
+    if _angle >= Angle.LEFT and _angle <= Angle.RIGHT:
+        _change_state(PlayerState.MOVE)
     else:
-        angle = Angle.DOWN
-        change_state(PlayerState.CRASH)
+        _angle = Angle.DOWN
+        _change_state(PlayerState.CRASH)
 
 
 # determine how fast the player should be moving horizontally based on current angle
-func get_x_intensity() -> float:
-    match angle:
+func _get_x_intensity() -> float:
+    match _angle:
         Angle.LEFT: return -1
         Angle.LEFT_DOWN1: return -1
         Angle.LEFT_DOWN2: return -0.75
@@ -176,8 +176,8 @@ func get_x_intensity() -> float:
 
 
 # determine how fast the player should be moving vertically based on current angle
-func get_y_intensity() -> float:
-    match angle:
+func _get_y_intensity() -> float:
+    match _angle:
         Angle.LEFT: return 0
         Angle.LEFT_DOWN1: return 0.25
         Angle.LEFT_DOWN2: return 0.5
@@ -191,11 +191,11 @@ func get_y_intensity() -> float:
 
 
 func _on_turn_timer_ground_timeout():
-    can_turn_ground = true
+    _can_turn_ground = true
 
 
 func _on_turn_timer_air_timeout():
-    can_turn_air = true
+    _can_turn_air = true
 
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
@@ -215,21 +215,21 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_ind
             var tile_type = tile_data.get_custom_data_by_layer_id(0)
 
             if tile_type == 0:
-                if current_state == PlayerState.MOVE:
-                    change_state(PlayerState.CRASH)
+                if _current_state == PlayerState.MOVE:
+                    _change_state(PlayerState.CRASH)
             elif tile_type == 1:
-                if not current_state == PlayerState.WIN:
-                    change_state(PlayerState.WIN)
+                if not _current_state == PlayerState.WIN:
+                    _change_state(PlayerState.WIN)
             elif tile_type == 2:
-                if not current_state == PlayerState.JUMP:
-                    change_state(PlayerState.JUMP)
+                if not _current_state == PlayerState.JUMP:
+                    _change_state(PlayerState.JUMP)
 
 
 func _on_crash_timer_timeout():
-    if current_state == PlayerState.CRASH:
-        change_state(PlayerState.INVINCIBLE)
+    if _current_state == PlayerState.CRASH:
+        _change_state(PlayerState.INVINCIBLE)
 
 
 func _on_invincibility_timer_timeout():
-    if current_state == PlayerState.INVINCIBLE:
-        change_state(PlayerState.MOVE)
+    if _current_state == PlayerState.INVINCIBLE:
+        _change_state(PlayerState.MOVE)
