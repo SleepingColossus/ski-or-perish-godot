@@ -1,22 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxclox5api1f8"]
+[gd_scene load_steps=6 format=3 uid="uid://dxclox5api1f8"]
 
 [ext_resource type="Script" path="res://EndlessMode/EndlessMode.gd" id="1_anuxd"]
-[ext_resource type="PackedScene" uid="uid://d1vl63liolidu" path="res://Maps/Map_CC_01.tscn" id="1_rtt38"]
 [ext_resource type="PackedScene" uid="uid://b0bxiwitqqr1n" path="res://Player/Player.tscn" id="2_r5ki3"]
+[ext_resource type="PackedScene" uid="uid://dmvyy4au5bip7" path="res://Maps/Map_CC_03.tscn" id="3_4sebd"]
+[ext_resource type="PackedScene" uid="uid://v74nh275guml" path="res://Maps/Map_CC_02.tscn" id="4_kia0c"]
 [ext_resource type="PackedScene" uid="uid://dj155t33x1dhd" path="res://Maps/FinishLine.tscn" id="4_oxpt8"]
 
 [node name="EndlessMode" type="Node2D"]
 script = ExtResource("1_anuxd")
 
 [node name="Player" parent="." instance=ExtResource("2_r5ki3")]
-position = Vector2(926, 189)
+position = Vector2(511, 50)
 
 [node name="Maps" type="Node2D" parent="."]
 
-[node name="Map_CC_01" parent="Maps" instance=ExtResource("1_rtt38")]
+[node name="Map_CC_01" parent="Maps" instance=ExtResource("3_4sebd")]
 
-[node name="Map_CC_02" parent="Maps" instance=ExtResource("1_rtt38")]
-position = Vector2(0, 1088)
+[node name="Map_CC_02" parent="Maps" instance=ExtResource("4_kia0c")]
+position = Vector2(0, 576)
 
-[node name="Map_CC_03" parent="Maps" instance=ExtResource("4_oxpt8")]
-position = Vector2(0, 2176)
+[node name="FinishLine" parent="Maps" instance=ExtResource("4_oxpt8")]
+position = Vector2(0, 1152)
