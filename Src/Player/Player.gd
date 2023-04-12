@@ -153,7 +153,11 @@ func change_state(state):
 
 
 func land():
-    change_state(PlayerState.MOVE)
+    if angle >= Angle.LEFT and angle <= Angle.RIGHT:
+        change_state(PlayerState.MOVE)
+    else:
+        angle = Angle.DOWN
+        change_state(PlayerState.CRASH)
 
 
 # determine how fast the player should be moving horizontally based on current angle
