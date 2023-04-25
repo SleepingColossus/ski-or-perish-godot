@@ -5,7 +5,7 @@
 
 [node name="Map_CC_01" type="CharacterBody2D"]
 script = ExtResource("1_hn3fs")
-exitPoint = 1
+exit_point = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_73xl1")
