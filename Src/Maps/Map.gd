@@ -1,5 +1,14 @@
 extends CharacterBody2D
 
+enum CrossingPoint {
+    LEFT,
+    CENTER,
+    RIGHT,
+}
+
+@export_group("CrossingPoint")
+@export var entryPoint: CrossingPoint
+@export var exitPoint: CrossingPoint
 
 func _ready():
     pass
