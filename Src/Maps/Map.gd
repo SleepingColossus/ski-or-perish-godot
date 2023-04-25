@@ -1,3 +1,5 @@
+class_name Map
+
 extends CharacterBody2D
 
 @export_group("CrossingPoint")
