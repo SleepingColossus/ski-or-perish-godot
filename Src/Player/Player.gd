@@ -67,6 +67,8 @@ func _process(delta):
         elif Input.is_action_pressed("right"):
             _rotate_angle(1)
 
+        move_and_collide(velocity)
+
     if _current_state == PlayerState.MOVE or _current_state == PlayerState.INVINCIBLE:
         if Input.is_action_just_pressed("down"):
             _accelerating = true
