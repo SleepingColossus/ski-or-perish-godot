@@ -55,9 +55,13 @@ var _can_turn_air := true
 var _starting_jump_angle
 var _times_turned_this_jump
 
+var _screen_width
+
 func _ready():
     _change_state(PlayerState.MOVE)
     vertical_velocity_changed.emit(base_speed)
+
+    _screen_width = get_viewport_rect().size.x
 
 
 func _process(delta):
@@ -80,6 +84,8 @@ func _process(delta):
         move_and_collide(velocity)
 
         _adjust_velocity()
+
+    global_position.x = clamp(global_position.x, 0, _screen_width)
 
 func _rotate_angle(angle_delta: int):
     if(_current_state == PlayerState.MOVE or _current_state == PlayerState.INVINCIBLE):
