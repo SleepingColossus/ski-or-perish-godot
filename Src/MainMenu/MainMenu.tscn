@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bt3kmu30x6ahb"]
+[gd_scene load_steps=3 format=3 uid="uid://bt3kmu30x6ahb"]
 
 [ext_resource type="Texture2D" uid="uid://ci4ty2cftgdal" path="res://MainMenu/MenuScreen.png" id="1_f4fl7"]
+[ext_resource type="AudioStream" uid="uid://bxinr6q02e2lj" path="res://MainMenu/MenuTheme.ogg" id="2_fye4e"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -15,3 +16,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_f4fl7")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fye4e")
+autoplay = true
