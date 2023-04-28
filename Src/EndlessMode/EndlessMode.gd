@@ -15,6 +15,7 @@ var game_velocity : float
 
 func _ready():
     $Player.vertical_velocity_changed.connect(_on_Player_vertical_velocity_changed)
+    $Player.health_changed.connect(_on_Player_health_changed)
 
     var initial_segment = center_segments[randi() % center_segments.size()]
     var map = initial_segment.instantiate()
@@ -58,6 +59,9 @@ func _on_Player_vertical_velocity_changed(new_velocity: float):
     for map in maps:
         map.set_map_velocity(new_velocity)
 
+
+func _on_Player_health_changed(new_health: int):
+    $GameplayInterface/HeartIndicators.set_health(new_health)
 
 func _on_map_destroyed(map: Map):
     map.map_destroyed.disconnect(_on_map_destroyed)

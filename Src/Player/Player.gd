@@ -7,6 +7,7 @@ enum PlayerState {
     CRASH,
     INVINCIBLE,
     WIN,
+    LOSE,
 }
 
 enum Angle {
@@ -32,6 +33,7 @@ enum Angle {
 }
 
 signal vertical_velocity_changed(new_velocity: float)
+signal health_changed(new_health: int)
 
 @export var max_health : int = 3
 var health : int = max_health
@@ -159,7 +161,12 @@ func _change_state(state):
             sprite.play("crash")
             vertical_velocity_changed.emit(0)
             $CrashSound.play()
-            $CrashTimer.start()
+            health -= 1
+            health_changed.emit(health)
+            if health <= 0:
+                _change_state(PlayerState.LOSE)
+            else:
+                $CrashTimer.start()
         PlayerState.INVINCIBLE:
             sprite.play("move")
             sprite.pause()
@@ -170,7 +177,10 @@ func _change_state(state):
             sprite.play("win")
             vertical_velocity_changed.emit(0)
             $VictorySound.play()
-
+        PlayerState.LOSE:
+            sprite.play("crash")
+            vertical_velocity_changed.emit(0)
+            $CrashSound.play()
 
 func land():
     if _angle >= Angle.LEFT and _angle <= Angle.RIGHT:

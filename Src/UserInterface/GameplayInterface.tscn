@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnovwqklafbkl"]
+[gd_scene load_steps=9 format=3 uid="uid://bnovwqklafbkl"]
 
 [ext_resource type="Texture2D" uid="uid://cr811565hnbkr" path="res://UserInterface/Countdown3.png" id="1_bqfkb"]
 [ext_resource type="Script" path="res://UserInterface/GameplayInterface.gd" id="1_dhg1e"]
 [ext_resource type="Texture2D" uid="uid://c8urj7cauikqa" path="res://UserInterface/Countdown2.png" id="2_ew8oe"]
 [ext_resource type="Texture2D" uid="uid://ja4kcq723aud" path="res://UserInterface/Countdown1.png" id="3_80h5i"]
 [ext_resource type="Texture2D" uid="uid://r7snhm6h5thw" path="res://UserInterface/CountdownGo.png" id="4_k1al3"]
+[ext_resource type="Script" path="res://UserInterface/HeartIndicators.gd" id="6_4xvsi"]
+[ext_resource type="PackedScene" uid="uid://bbr5ymod3g317" path="res://UserInterface/HeartIndicator.tscn" id="6_qvf5m"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_kq8p2"]
 frames = 4
@@ -31,5 +33,21 @@ texture = SubResource("AnimatedTexture_kq8p2")
 [node name="HideCountdownTimer" type="Timer" parent="CountdownContainer"]
 wait_time = 4.0
 autostart = true
+
+[node name="HeartIndicators" type="HBoxContainer" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 120.0
+offset_bottom = 56.0
+script = ExtResource("6_4xvsi")
+
+[node name="HeartIndicator1" parent="HeartIndicators" instance=ExtResource("6_qvf5m")]
+layout_mode = 2
+
+[node name="HeartIndicator2" parent="HeartIndicators" instance=ExtResource("6_qvf5m")]
+layout_mode = 2
+
+[node name="HeartIndicator3" parent="HeartIndicators" instance=ExtResource("6_qvf5m")]
+layout_mode = 2
 
 [connection signal="timeout" from="CountdownContainer/HideCountdownTimer" to="." method="_on_hide_countdown_timer_timeout"]

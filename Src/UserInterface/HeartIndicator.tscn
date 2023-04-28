@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbr5ymod3g317"]
+
+[ext_resource type="Script" path="res://UserInterface/HeartIndicator.gd" id="1_e0ln3"]
+[ext_resource type="Texture2D" uid="uid://dwo6iqqpuv82g" path="res://UserInterface/HeartOn.png" id="2_ks2g6"]
+[ext_resource type="Texture2D" uid="uid://da834ser4l76y" path="res://UserInterface/HeartOff.png" id="3_6nvhi"]
+
+[node name="HeartIndicator" type="Control"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_e0ln3")
+
+[node name="On" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_ks2g6")
+
+[node name="Off" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("3_6nvhi")
