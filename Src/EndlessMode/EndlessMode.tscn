@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxclox5api1f8"]
+[gd_scene load_steps=28 format=3 uid="uid://dxclox5api1f8"]
 
 [ext_resource type="Script" path="res://EndlessMode/EndlessMode.gd" id="1_anuxd"]
 [ext_resource type="PackedScene" uid="uid://br7hb7jwykgxj" path="res://Maps/Map_CC_01.tscn" id="2_0ecks"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://787aaty32iht" path="res://Maps/Map_RR_01.tscn" id="22_wo1ex"]
 [ext_resource type="PackedScene" uid="uid://oew2d6yqgdp" path="res://Maps/Map_RR_02.tscn" id="23_c7r8c"]
 [ext_resource type="PackedScene" uid="uid://cg1l3ahdrvl88" path="res://Maps/Map_RR_03.tscn" id="24_43fdt"]
+[ext_resource type="PackedScene" uid="uid://bnovwqklafbkl" path="res://UserInterface/GameplayInterface.tscn" id="25_i7gkd"]
 [ext_resource type="AudioStream" uid="uid://ca7bq1edhh3fl" path="res://EndlessMode/StageTheme.ogg" id="26_lgqvl"]
 
 [node name="EndlessMode" type="Node2D"]
@@ -32,6 +33,12 @@ script = ExtResource("1_anuxd")
 left_segments = Array[PackedScene]([ExtResource("4_b206u"), ExtResource("3_5wlba"), ExtResource("4_mffbj"), ExtResource("5_bjlmf"), ExtResource("6_7tc6f"), ExtResource("7_ooovr"), ExtResource("8_po815")])
 center_segments = Array[PackedScene]([ExtResource("2_0ecks"), ExtResource("4_kia0c"), ExtResource("3_4sebd"), ExtResource("3_7r0kw"), ExtResource("13_td5dv"), ExtResource("14_me1cv"), ExtResource("15_fgf0t"), ExtResource("16_closi"), ExtResource("17_1v8es")])
 right_segments = Array[PackedScene]([ExtResource("18_jjunu"), ExtResource("19_f85ts"), ExtResource("20_h25g6"), ExtResource("21_c8w00"), ExtResource("22_wo1ex"), ExtResource("23_c7r8c"), ExtResource("24_43fdt")])
+
+[node name="GameplayInterface" parent="." instance=ExtResource("25_i7gkd")]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_r5ki3")]
 position = Vector2(511, 50)
@@ -41,3 +48,5 @@ stream = ExtResource("26_lgqvl")
 autoplay = true
 
 [node name="Maps" type="Node2D" parent="."]
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

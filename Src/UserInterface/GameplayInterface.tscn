@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnovwqklafbkl"]
+
+[ext_resource type="Texture2D" uid="uid://cr811565hnbkr" path="res://UserInterface/Countdown3.png" id="1_bqfkb"]
+[ext_resource type="Script" path="res://UserInterface/GameplayInterface.gd" id="1_dhg1e"]
+[ext_resource type="Texture2D" uid="uid://c8urj7cauikqa" path="res://UserInterface/Countdown2.png" id="2_ew8oe"]
+[ext_resource type="Texture2D" uid="uid://ja4kcq723aud" path="res://UserInterface/Countdown1.png" id="3_80h5i"]
+[ext_resource type="Texture2D" uid="uid://r7snhm6h5thw" path="res://UserInterface/CountdownGo.png" id="4_k1al3"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_kq8p2"]
+frames = 4
+one_shot = true
+frame_0/texture = ExtResource("1_bqfkb")
+frame_1/texture = ExtResource("2_ew8oe")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_80h5i")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_k1al3")
+frame_3/duration = 1.0
+
+[node name="GameplayInterface" type="CanvasLayer"]
+script = ExtResource("1_dhg1e")
+
+[node name="CountdownContainer" type="CenterContainer" parent="."]
+offset_right = 1024.0
+offset_bottom = 576.0
+
+[node name="Countdown" type="TextureRect" parent="CountdownContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_kq8p2")
+
+[node name="HideCountdownTimer" type="Timer" parent="CountdownContainer"]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="CountdownContainer/HideCountdownTimer" to="." method="_on_hide_countdown_timer_timeout"]

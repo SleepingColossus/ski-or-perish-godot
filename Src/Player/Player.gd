@@ -58,7 +58,7 @@ var _times_turned_this_jump
 var _screen_width
 
 func _ready():
-    _change_state(PlayerState.MOVE)
+    _change_state(PlayerState.IDLE)
     vertical_velocity_changed.emit(base_speed)
 
     _screen_width = get_viewport_rect().size.x
@@ -253,3 +253,7 @@ func _on_crash_timer_timeout():
 func _on_invincibility_timer_timeout():
     if _current_state == PlayerState.INVINCIBLE:
         _change_state(PlayerState.MOVE)
+
+
+func start():
+    _change_state(PlayerState.MOVE)

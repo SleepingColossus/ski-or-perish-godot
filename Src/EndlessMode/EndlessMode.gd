@@ -62,3 +62,7 @@ func _on_Player_vertical_velocity_changed(new_velocity: float):
 func _on_map_destroyed(map: Map):
     map.map_destroyed.disconnect(_on_map_destroyed)
     _next_map()
+
+
+func _on_start_timer_timeout():
+    $Player.start()
