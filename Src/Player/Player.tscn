@@ -365,10 +365,12 @@ offset = Vector2(0, -10)
 
 [node name="TurnTimerGround" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
 autostart = true
 
 [node name="TurnTimerAir" type="Timer" parent="."]
 wait_time = 0.05
+one_shot = true
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -381,6 +383,7 @@ shape = SubResource("CapsuleShape2D_0qj03")
 
 [node name="CrashTimer" type="Timer" parent="."]
 wait_time = 1.5
+one_shot = true
 
 [node name="CrashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_qktk2")
@@ -392,6 +395,7 @@ libraries = {
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 1.5
+one_shot = true
 
 [node name="VictorySound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_f6sdo")

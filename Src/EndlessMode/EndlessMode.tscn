@@ -38,6 +38,7 @@ right_segments = Array[PackedScene]([ExtResource("18_jjunu"), ExtResource("19_f8
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 4.0
+one_shot = true
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_r5ki3")]
