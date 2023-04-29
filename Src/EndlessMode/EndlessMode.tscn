@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dxclox5api1f8"]
+[gd_scene load_steps=35 format=3 uid="uid://dxclox5api1f8"]
 
 [ext_resource type="Script" path="res://EndlessMode/EndlessMode.gd" id="1_anuxd"]
 [ext_resource type="PackedScene" uid="uid://br7hb7jwykgxj" path="res://Maps/Map_CC_01.tscn" id="2_0ecks"]
@@ -19,19 +19,26 @@
 [ext_resource type="PackedScene" uid="uid://ck6g0u4ksc5tn" path="res://Maps/Map_CR_02.tscn" id="16_closi"]
 [ext_resource type="PackedScene" uid="uid://bq1mg18gqe8rm" path="res://Maps/Map_CR_03.tscn" id="17_1v8es"]
 [ext_resource type="PackedScene" uid="uid://b5phss6pisnay" path="res://Maps/Map_RC_01.tscn" id="18_jjunu"]
+[ext_resource type="PackedScene" uid="uid://bhm1phufn11vb" path="res://Maps/Map_CC_04.tscn" id="18_phl5b"]
 [ext_resource type="PackedScene" uid="uid://bnu5exdo213oc" path="res://Maps/Map_RC_02.tscn" id="19_f85ts"]
+[ext_resource type="PackedScene" uid="uid://bn0qkbuiybp2t" path="res://Maps/Map_CC_05.tscn" id="19_r7aga"]
 [ext_resource type="PackedScene" uid="uid://3ndymfmp6kn1" path="res://Maps/Map_RC_03.tscn" id="20_h25g6"]
+[ext_resource type="PackedScene" uid="uid://7lomfsmrjbcc" path="res://Maps/Map_CC_06.tscn" id="20_oxvcm"]
 [ext_resource type="PackedScene" uid="uid://bbqiw701x8cb6" path="res://Maps/Map_RL_01.tscn" id="21_c8w00"]
+[ext_resource type="PackedScene" uid="uid://c51n0yq0273ql" path="res://Maps/Map_CC_07.tscn" id="21_g81sg"]
+[ext_resource type="PackedScene" uid="uid://d25r2ax7xiib2" path="res://Maps/Map_CC_08.tscn" id="22_b4c0s"]
 [ext_resource type="PackedScene" uid="uid://787aaty32iht" path="res://Maps/Map_RR_01.tscn" id="22_wo1ex"]
 [ext_resource type="PackedScene" uid="uid://oew2d6yqgdp" path="res://Maps/Map_RR_02.tscn" id="23_c7r8c"]
+[ext_resource type="PackedScene" uid="uid://j3t55mr3tcp2" path="res://Maps/Map_CC_09.tscn" id="23_rrycg"]
 [ext_resource type="PackedScene" uid="uid://cg1l3ahdrvl88" path="res://Maps/Map_RR_03.tscn" id="24_43fdt"]
+[ext_resource type="PackedScene" uid="uid://1b3wwxlqfhjv" path="res://Maps/Map_CC_10.tscn" id="24_645tx"]
 [ext_resource type="PackedScene" uid="uid://bnovwqklafbkl" path="res://UserInterface/GameplayInterface.tscn" id="25_i7gkd"]
 [ext_resource type="AudioStream" uid="uid://ca7bq1edhh3fl" path="res://EndlessMode/StageTheme.ogg" id="26_lgqvl"]
 
 [node name="EndlessMode" type="Node2D"]
 script = ExtResource("1_anuxd")
 left_segments = Array[PackedScene]([ExtResource("4_b206u"), ExtResource("3_5wlba"), ExtResource("4_mffbj"), ExtResource("5_bjlmf"), ExtResource("6_7tc6f"), ExtResource("7_ooovr"), ExtResource("8_po815")])
-center_segments = Array[PackedScene]([ExtResource("2_0ecks"), ExtResource("4_kia0c"), ExtResource("3_4sebd"), ExtResource("3_7r0kw"), ExtResource("13_td5dv"), ExtResource("14_me1cv"), ExtResource("15_fgf0t"), ExtResource("16_closi"), ExtResource("17_1v8es")])
+center_segments = Array[PackedScene]([ExtResource("2_0ecks"), ExtResource("4_kia0c"), ExtResource("3_4sebd"), ExtResource("3_7r0kw"), ExtResource("13_td5dv"), ExtResource("14_me1cv"), ExtResource("15_fgf0t"), ExtResource("16_closi"), ExtResource("17_1v8es"), ExtResource("18_phl5b"), ExtResource("19_r7aga"), ExtResource("20_oxvcm"), ExtResource("21_g81sg"), ExtResource("22_b4c0s"), ExtResource("23_rrycg"), ExtResource("24_645tx")])
 right_segments = Array[PackedScene]([ExtResource("18_jjunu"), ExtResource("19_f85ts"), ExtResource("20_h25g6"), ExtResource("21_c8w00"), ExtResource("22_wo1ex"), ExtResource("23_c7r8c"), ExtResource("24_43fdt")])
 
 [node name="GameplayInterface" parent="." instance=ExtResource("25_i7gkd")]
