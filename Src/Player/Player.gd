@@ -40,6 +40,7 @@ var health : int = max_health
 
 # multiply vertical velocity by -1 instead of using negative literals which look ugly
 const DIRECTION := -1
+const X_REDUCTION := 0.5
 @export var base_speed :float = 400
 @export var bonus_speed = 50
 var _difficulty_level = 0
@@ -76,7 +77,7 @@ func _process(delta):
         move_and_collide(velocity)
 
     if _current_state == PlayerState.MOVE or _current_state == PlayerState.INVINCIBLE:
-        var x_velocity = _get_x_intensity() * base_speed * delta
+        var x_velocity = _get_x_intensity() * base_speed * delta * X_REDUCTION
         velocity.x = x_velocity
         move_and_collide(velocity)
 
