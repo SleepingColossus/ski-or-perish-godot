@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dxclox5api1f8"]
+[gd_scene load_steps=70 format=3 uid="uid://dxclox5api1f8"]
 
 [ext_resource type="Script" path="res://EndlessMode/EndlessMode.gd" id="1_anuxd"]
 [ext_resource type="PackedScene" uid="uid://br7hb7jwykgxj" path="res://Maps/Map_CC_01.tscn" id="2_0ecks"]
@@ -62,12 +62,19 @@
 [ext_resource type="PackedScene" uid="uid://dyi7yb33gle6h" path="res://Maps/Map_CR_08.tscn" id="36_eij7q"]
 [ext_resource type="PackedScene" uid="uid://dvvp6b0yvrxef" path="res://Maps/Map_CR_09.tscn" id="37_wquw8"]
 [ext_resource type="PackedScene" uid="uid://qikooa6cnwd1" path="res://Maps/Map_CR_10.tscn" id="38_34clq"]
+[ext_resource type="PackedScene" uid="uid://ckmvmfolxioqy" path="res://Maps/Map_RC_04.tscn" id="60_fqabt"]
+[ext_resource type="PackedScene" uid="uid://153a2ofn5jkp" path="res://Maps/Map_RC_05.tscn" id="61_6h41q"]
+[ext_resource type="PackedScene" uid="uid://bkieptubhkaui" path="res://Maps/Map_RC_06.tscn" id="62_uda8x"]
+[ext_resource type="PackedScene" uid="uid://yj7qxjndunr3" path="res://Maps/Map_RC_07.tscn" id="63_k2hem"]
+[ext_resource type="PackedScene" uid="uid://c3gpwqe7aa4et" path="res://Maps/Map_RC_08.tscn" id="64_ytiwo"]
+[ext_resource type="PackedScene" uid="uid://t2rochb281kf" path="res://Maps/Map_RC_09.tscn" id="65_1shab"]
+[ext_resource type="PackedScene" uid="uid://cmehu4vpghsjv" path="res://Maps/Map_RC_10.tscn" id="66_qkcv8"]
 
 [node name="EndlessMode" type="Node2D"]
 script = ExtResource("1_anuxd")
 left_segments = Array[PackedScene]([ExtResource("4_b206u"), ExtResource("3_5wlba"), ExtResource("4_mffbj"), ExtResource("5_bjlmf"), ExtResource("6_7tc6f"), ExtResource("7_ooovr"), ExtResource("8_po815"), ExtResource("9_ojv5y"), ExtResource("10_c253s"), ExtResource("11_mhhq8"), ExtResource("12_wqjyp"), ExtResource("13_e3cn5"), ExtResource("14_as4e2"), ExtResource("15_8elg2"), ExtResource("16_hu3o4"), ExtResource("17_p6iuh"), ExtResource("18_ae3vo"), ExtResource("19_rjtlw"), ExtResource("20_ni7wk"), ExtResource("21_estxv"), ExtResource("22_a70ia")])
 center_segments = Array[PackedScene]([ExtResource("2_0ecks"), ExtResource("4_kia0c"), ExtResource("3_4sebd"), ExtResource("3_7r0kw"), ExtResource("13_td5dv"), ExtResource("14_me1cv"), ExtResource("15_fgf0t"), ExtResource("16_closi"), ExtResource("17_1v8es"), ExtResource("18_phl5b"), ExtResource("19_r7aga"), ExtResource("20_oxvcm"), ExtResource("21_g81sg"), ExtResource("22_b4c0s"), ExtResource("23_rrycg"), ExtResource("24_645tx"), ExtResource("25_r322r"), ExtResource("26_e15yi"), ExtResource("27_jhncu"), ExtResource("28_t2uob"), ExtResource("29_jncis"), ExtResource("30_xl4x3"), ExtResource("31_5baio"), ExtResource("32_ilfb3"), ExtResource("33_udf0h"), ExtResource("34_60xms"), ExtResource("35_a0csn"), ExtResource("36_eij7q"), ExtResource("37_wquw8"), ExtResource("38_34clq")])
-right_segments = Array[PackedScene]([ExtResource("18_jjunu"), ExtResource("19_f85ts"), ExtResource("20_h25g6"), ExtResource("21_c8w00"), ExtResource("22_wo1ex"), ExtResource("23_c7r8c"), ExtResource("24_43fdt")])
+right_segments = Array[PackedScene]([ExtResource("18_jjunu"), ExtResource("19_f85ts"), ExtResource("20_h25g6"), ExtResource("21_c8w00"), ExtResource("22_wo1ex"), ExtResource("23_c7r8c"), ExtResource("24_43fdt"), ExtResource("60_fqabt"), ExtResource("61_6h41q"), ExtResource("62_uda8x"), ExtResource("63_k2hem"), ExtResource("64_ytiwo"), ExtResource("65_1shab"), ExtResource("66_qkcv8")])
 
 [node name="GameplayInterface" parent="." instance=ExtResource("25_i7gkd")]
 
