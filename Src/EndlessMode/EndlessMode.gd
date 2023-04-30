@@ -8,12 +8,12 @@ extends Node
 # from project setting: display/window/size/viewport_height
 const Y_OFFSET = 567
 
-var previous_segment : Map
-var current_segment : Map
+var _previous_segment : Map
+var _current_segment : Map
 
+const SCORE_FACTOR = 10000
 var _game_velocity : float
 var _total_distance : float
-const SCORE_FACTOR = 10000
 
 func _ready():
     $Player.vertical_velocity_changed.connect(_on_Player_vertical_velocity_changed)
@@ -21,8 +21,8 @@ func _ready():
 
     var initial_segment = center_segments[randi() % center_segments.size()]
     var map = initial_segment.instantiate()
-    current_segment = map
-    previous_segment = map
+    _current_segment = map
+    _previous_segment = map
     map.map_destroyed.connect(_on_map_destroyed)
     maps_node.add_child(map)
 
@@ -35,8 +35,8 @@ func _process(_delta):
     $GameplayInterface.update_score(score)
 
 func _next_map():
-    previous_segment = current_segment
-    var exit_point = current_segment.exit_point
+    _previous_segment = _current_segment
+    var exit_point = _current_segment.exit_point
 
     var next_segment : PackedScene
 
@@ -48,7 +48,7 @@ func _next_map():
         next_segment = center_segments[randi() % center_segments.size()]
 
     var map = next_segment.instantiate()
-    current_segment = map
+    _current_segment = map
     map.set_map_velocity(_game_velocity)
     map.map_destroyed.connect(_on_map_destroyed)
     maps_node.add_child(map)
