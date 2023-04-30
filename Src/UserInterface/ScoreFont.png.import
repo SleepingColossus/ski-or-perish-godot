@@ -1,0 +1,21 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://btlfmb203asqs"
+path="res://.godot/imported/ScoreFont.png-e6ce567ebd153177c1e88a42176f29ce.fontdata"
+
+[deps]
+
+source_file="res://UserInterface/ScoreFont.png"
+dest_files=["res://.godot/imported/ScoreFont.png-e6ce567ebd153177c1e88a42176f29ce.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-57")
+columns=10
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+fallbacks=[]
+compress=true

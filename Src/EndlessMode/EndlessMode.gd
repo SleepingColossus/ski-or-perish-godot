@@ -11,7 +11,9 @@ const Y_OFFSET = 567
 var previous_segment : Map
 var current_segment : Map
 
-var game_velocity : float
+var _game_velocity : float
+var _total_distance : float
+const SCORE_FACTOR = 10000
 
 func _ready():
     $Player.vertical_velocity_changed.connect(_on_Player_vertical_velocity_changed)
@@ -28,8 +30,9 @@ func _ready():
 
 
 func _process(_delta):
-    pass
-
+    _total_distance += _game_velocity
+    var score = int(_total_distance / SCORE_FACTOR)
+    $GameplayInterface.update_score(score)
 
 func _next_map():
     previous_segment = current_segment
@@ -46,14 +49,14 @@ func _next_map():
 
     var map = next_segment.instantiate()
     current_segment = map
-    map.set_map_velocity(game_velocity)
+    map.set_map_velocity(_game_velocity)
     map.map_destroyed.connect(_on_map_destroyed)
     maps_node.add_child(map)
     map.position.y = Y_OFFSET
 
 
 func _on_Player_vertical_velocity_changed(new_velocity: float):
-    game_velocity = new_velocity
+    _game_velocity = new_velocity
 
     var maps = maps_node.get_children()
     for map in maps:
