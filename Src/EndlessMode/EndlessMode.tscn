@@ -99,7 +99,7 @@ one_shot = true
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_r5ki3")]
-position = Vector2(511, 50)
+position = Vector2(511, 106)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("26_lgqvl")
