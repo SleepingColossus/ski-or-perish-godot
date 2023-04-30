@@ -42,6 +42,8 @@ var health : int = max_health
 const DIRECTION := -1
 @export var base_speed :float = 200
 @export var accelerated_speed :float = 400
+@export var bonus_speed = 50
+var _difficulty_level = 0
 var _accelerating := false
 
 var _current_state = PlayerState.IDLE
@@ -134,7 +136,8 @@ func _rotate_angle(angle_delta: int):
 func _adjust_velocity():
     var y_base := accelerated_speed if _accelerating else base_speed
     var y_intensity := _get_y_intensity()
-    var y_final = y_base * y_intensity * DIRECTION
+    var difficulty_bonus = _difficulty_level * bonus_speed
+    var y_final = y_base * y_intensity * DIRECTION + difficulty_bonus
 
     vertical_velocity_changed.emit(y_final)
 
@@ -267,3 +270,8 @@ func _on_invincibility_timer_timeout():
 
 func start():
     _change_state(PlayerState.MOVE)
+
+
+func increase_difficulty():
+    _difficulty_level += 1
+    print_debug("Difficulty increased to %s" % _difficulty_level)

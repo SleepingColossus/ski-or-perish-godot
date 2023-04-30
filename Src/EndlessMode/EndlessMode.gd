@@ -12,8 +12,10 @@ var _previous_segment : Map
 var _current_segment : Map
 
 const SCORE_FACTOR = 10000
+const DIFFICULTY_THRESHOLD = 100
 var _game_velocity : float
 var _total_distance : float
+var _previous_difficulty: int = 0
 
 func _ready():
     $Player.vertical_velocity_changed.connect(_on_Player_vertical_velocity_changed)
@@ -33,6 +35,12 @@ func _process(_delta):
     _total_distance += _game_velocity
     var score = int(_total_distance / SCORE_FACTOR)
     $GameplayInterface.update_score(score)
+
+    var difficulty = int(score / DIFFICULTY_THRESHOLD)
+    if difficulty != _previous_difficulty:
+        $Player.increase_difficulty()
+
+    _previous_difficulty = difficulty
 
 func _next_map():
     _previous_segment = _current_segment
