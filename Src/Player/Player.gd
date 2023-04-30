@@ -137,7 +137,7 @@ func _adjust_velocity():
     var y_base := accelerated_speed if _accelerating else base_speed
     var y_intensity := _get_y_intensity()
     var difficulty_bonus = _difficulty_level * bonus_speed
-    var y_final = y_base * y_intensity * DIRECTION + difficulty_bonus
+    var y_final = (y_base + difficulty_bonus) * y_intensity * DIRECTION
 
     vertical_velocity_changed.emit(y_final)
 
