@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dxclox5api1f8"]
+[gd_scene load_steps=56 format=3 uid="uid://dxclox5api1f8"]
 
 [ext_resource type="Script" path="res://EndlessMode/EndlessMode.gd" id="1_anuxd"]
 [ext_resource type="PackedScene" uid="uid://br7hb7jwykgxj" path="res://Maps/Map_CC_01.tscn" id="2_0ecks"]
@@ -13,8 +13,15 @@
 [ext_resource type="PackedScene" uid="uid://dx61vmd6ct16i" path="res://Maps/Map_LL_02.tscn" id="6_7tc6f"]
 [ext_resource type="PackedScene" uid="uid://bysl478kok4b7" path="res://Maps/Map_LL_03.tscn" id="7_ooovr"]
 [ext_resource type="PackedScene" uid="uid://b8s88tfl253wg" path="res://Maps/Map_LR_01.tscn" id="8_po815"]
+[ext_resource type="PackedScene" uid="uid://bpor1318y17ee" path="res://Maps/Map_LC_04.tscn" id="9_ojv5y"]
+[ext_resource type="PackedScene" uid="uid://05sbo5hs64sy" path="res://Maps/Map_LC_05.tscn" id="10_c253s"]
+[ext_resource type="PackedScene" uid="uid://bp165l7d008gv" path="res://Maps/Map_LC_06.tscn" id="11_mhhq8"]
+[ext_resource type="PackedScene" uid="uid://b5rj7safgq6am" path="res://Maps/Map_LC_07.tscn" id="12_wqjyp"]
+[ext_resource type="PackedScene" uid="uid://d0bp1d8rnmpfm" path="res://Maps/Map_LC_08.tscn" id="13_e3cn5"]
 [ext_resource type="PackedScene" uid="uid://d3hulm1ydslyl" path="res://Maps/Map_CL_02.tscn" id="13_td5dv"]
+[ext_resource type="PackedScene" uid="uid://cgd55pakndmhs" path="res://Maps/Map_LC_09.tscn" id="14_as4e2"]
 [ext_resource type="PackedScene" uid="uid://dh4mb3vp2jv1o" path="res://Maps/Map_CL_03.tscn" id="14_me1cv"]
+[ext_resource type="PackedScene" uid="uid://dlet7sf7h4p8k" path="res://Maps/Map_LC_10.tscn" id="15_8elg2"]
 [ext_resource type="PackedScene" uid="uid://safglshfcxhj" path="res://Maps/Map_CR_01.tscn" id="15_fgf0t"]
 [ext_resource type="PackedScene" uid="uid://ck6g0u4ksc5tn" path="res://Maps/Map_CR_02.tscn" id="16_closi"]
 [ext_resource type="PackedScene" uid="uid://bq1mg18gqe8rm" path="res://Maps/Map_CR_03.tscn" id="17_1v8es"]
@@ -51,7 +58,7 @@
 
 [node name="EndlessMode" type="Node2D"]
 script = ExtResource("1_anuxd")
-left_segments = Array[PackedScene]([ExtResource("4_b206u"), ExtResource("3_5wlba"), ExtResource("4_mffbj"), ExtResource("5_bjlmf"), ExtResource("6_7tc6f"), ExtResource("7_ooovr"), ExtResource("8_po815")])
+left_segments = Array[PackedScene]([ExtResource("4_b206u"), ExtResource("3_5wlba"), ExtResource("4_mffbj"), ExtResource("5_bjlmf"), ExtResource("6_7tc6f"), ExtResource("7_ooovr"), ExtResource("8_po815"), ExtResource("9_ojv5y"), ExtResource("10_c253s"), ExtResource("11_mhhq8"), ExtResource("12_wqjyp"), ExtResource("13_e3cn5"), ExtResource("14_as4e2"), ExtResource("15_8elg2")])
 center_segments = Array[PackedScene]([ExtResource("2_0ecks"), ExtResource("4_kia0c"), ExtResource("3_4sebd"), ExtResource("3_7r0kw"), ExtResource("13_td5dv"), ExtResource("14_me1cv"), ExtResource("15_fgf0t"), ExtResource("16_closi"), ExtResource("17_1v8es"), ExtResource("18_phl5b"), ExtResource("19_r7aga"), ExtResource("20_oxvcm"), ExtResource("21_g81sg"), ExtResource("22_b4c0s"), ExtResource("23_rrycg"), ExtResource("24_645tx"), ExtResource("25_r322r"), ExtResource("26_e15yi"), ExtResource("27_jhncu"), ExtResource("28_t2uob"), ExtResource("29_jncis"), ExtResource("30_xl4x3"), ExtResource("31_5baio"), ExtResource("32_ilfb3"), ExtResource("33_udf0h"), ExtResource("34_60xms"), ExtResource("35_a0csn"), ExtResource("36_eij7q"), ExtResource("37_wquw8"), ExtResource("38_34clq")])
 right_segments = Array[PackedScene]([ExtResource("18_jjunu"), ExtResource("19_f85ts"), ExtResource("20_h25g6"), ExtResource("21_c8w00"), ExtResource("22_wo1ex"), ExtResource("23_c7r8c"), ExtResource("24_43fdt")])
 
