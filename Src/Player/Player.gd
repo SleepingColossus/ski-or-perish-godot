@@ -40,11 +40,9 @@ var health : int = max_health
 
 # multiply vertical velocity by -1 instead of using negative literals which look ugly
 const DIRECTION := -1
-@export var base_speed :float = 200
-@export var accelerated_speed :float = 400
+@export var base_speed :float = 400
 @export var bonus_speed = 50
 var _difficulty_level = 0
-var _accelerating := false
 
 var _current_state = PlayerState.IDLE
 var _angle := Angle.DOWN
@@ -78,11 +76,6 @@ func _process(delta):
         move_and_collide(velocity)
 
     if _current_state == PlayerState.MOVE or _current_state == PlayerState.INVINCIBLE:
-        if Input.is_action_just_pressed("down"):
-            _accelerating = true
-        if Input.is_action_just_released("down"):
-            _accelerating = false
-
         var x_velocity = _get_x_intensity() * base_speed * delta
         velocity.x = x_velocity
         move_and_collide(velocity)
@@ -134,10 +127,9 @@ func _rotate_angle(angle_delta: int):
 
 
 func _adjust_velocity():
-    var y_base := accelerated_speed if _accelerating else base_speed
     var y_intensity := _get_y_intensity()
     var difficulty_bonus = _difficulty_level * bonus_speed
-    var y_final = (y_base + difficulty_bonus) * y_intensity * DIRECTION
+    var y_final = (base_speed + difficulty_bonus) * y_intensity * DIRECTION
 
     vertical_velocity_changed.emit(y_final)
 
