@@ -36,6 +36,7 @@ enum Angle {
 
 signal vertical_velocity_changed(new_velocity: float)
 signal health_changed(new_health: int)
+signal full_circle_jump_performed()
 
 @export var max_health : int = 3
 var health : int = max_health
@@ -127,6 +128,7 @@ func _rotate_angle(angle_delta: int):
             _times_turned_this_jump = 0
             $Spin360Sound.play()
             $Spin360Animation.play("360_vfx_on")
+            full_circle_jump_performed.emit()
 
 
 func _adjust_velocity():

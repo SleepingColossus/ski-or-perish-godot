@@ -16,10 +16,13 @@ const DIFFICULTY_THRESHOLD = 100
 var _game_velocity : float
 var _total_distance : float
 var _previous_difficulty: int = 0
+@export var score_360_jump : int
+var _total_360_jumps : int = 0
 
 func _ready():
     $Player.vertical_velocity_changed.connect(_on_Player_vertical_velocity_changed)
     $Player.health_changed.connect(_on_Player_health_changed)
+    $Player.full_circle_jump_performed.connect(_on_Player_full_circle_jump)
 
     var initial_segment = center_segments[randi() % center_segments.size()]
     var map = initial_segment.instantiate()
@@ -32,8 +35,8 @@ func _ready():
 
 
 func _process(_delta):
-    _total_distance += _game_velocity
-    var score = int(_total_distance / SCORE_FACTOR)
+    _total_distance += abs(_game_velocity)
+    var score = int(_total_distance / SCORE_FACTOR) + (_total_360_jumps * score_360_jump)
     $GameplayInterface.update_score(score)
 
     var difficulty = int(score / DIFFICULTY_THRESHOLD)
@@ -73,6 +76,11 @@ func _on_Player_vertical_velocity_changed(new_velocity: float):
 
 func _on_Player_health_changed(new_health: int):
     $GameplayInterface/HeartIndicators.set_health(new_health)
+
+
+func _on_Player_full_circle_jump():
+    _total_360_jumps += 1
+
 
 func _on_map_destroyed(map: Map):
     map.map_destroyed.disconnect(_on_map_destroyed)
