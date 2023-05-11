@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt3kmu30x6ahb"]
+[gd_scene load_steps=6 format=3 uid="uid://bt3kmu30x6ahb"]
 
 [ext_resource type="Texture2D" uid="uid://ci4ty2cftgdal" path="res://MainMenu/MenuScreen.png" id="1_f4fl7"]
 [ext_resource type="AudioStream" uid="uid://bxinr6q02e2lj" path="res://MainMenu/MenuTheme.ogg" id="2_fye4e"]
 [ext_resource type="Texture2D" uid="uid://cj43wadd48gqw" path="res://MainMenu/Logo.png" id="3_yb857"]
+[ext_resource type="Theme" uid="uid://db1m86kifohrb" path="res://MainMenu/MenuButtonTheme.tres" id="4_gbstf"]
 [ext_resource type="Script" path="res://MainMenu/MenuButton.gd" id="4_hcr1d"]
 
 [node name="MainMenu" type="Control"]
@@ -43,31 +44,36 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -206.0
-offset_top = -20.0
+offset_top = -19.0
 offset_right = -64.0
-offset_bottom = 116.0
+offset_bottom = 163.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_constants/separation = 30
 
 [node name="Endless" type="Button" parent="MenuItems"]
 layout_mode = 2
+theme = ExtResource("4_gbstf")
 text = "Play"
 script = ExtResource("4_hcr1d")
 scene_to_load = "res://EndlessMode/EndlessMode.tscn"
 
 [node name="Tutorial" type="Button" parent="MenuItems"]
 layout_mode = 2
+theme = ExtResource("4_gbstf")
 text = "Tutorial"
 script = ExtResource("4_hcr1d")
 scene_to_load = "res://EndlessMode/EndlessMode.tscn"
 
 [node name="Toggle Fullscreen" type="Button" parent="MenuItems"]
 layout_mode = 2
+theme = ExtResource("4_gbstf")
 text = "Toggle Fullscreen"
 script = ExtResource("4_hcr1d")
 
 [node name="Exit" type="Button" parent="MenuItems"]
 layout_mode = 2
+theme = ExtResource("4_gbstf")
 text = "Exit"
 script = ExtResource("4_hcr1d")
 
