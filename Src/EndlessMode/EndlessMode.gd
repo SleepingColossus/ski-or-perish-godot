@@ -19,6 +19,8 @@ var _previous_difficulty: int = 0
 @export var score_360_jump : int
 var _total_360_jumps : int = 0
 
+var _can_retry := false
+
 func _ready():
     $Player.vertical_velocity_changed.connect(_on_Player_vertical_velocity_changed)
     $Player.health_changed.connect(_on_Player_health_changed)
@@ -45,6 +47,13 @@ func _process(_delta):
         $Player.increase_difficulty()
 
     _previous_difficulty = difficulty
+
+    if Input.is_action_pressed("ui_cancel"):
+        get_tree().change_scene_to_file("res://MainMenu/MainMenu.tscn")
+
+    if Input.is_action_pressed("retry") and _can_retry:
+        get_tree().reload_current_scene()
+
 
 func _next_map():
     _previous_segment = _current_segment
@@ -94,3 +103,7 @@ func _on_map_destroyed(map: Map):
 
 func _on_start_timer_timeout():
     $Player.start()
+
+
+func _on_retry_timer_timeout():
+    _can_retry = true
