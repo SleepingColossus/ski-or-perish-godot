@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b0bxiwitqqr1n"]
+[gd_scene load_steps=53 format=3 uid="uid://b0bxiwitqqr1n"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_f2isu"]
 [ext_resource type="Texture2D" uid="uid://b2q7hxjawlwx1" path="res://Player/PlayerHurt.png" id="2_yu4o2"]
@@ -10,6 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://b4vs221258v1w" path="res://Player/Jump.ogg" id="8_evauf"]
 [ext_resource type="AudioStream" uid="uid://carylbq68kdy6" path="res://Player/Spin360.ogg" id="9_l3o2x"]
 [ext_resource type="Texture2D" uid="uid://bjrrgqu4fm4qi" path="res://Player/PlayerVFX.png" id="10_kuv76"]
+[ext_resource type="AudioStream" uid="uid://bby8nwcw7jpkd" path="res://MainMenu/MenuNavigation.ogg" id="11_frkh5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0qj03"]
+radius = 16.0
+height = 36.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2rv7p"]
 atlas = ExtResource("2_yu4o2")
@@ -242,10 +247,6 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0qj03"]
-radius = 16.0
-height = 36.0
-
 [sub_resource type="Animation" id="Animation_00pgx"]
 resource_name = "flicker_on"
 length = 0.2
@@ -354,7 +355,13 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-1, 0)
+collision_layer = 256
+collision_mask = 256
 script = ExtResource("1_f2isu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14)
+shape = SubResource("CapsuleShape2D_0qj03")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 z_index = 100
@@ -422,6 +429,9 @@ frame_progress = 0.906963
 libraries = {
 "": SubResource("AnimationLibrary_7e1e0")
 }
+
+[node name="FullHealth" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_frkh5")
 
 [connection signal="timeout" from="TurnTimerGround" to="." method="_on_turn_timer_ground_timeout"]
 [connection signal="timeout" from="TurnTimerAir" to="." method="_on_turn_timer_air_timeout"]

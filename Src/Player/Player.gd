@@ -1,3 +1,5 @@
+class_name Player
+
 extends CharacterBody2D
 
 enum PlayerState {
@@ -268,3 +270,12 @@ func start():
 func increase_difficulty():
     _difficulty_level += 1
     print_debug("Difficulty increased to %s" % _difficulty_level)
+
+
+func heal():
+    if health < max_health:
+        health = health + 1
+        $VictorySound.play()
+    else:
+        $FullHealth.play()
+    health_changed.emit(health)
