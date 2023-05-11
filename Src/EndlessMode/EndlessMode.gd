@@ -23,6 +23,7 @@ func _ready():
     $Player.vertical_velocity_changed.connect(_on_Player_vertical_velocity_changed)
     $Player.health_changed.connect(_on_Player_health_changed)
     $Player.full_circle_jump_performed.connect(_on_Player_full_circle_jump)
+    $Player.game_lost.connect(_on_Player_game_lost)
 
     var initial_segment = center_segments[randi() % center_segments.size()]
     var map = initial_segment.instantiate()
@@ -80,6 +81,10 @@ func _on_Player_health_changed(new_health: int):
 
 func _on_Player_full_circle_jump():
     _total_360_jumps += 1
+
+
+func _on_Player_game_lost():
+    $GameplayInterface.show_game_over_info()
 
 
 func _on_map_destroyed(map: Map):

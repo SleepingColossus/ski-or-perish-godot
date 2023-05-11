@@ -37,6 +37,7 @@ enum Angle {
 signal vertical_velocity_changed(new_velocity: float)
 signal health_changed(new_health: int)
 signal full_circle_jump_performed()
+signal game_lost()
 
 @export var max_health : int = 3
 var health : int = max_health
@@ -181,6 +182,7 @@ func _change_state(state):
             sprite.play("crash")
             vertical_velocity_changed.emit(0)
             $CrashSound.play()
+            game_lost.emit()
 
 func land():
     if _angle >= Angle.LEFT and _angle <= Angle.RIGHT:

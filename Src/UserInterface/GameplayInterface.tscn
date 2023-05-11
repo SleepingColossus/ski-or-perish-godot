@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnovwqklafbkl"]
+[gd_scene load_steps=11 format=3 uid="uid://bnovwqklafbkl"]
 
 [ext_resource type="Texture2D" uid="uid://cr811565hnbkr" path="res://UserInterface/Countdown3.png" id="1_bqfkb"]
 [ext_resource type="Script" path="res://UserInterface/GameplayInterface.gd" id="1_dhg1e"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://UserInterface/HeartIndicators.gd" id="6_4xvsi"]
 [ext_resource type="PackedScene" uid="uid://bbr5ymod3g317" path="res://UserInterface/HeartIndicator.tscn" id="6_qvf5m"]
 [ext_resource type="FontFile" uid="uid://btlfmb203asqs" path="res://UserInterface/ScoreFont.png" id="8_k5oyk"]
+[ext_resource type="PackedScene" uid="uid://bwvl3f7hnlj3y" path="res://UserInterface/GameOverInfo.tscn" id="9_aarqj"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_kq8p2"]
 frames = 4
@@ -65,5 +66,8 @@ grow_horizontal = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_k5oyk")
 text = "0"
+
+[node name="GameOverInfo" parent="." instance=ExtResource("9_aarqj")]
+visible = false
 
 [connection signal="timeout" from="CountdownContainer/HideCountdownTimer" to="." method="_on_hide_countdown_timer_timeout"]
