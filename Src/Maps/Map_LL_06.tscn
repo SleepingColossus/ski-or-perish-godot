@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu0d6nb0v2kxx"]
+[gd_scene load_steps=4 format=3 uid="uid://cu0d6nb0v2kxx"]
 
 [ext_resource type="Script" path="res://Maps/Map.gd" id="1_n7efm"]
 [ext_resource type="TileSet" uid="uid://dwtbm2m0gfgr" path="res://Tiles/tile_set.tres" id="2_irc4n"]
+[ext_resource type="PackedScene" uid="uid://cmqcxdta7uoq5" path="res://Heart/Heart.tscn" id="3_b4bp6"]
 
 [node name="Map_CC_01" type="CharacterBody2D"]
 script = ExtResource("1_n7efm")
@@ -19,3 +20,6 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(131081, 1114113, 5, 131084, 1114113, 5, 327689, 1114113, 5, 458752, 851969, 8, 393216, 851969, 8, 327680, 851969, 8, 262144, 851969, 8, 196608, 851969, 8, 131072, 851969, 8, 65536, 851969, 8, 15, 983041, 3, 65551, 983041, 3, 131087, 983041, 3, 196623, 983041, 3, 262159, 983041, 3, 327695, 983041, 3, 393231, 983041, 3, 458767, 983041, 3, 524303, 983041, 3)
+
+[node name="Heart" parent="." instance=ExtResource("3_b4bp6")]
+position = Vector2(766, 259)

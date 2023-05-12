@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtjq7382ghvt6"]
+[gd_scene load_steps=4 format=3 uid="uid://dtjq7382ghvt6"]
 
 [ext_resource type="Script" path="res://Maps/Map.gd" id="1_mile0"]
 [ext_resource type="TileSet" uid="uid://dwtbm2m0gfgr" path="res://Tiles/tile_set.tres" id="2_inatq"]
+[ext_resource type="PackedScene" uid="uid://cmqcxdta7uoq5" path="res://Heart/Heart.tscn" id="3_4uooj"]
 
 [node name="Map_CC_01" type="CharacterBody2D"]
 script = ExtResource("1_mile0")
@@ -20,3 +21,6 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(458763, 1245185, 3, 524298, 917505, 5, 458762, 917505, 5, 393226, 917505, 5, 327689, 917505, 5, 262152, 917505, 5, 196615, 917505, 5, 131078, 917505, 5, 6, 917505, 5, 7, 917505, 5, 8, 917505, 5, 9, 917505, 5, 10, 917505, 5, 11, 917505, 5, 12, 917505, 5, 13, 917505, 5, 14, 917505, 5, 15, 917505, 5, 65551, 917505, 5, 131087, 917505, 5, 196623, 917505, 5, 262159, 917505, 5, 327695, 917505, 5, 393231, 917505, 5, 458767, 917505, 5, 524303, 917505, 5, 524302, 917505, 5, 524301, 917505, 5, 524300, 917505, 5, 524299, 917505, 5, 1, 1441793, 0, 65537, 1441793, 1, 458753, 1441793, 1, 524289, 1441793, 2, 393217, 1441793, 1, 327681, 1441793, 1, 262145, 1441793, 1, 196609, 1441793, 1, 131073, 1441793, 1, 0, 1376257, 0, 524288, 1376257, 2, 458752, 1376257, 1, 393216, 1376257, 1, 327680, 1376257, 1, 262144, 1376257, 1, 196608, 1376257, 1, 131072, 1376257, 1, 65536, 1376257, 1)
+
+[node name="Heart" parent="." instance=ExtResource("3_4uooj")]
+position = Vector2(769, 253)
