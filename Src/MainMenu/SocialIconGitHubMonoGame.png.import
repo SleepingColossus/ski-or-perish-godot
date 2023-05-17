@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwjmyosk011yr"
-path="res://.godot/imported/Instagram.png-1e43795954e03ec6c1a295480007322c.ctex"
+uid="uid://cffdecis6u7ht"
+path="res://.godot/imported/SocialIconGitHubMonoGame.png-f0539ba8f94c6650f00706402bcd72f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainMenu/Instagram.png"
-dest_files=["res://.godot/imported/Instagram.png-1e43795954e03ec6c1a295480007322c.ctex"]
+source_file="res://MainMenu/SocialIconGitHubMonoGame.png"
+dest_files=["res://.godot/imported/SocialIconGitHubMonoGame.png-f0539ba8f94c6650f00706402bcd72f2.ctex"]
 
 [params]
 

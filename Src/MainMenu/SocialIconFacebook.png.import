@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1itiu6rgmxf4"
-path="res://.godot/imported/Facebook.png-2d6a93566a1bad71475b463943f8b3a4.ctex"
+path="res://.godot/imported/SocialIconFacebook.png-e96a66a5d428334ec560687caa69f063.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainMenu/Facebook.png"
-dest_files=["res://.godot/imported/Facebook.png-2d6a93566a1bad71475b463943f8b3a4.ctex"]
+source_file="res://MainMenu/SocialIconFacebook.png"
+dest_files=["res://.godot/imported/SocialIconFacebook.png-e96a66a5d428334ec560687caa69f063.ctex"]
 
 [params]
 

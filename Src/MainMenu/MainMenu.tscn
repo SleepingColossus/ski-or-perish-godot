@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bt3kmu30x6ahb"]
+[gd_scene load_steps=14 format=3 uid="uid://hyihhau12clh"]
 
 [ext_resource type="Texture2D" uid="uid://ci4ty2cftgdal" path="res://MainMenu/MenuScreen.png" id="1_f4fl7"]
 [ext_resource type="AudioStream" uid="uid://bxinr6q02e2lj" path="res://MainMenu/MenuTheme.ogg" id="2_fye4e"]
@@ -6,12 +6,13 @@
 [ext_resource type="Theme" uid="uid://db1m86kifohrb" path="res://MainMenu/MenuButtonTheme.tres" id="4_gbstf"]
 [ext_resource type="Script" path="res://MainMenu/MenuButton.gd" id="4_hcr1d"]
 [ext_resource type="Texture2D" uid="uid://bj1f6xi3cmtp6" path="res://MainMenu/Follow us.png" id="6_3yc63"]
-[ext_resource type="Texture2D" uid="uid://b1itiu6rgmxf4" path="res://MainMenu/Facebook.png" id="7_83ncw"]
-[ext_resource type="Texture2D" uid="uid://coid1tuo35wha" path="res://MainMenu/Twitter.png" id="8_sskly"]
-[ext_resource type="Texture2D" uid="uid://dwjmyosk011yr" path="res://MainMenu/Instagram.png" id="9_x2oba"]
-[ext_resource type="Texture2D" uid="uid://dpyftph0mtcv" path="res://MainMenu/TikTok.png" id="10_y4pts"]
-[ext_resource type="Texture2D" uid="uid://rnmave43hm7o" path="res://MainMenu/GitHubGodot.png" id="11_qq8uo"]
-[ext_resource type="Texture2D" uid="uid://cffdecis6u7ht" path="res://MainMenu/GitHubMonoGame.png" id="12_j8k7k"]
+[ext_resource type="Texture2D" uid="uid://b1itiu6rgmxf4" path="res://MainMenu/SocialIconFacebook.png" id="7_1u1ul"]
+[ext_resource type="Texture2D" uid="uid://coid1tuo35wha" path="res://MainMenu/SocialIconTwitter.png" id="8_sskly"]
+[ext_resource type="Script" path="res://MainMenu/SocialLink.gd" id="8_sxfpb"]
+[ext_resource type="Texture2D" uid="uid://dwjmyosk011yr" path="res://MainMenu/SocialIconInstagram.png" id="10_uajen"]
+[ext_resource type="Texture2D" uid="uid://dpyftph0mtcv" path="res://MainMenu/SocialIconTikTok.png" id="11_osu4j"]
+[ext_resource type="Texture2D" uid="uid://rnmave43hm7o" path="res://MainMenu/SocialIconGitHubGodot.png" id="12_5hbxh"]
+[ext_resource type="Texture2D" uid="uid://cffdecis6u7ht" path="res://MainMenu/SocialIconGitHubMonoGame.png" id="13_7sscn"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -103,31 +104,49 @@ offset_bottom = 202.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Facebook" type="TextureRect" parent="SocialLinks"]
+[node name="Facebook" type="TextureButton" parent="SocialLinks"]
 layout_mode = 2
-texture = ExtResource("7_83ncw")
+texture_normal = ExtResource("7_1u1ul")
+script = ExtResource("8_sxfpb")
+url = "https://www.facebook.com/sleepingcolossus"
 
-[node name="Twitter" type="TextureRect" parent="SocialLinks"]
+[node name="Twitter" type="TextureButton" parent="SocialLinks"]
 layout_mode = 2
-texture = ExtResource("8_sskly")
+texture_normal = ExtResource("8_sskly")
+script = ExtResource("8_sxfpb")
+url = "https://www.twitter.com/SleepColossus"
 
-[node name="Instagram" type="TextureRect" parent="SocialLinks"]
+[node name="Instagram" type="TextureButton" parent="SocialLinks"]
 layout_mode = 2
-texture = ExtResource("9_x2oba")
+texture_normal = ExtResource("10_uajen")
+script = ExtResource("8_sxfpb")
+url = "https://www.instagram.com/sleepingcolossus/"
 
-[node name="TikTok" type="TextureRect" parent="SocialLinks"]
+[node name="TikTok" type="TextureButton" parent="SocialLinks"]
 layout_mode = 2
-texture = ExtResource("10_y4pts")
+texture_normal = ExtResource("11_osu4j")
+script = ExtResource("8_sxfpb")
+url = "https://www.tiktok.com/@sleepingcolossus"
 
-[node name="GitHubGodot" type="TextureRect" parent="SocialLinks"]
+[node name="GitHubGodot" type="TextureButton" parent="SocialLinks"]
 layout_mode = 2
-texture = ExtResource("11_qq8uo")
+texture_normal = ExtResource("12_5hbxh")
+script = ExtResource("8_sxfpb")
+url = "https://github.com/SleepingColossus/ski-or-perish-godot"
 
-[node name="GitHubMonoGame" type="TextureRect" parent="SocialLinks"]
+[node name="GitHubMonoGame" type="TextureButton" parent="SocialLinks"]
 layout_mode = 2
-texture = ExtResource("12_j8k7k")
+texture_normal = ExtResource("13_7sscn")
+script = ExtResource("8_sxfpb")
+url = "https://github.com/SleepingColossus/ski-or-perish-monogame"
 
 [connection signal="pressed" from="MenuItems/Endless" to="MenuItems/Endless" method="_on_pressed"]
 [connection signal="pressed" from="MenuItems/Tutorial" to="MenuItems/Endless" method="_on_pressed"]
 [connection signal="pressed" from="MenuItems/Toggle Fullscreen" to="MenuItems/Endless" method="_on_toggle_fullscreen_pressed"]
 [connection signal="pressed" from="MenuItems/Exit" to="MenuItems/Endless" method="_on_exit_pressed"]
+[connection signal="pressed" from="SocialLinks/Facebook" to="SocialLinks/Facebook" method="_on_pressed"]
+[connection signal="pressed" from="SocialLinks/Twitter" to="SocialLinks/Twitter" method="_on_pressed"]
+[connection signal="pressed" from="SocialLinks/Instagram" to="SocialLinks/Instagram" method="_on_pressed"]
+[connection signal="pressed" from="SocialLinks/TikTok" to="SocialLinks/TikTok" method="_on_pressed"]
+[connection signal="pressed" from="SocialLinks/GitHubGodot" to="SocialLinks/GitHubGodot" method="_on_pressed"]
+[connection signal="pressed" from="SocialLinks/GitHubMonoGame" to="SocialLinks/GitHubMonoGame" method="_on_pressed"]

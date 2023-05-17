@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rnmave43hm7o"
-path="res://.godot/imported/GitHubGodot.png-f34fa5b32ad0b89693710f88e81461ce.ctex"
+uid="uid://dpyftph0mtcv"
+path="res://.godot/imported/SocialIconTikTok.png-586135c53d5929767fc27eab9e6ebb8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainMenu/GitHubGodot.png"
-dest_files=["res://.godot/imported/GitHubGodot.png-f34fa5b32ad0b89693710f88e81461ce.ctex"]
+source_file="res://MainMenu/SocialIconTikTok.png"
+dest_files=["res://.godot/imported/SocialIconTikTok.png-586135c53d5929767fc27eab9e6ebb8d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cffdecis6u7ht"
-path="res://.godot/imported/GitHubMonoGame.png-85104c2b0b6481c0e972b00e2c1ba098.ctex"
+uid="uid://coid1tuo35wha"
+path="res://.godot/imported/SocialIconTwitter.png-4c2dc7a08c3cb15fa722dd05cc4efbc1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainMenu/GitHubMonoGame.png"
-dest_files=["res://.godot/imported/GitHubMonoGame.png-85104c2b0b6481c0e972b00e2c1ba098.ctex"]
+source_file="res://MainMenu/SocialIconTwitter.png"
+dest_files=["res://.godot/imported/SocialIconTwitter.png-4c2dc7a08c3cb15fa722dd05cc4efbc1.ctex"]
 
 [params]
 
