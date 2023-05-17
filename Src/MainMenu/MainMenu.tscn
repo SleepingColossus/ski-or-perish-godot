@@ -30,31 +30,24 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_f4fl7")
+flip_h = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -270.0
-offset_right = 810.0
+offset_right = 1080.0
 offset_bottom = 1080.0
-grow_horizontal = 0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_yb857")
 
 [node name="MenuItems" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -206.0
-offset_top = -19.0
-offset_right = -64.0
-offset_bottom = 163.0
-grow_horizontal = 0
+offset_left = 64.0
+offset_top = -43.0
+offset_right = 206.0
+offset_bottom = 139.0
 grow_vertical = 2
 theme_override_constants/separation = 30
 
@@ -85,83 +78,53 @@ text = "Exit"
 script = ExtResource("4_hcr1d")
 
 [node name="FollowUs" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 381.0
-offset_bottom = 72.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 56.0
+grow_horizontal = 0
 texture = ExtResource("6_3yc63")
 
-[node name="Facebook" type="TextureRect" parent="."]
+[node name="SocialLinks" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = -189.0
-offset_right = 96.0
-offset_bottom = -125.0
+offset_left = -88.0
+offset_top = -202.0
+offset_right = -24.0
+offset_bottom = 202.0
+grow_horizontal = 0
 grow_vertical = 2
+
+[node name="Facebook" type="TextureRect" parent="SocialLinks"]
+layout_mode = 2
 texture = ExtResource("7_83ncw")
 
-[node name="Twitter" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = -117.0
-offset_right = 96.0
-offset_bottom = -53.0
-grow_vertical = 2
+[node name="Twitter" type="TextureRect" parent="SocialLinks"]
+layout_mode = 2
 texture = ExtResource("8_sskly")
 
-[node name="Instagram" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = -45.0
-offset_right = 96.0
-offset_bottom = 19.0
-grow_vertical = 2
+[node name="Instagram" type="TextureRect" parent="SocialLinks"]
+layout_mode = 2
 texture = ExtResource("9_x2oba")
 
-[node name="TikTok" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = 27.0
-offset_right = 96.0
-offset_bottom = 91.0
-grow_vertical = 2
+[node name="TikTok" type="TextureRect" parent="SocialLinks"]
+layout_mode = 2
 texture = ExtResource("10_y4pts")
 
-[node name="GitHubGodot" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = 99.0
-offset_right = 96.0
-offset_bottom = 163.0
-grow_vertical = 2
+[node name="GitHubGodot" type="TextureRect" parent="SocialLinks"]
+layout_mode = 2
 texture = ExtResource("11_qq8uo")
 
-[node name="GitHubMonoGame" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = 171.0
-offset_right = 96.0
-offset_bottom = 235.0
-grow_vertical = 2
+[node name="GitHubMonoGame" type="TextureRect" parent="SocialLinks"]
+layout_mode = 2
 texture = ExtResource("12_j8k7k")
 
 [connection signal="pressed" from="MenuItems/Endless" to="MenuItems/Endless" method="_on_pressed"]
