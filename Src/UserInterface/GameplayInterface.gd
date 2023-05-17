@@ -22,3 +22,19 @@ func update_score(new_score: int):
 
 func show_game_over_info():
     $GameOverInfo.visible = true
+
+
+func _on_touch_button_left_button_down():
+    Global.left_button_pressed = true
+
+
+func _on_touch_button_left_button_up():
+    Global.left_button_pressed = false
+
+
+func _on_touch_button_right_button_down():
+    Global.right_button_pressed = true
+
+
+func _on_touch_button_right_button_up():
+    Global.right_button_pressed = false

@@ -73,9 +73,9 @@ func _ready():
 
 func _process(delta):
     if _current_state == PlayerState.MOVE or _current_state == PlayerState.JUMP or _current_state == PlayerState.INVINCIBLE:
-        if Input.is_action_pressed("left"):
+        if Input.is_action_pressed("left") or Global.left_button_pressed:
             _rotate_angle(-1)
-        elif Input.is_action_pressed("right"):
+        elif Input.is_action_pressed("right") or Global.right_button_pressed:
             _rotate_angle(1)
 
         move_and_collide(velocity)

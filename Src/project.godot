@@ -14,6 +14,10 @@ config/name="Ski or Perish!"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://UserInterface/Global.gd"
+
 [display]
 
 window/size/viewport_width=1024

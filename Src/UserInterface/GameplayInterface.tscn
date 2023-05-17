@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bnovwqklafbkl"]
+[gd_scene load_steps=15 format=3 uid="uid://bnovwqklafbkl"]
 
 [ext_resource type="Texture2D" uid="uid://cr811565hnbkr" path="res://UserInterface/Countdown3.png" id="1_bqfkb"]
 [ext_resource type="Script" path="res://UserInterface/GameplayInterface.gd" id="1_dhg1e"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://bbr5ymod3g317" path="res://UserInterface/HeartIndicator.tscn" id="6_qvf5m"]
 [ext_resource type="FontFile" uid="uid://btlfmb203asqs" path="res://UserInterface/ScoreFont.png" id="8_k5oyk"]
 [ext_resource type="PackedScene" uid="uid://bwvl3f7hnlj3y" path="res://UserInterface/GameOverInfo.tscn" id="9_aarqj"]
+[ext_resource type="Texture2D" uid="uid://b1bu4cmdfeqh0" path="res://UserInterface/KeyLeftUp.png" id="10_u81yb"]
+[ext_resource type="Texture2D" uid="uid://bvo1ggq84ipr1" path="res://UserInterface/KeyLeftDown.png" id="11_7cw1o"]
+[ext_resource type="Texture2D" uid="uid://cbogck7aow6cq" path="res://UserInterface/KeyRightUp.png" id="12_nbeel"]
+[ext_resource type="Texture2D" uid="uid://dwn36h6fn1tdt" path="res://UserInterface/KeyRightDown.png" id="13_cex18"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_kq8p2"]
 frames = 4
@@ -70,4 +74,34 @@ text = "0"
 [node name="GameOverInfo" parent="." instance=ExtResource("9_aarqj")]
 visible = false
 
+[node name="TouchButtons" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TouchButtonLeft" type="TextureButton" parent="TouchButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture_normal = ExtResource("10_u81yb")
+texture_pressed = ExtResource("11_7cw1o")
+
+[node name="TouchButtonRight" type="TextureButton" parent="TouchButtons"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("12_nbeel")
+texture_pressed = ExtResource("13_cex18")
+
 [connection signal="timeout" from="CountdownContainer/HideCountdownTimer" to="." method="_on_hide_countdown_timer_timeout"]
+[connection signal="button_down" from="TouchButtons/TouchButtonLeft" to="." method="_on_touch_button_left_button_down"]
+[connection signal="button_up" from="TouchButtons/TouchButtonLeft" to="." method="_on_touch_button_left_button_up"]
+[connection signal="button_down" from="TouchButtons/TouchButtonRight" to="." method="_on_touch_button_right_button_down"]
+[connection signal="button_up" from="TouchButtons/TouchButtonRight" to="." method="_on_touch_button_right_button_up"]
