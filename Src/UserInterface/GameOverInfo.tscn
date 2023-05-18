@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwvl3f7hnlj3y"]
+[gd_scene load_steps=11 format=3 uid="uid://bwvl3f7hnlj3y"]
 
 [ext_resource type="Texture2D" uid="uid://broxw77rnyuwj" path="res://UserInterface/GameOver.png" id="1_vkcx4"]
 [ext_resource type="Texture2D" uid="uid://dydlu4d1xuv84" path="res://UserInterface/Quit.png" id="2_78mte"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://dhq8fnblu85pl" path="res://UserInterface/KeyEscUp.png" id="3_8my8k"]
 [ext_resource type="Texture2D" uid="uid://2igvfwuu3f4i" path="res://UserInterface/KeyEscDown.png" id="4_fj1fx"]
 [ext_resource type="Texture2D" uid="uid://d2cael2wicm1f" path="res://UserInterface/TryAgain.png" id="5_sp14f"]
+[ext_resource type="Script" path="res://UserInterface/TouchRestart.gd" id="5_wfmym"]
 [ext_resource type="Texture2D" uid="uid://c3gjgxaw8kiyd" path="res://UserInterface/KeyRUp.png" id="6_7akch"]
 [ext_resource type="Texture2D" uid="uid://cky1s1rqinuhx" path="res://UserInterface/KeyRDown.png" id="7_rqxub"]
+[ext_resource type="Script" path="res://UserInterface/TouchExit.gd" id="9_p3s08"]
 
 [node name="GameOverInfo" type="VBoxContainer"]
 anchors_preset = 15
@@ -46,18 +48,20 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("5_sp14f")
 
-[node name="KeyUp" type="TextureRect" parent="HintContainer/RetryContainer"]
+[node name="KeyUp" type="TextureButton" parent="HintContainer/RetryContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("6_7akch")
+texture_normal = ExtResource("6_7akch")
+script = ExtResource("5_wfmym")
 
-[node name="KeyDown" type="TextureRect" parent="HintContainer/RetryContainer"]
+[node name="KeyDown" type="TextureButton" parent="HintContainer/RetryContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("7_rqxub")
+texture_normal = ExtResource("7_rqxub")
+script = ExtResource("5_wfmym")
 
 [node name="Timer" type="Timer" parent="HintContainer/RetryContainer"]
 wait_time = 0.5
@@ -75,22 +79,28 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_78mte")
 
-[node name="KeyUp" type="TextureRect" parent="HintContainer/QuitContainer"]
+[node name="KeyUp" type="TextureButton" parent="HintContainer/QuitContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_8my8k")
+texture_normal = ExtResource("3_8my8k")
+script = ExtResource("9_p3s08")
 
-[node name="KeyDown" type="TextureRect" parent="HintContainer/QuitContainer"]
+[node name="KeyDown" type="TextureButton" parent="HintContainer/QuitContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("4_fj1fx")
+texture_normal = ExtResource("4_fj1fx")
+script = ExtResource("9_p3s08")
 
 [node name="Timer" type="Timer" parent="HintContainer/QuitContainer"]
 wait_time = 0.5
 autostart = true
 
+[connection signal="pressed" from="HintContainer/RetryContainer/KeyUp" to="HintContainer/RetryContainer/KeyUp" method="_on_pressed"]
+[connection signal="pressed" from="HintContainer/RetryContainer/KeyDown" to="HintContainer/RetryContainer/KeyDown" method="_on_pressed"]
 [connection signal="timeout" from="HintContainer/RetryContainer/Timer" to="HintContainer/RetryContainer" method="_on_timer_timeout"]
+[connection signal="pressed" from="HintContainer/QuitContainer/KeyUp" to="HintContainer/QuitContainer/KeyUp" method="_on_pressed"]
+[connection signal="pressed" from="HintContainer/QuitContainer/KeyDown" to="HintContainer/QuitContainer/KeyDown" method="_on_pressed"]
 [connection signal="timeout" from="HintContainer/QuitContainer/Timer" to="HintContainer/QuitContainer" method="_on_timer_timeout"]
