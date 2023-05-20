@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://c32sdm0aucv8a"]
+
+[ext_resource type="Script" path="res://Demo/PremadeMode.gd" id="1_t08uq"]
+[ext_resource type="PackedScene" uid="uid://br7hb7jwykgxj" path="res://Maps/Map_CC_01.tscn" id="2_4d8xo"]
+[ext_resource type="PackedScene" uid="uid://cqnsu4mbmmlff" path="res://Maps/FinishLine.tscn" id="3_0wfav"]
+[ext_resource type="PackedScene" uid="uid://bpsmwdl12l2db" path="res://Maps/Map_CC_Temp.tscn" id="4_k5ep2"]
+[ext_resource type="PackedScene" uid="uid://b0bxiwitqqr1n" path="res://Player/Player.tscn" id="5_0xtp3"]
+[ext_resource type="PackedScene" uid="uid://bnovwqklafbkl" path="res://UserInterface/GameplayInterface.tscn" id="6_551wk"]
+
+[node name="FinishLine" type="Node2D"]
+script = ExtResource("1_t08uq")
+
+[node name="Maps" type="Node2D" parent="."]
+
+[node name="Map_CC_01" parent="Maps" instance=ExtResource("2_4d8xo")]
+
+[node name="Map_CC_02" parent="Maps" instance=ExtResource("2_4d8xo")]
+position = Vector2(0, 576)
+
+[node name="Map_CC_03" parent="Maps" instance=ExtResource("2_4d8xo")]
+position = Vector2(0, 1152)
+
+[node name="Map_CC_04" parent="Maps" instance=ExtResource("3_0wfav")]
+position = Vector2(0, 1728)
+
+[node name="Map_CC_05" parent="Maps" instance=ExtResource("4_k5ep2")]
+position = Vector2(0, 2304)
+
+[node name="Player" parent="." instance=ExtResource("5_0xtp3")]
+position = Vector2(510, 105)
+
+[node name="GameplayInterface" parent="." instance=ExtResource("6_551wk")]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
