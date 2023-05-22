@@ -74,6 +74,7 @@ text = "Toggle Fullscreen"
 script = ExtResource("4_hcr1d")
 
 [node name="Exit" type="Button" parent="MenuItems"]
+visible = false
 layout_mode = 2
 theme = ExtResource("4_gbstf")
 text = "Exit"
